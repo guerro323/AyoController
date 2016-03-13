@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AyoController", "SMAdminTools\AyoController.csproj", "{3AB7196B-6387-42D4-A03F-265F4E616546}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShootManiaXMLRPC", "ShootManiaXMLRPC\ShootManiaXMLRPC.csproj", "{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGAdmin", "IGAdmin\IGAdmin.csproj", "{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRCBot", "IRCBot\IRCBot.csproj", "{32C6AE33-FB10-4A02-8398-0D30807B7B4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "Commands\Commands.csproj", "{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AB7196B-6387-42D4-A03F-265F4E616546}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3AB7196B-6387-42D4-A03F-265F4E616546}.Debug|x86.ActiveCfg = Debug|x86
+		{3AB7196B-6387-42D4-A03F-265F4E616546}.Debug|x86.Build.0 = Debug|x86
+		{3AB7196B-6387-42D4-A03F-265F4E616546}.Release|Any CPU.ActiveCfg = Release|x86
+		{3AB7196B-6387-42D4-A03F-265F4E616546}.Release|x86.ActiveCfg = Release|x86
+		{3AB7196B-6387-42D4-A03F-265F4E616546}.Release|x86.Build.0 = Release|x86
+		{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}.Debug|x86.Build.0 = Debug|Any CPU
+		{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}.Release|x86.ActiveCfg = Release|Any CPU
+		{3B12CB3A-A474-4CE3-8C13-A357CEF42F54}.Release|x86.Build.0 = Release|Any CPU
+		{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}.Debug|x86.Build.0 = Debug|Any CPU
+		{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}.Release|x86.ActiveCfg = Release|Any CPU
+		{34EACBCA-D2AC-4C03-B932-8E3E492DCABC}.Release|x86.Build.0 = Release|Any CPU
+		{32C6AE33-FB10-4A02-8398-0D30807B7B4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32C6AE33-FB10-4A02-8398-0D30807B7B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32C6AE33-FB10-4A02-8398-0D30807B7B4F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{32C6AE33-FB10-4A02-8398-0D30807B7B4F}.Debug|x86.Build.0 = Debug|Any CPU
+		{32C6AE33-FB10-4A02-8398-0D30807B7B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32C6AE33-FB10-4A02-8398-0D30807B7B4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32C6AE33-FB10-4A02-8398-0D30807B7B4F}.Release|x86.ActiveCfg = Release|Any CPU
+		{32C6AE33-FB10-4A02-8398-0D30807B7B4F}.Release|x86.Build.0 = Release|Any CPU
+		{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}.Debug|x86.Build.0 = Debug|Any CPU
+		{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}.Release|x86.ActiveCfg = Release|Any CPU
+		{8ED8E5B2-B2A2-4D54-AAD3-184A8E4AECD8}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SMAdminTools\SMAdminTools.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.StandardHeader = $2
+		$2.Text = 
+		$2.IncludeInNewFiles = True
+	EndGlobalSection
+EndGlobal

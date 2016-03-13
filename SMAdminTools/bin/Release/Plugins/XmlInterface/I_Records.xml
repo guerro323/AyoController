@@ -1,0 +1,14 @@
+﻿<frame posn="60 -30" scale="0.2">
+	<quad posn="121 -1.22 -1" sizen="215 33" bgcolor="000000AA" style="BgsPlayerCard" substyle="BgRacePlayerLine" rot="180" opacity="0.1"/><quad posn="-93 0 -1" sizen="215 33" bgcolor="000000AA" style="BgRaceScore2" substyle="CartoucheLine" opacity="0.1"/>
+	<quad posn="84 33 -1" sizen="31 30" bgcolor="FFFA" style="Bgs1InRace" substyle="BgShadow"/>
+	<quad posn="84 -7 -1" sizen="31 30" bgcolor="FFFA" style="Bgs1InRace" substyle="BgShadow"/>
+	<quad posn="16 35 -1" sizen="87.2 33" bgcolor="FFFA" style="Bgs1InRace" substyle="BgButtonShadow" scale="0.9"/>
+	<quad posn="-94 5 -1" sizen="214 11" bgcolor="FFFA" style="Bgs1InRace" substyle="BgButtonShadow"/>
+	<label posn="-84 27 0" sizen="50 28" textsize="20" textprefix="$t" text="00.00" textcolor="000000FF"/>
+	<quad posn="90 30 0" sizen="20 20" bgcolor="FFFFFF00" modulatecolor="FFFFFF00" image="http://lanteam.cloudcraft.fr/guerromode/ayo/chrono.png"/>
+	<quad posn="89 -10 0" sizen="20 20" bgcolor="FFFFFFFF" modulatecolor="FFFFFFFF" scale="1.3" style="UIConstruction_Buttons" substyle="Drive" colorize="fff" />
+	<quad posn="20 30 0" sizen="70 20" bgcolor="000000FF"/>
+	<label posn="26 25 1" sizen="59 16" text="$nPERSONNAL BEST" textsize="10"/>
+	<label posn="-84 -15 1" sizen="59 16" text="BY YOU" textsize="10" textprefix="$000"/>
+	<quad posn="-87 0 0" sizen="200 1" bgcolor="000000FF" modulatecolor="000000FF"/>
+</frame>

@@ -1,0 +1,1 @@
+AyoController.exe Config.ini

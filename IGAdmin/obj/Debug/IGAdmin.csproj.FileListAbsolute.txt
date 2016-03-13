@@ -1,0 +1,5 @@
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\IGAdmin.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\IGAdmin.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\IGAdmin\obj\Debug\IGAdmin.csprojResolveAssemblyReference.cache
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\IGAdmin\obj\Debug\IGAdmin.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\IGAdmin\obj\Debug\IGAdmin.pdb
