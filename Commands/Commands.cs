@@ -72,24 +72,6 @@ namespace Commands
             if (!exists)
                 Directory.CreateDirectory("Plugins/misc");
 
-            // Load
-            if (File.Exists("Plugins/misc/records.json"))
-            {
-                // var JsonString = File.ReadAllText("Plugins/misc/records.json");
-                // Records = JsonMapper.ToObject<Dictionary<string, Management>>(JsonString);
-                //if (Records.Count <= 0) Records = new Dictionary<string, Management>();
-                using (StreamReader r = new StreamReader("Plugins/misc/records.json"))
-                {
-                    string json = r.ReadToEnd();
-                    Console.WriteLine(json);
-                    Records = JsonConvert.DeserializeObject<Dictionary<string, Management>>(json); ;
-                }
-            } else
-            {
-                File.Create("Plugins/misc/records.json");
-                Records = new Dictionary<string, Management>();
-            }
-
             Console.WriteLine(Records.Count);
             foreach (var Record in Records)
             {
@@ -148,14 +130,17 @@ namespace Commands
     void HandleOnConnectionSuccessful ()
 		{
 			this.ServerManager.Server.OnPlayerChat += HandleOnPlayerChat;
-			this.ServerManager.Server.OnPlayerConnect += HandleOnPlayerConnect;;
-		}
+			this.ServerManager.Server.OnPlayerConnect += HandleOnPlayerConnect;
+
+        }
 
 		void HandleOnPlayerConnect (ShootManiaXMLRPC.Structs.PlayerConnect PC)
 		{
 			if (Admins.Contains (PC.Login)) {
 				ChatSendServerMessage("Admin connected : " + PC.Login);
 			}
+
+
 		}
 
 		void HandleOnPlayerChat (ShootManiaXMLRPC.Structs.PlayerChat PC)
@@ -226,6 +211,12 @@ namespace Commands
                 ChangeTimeMessage = Now + 75000;
                 ChatSendServerMessage("$999» $i$fff" + RandomHelloServer());
             }
+
+            if (mapUID != ServerManager.Server.GetCurrentMapInfo().UId)
+            {
+                LoadMapUID();
+                LoadRecord();
+            }
             // ChatSendServerMessage(Now.ToString());
             foreach (ShootManiaXMLRPC.Structs.PlayerList Player in ServerManager.Server.GetPlayerList(100, 0))
             {
@@ -267,12 +258,39 @@ namespace Commands
             format += milliseconds / 10;
 
             return format;
-        } 
+        }
+
+        string mapUID;
+
+        void LoadMapUID()
+        {
+            mapUID = ServerManager.Server.GetCurrentMapInfo().UId;
+        }
+        void LoadRecord()
+        {
+            // Load
+            if (File.Exists("Plugins/misc/records_" + mapUID + ".json"))
+            {
+                string json = File.ReadAllText("Plugins/misc/records_" + mapUID + ".json");
+                if (json != "") Records = JsonConvert.DeserializeObject<Dictionary<string, Management>>(json);
+            }
+            else
+            {
+                File.Create("Plugins/misc/records_" + mapUID + ".json");
+                Records = new Dictionary<string, Management>();
+            }
+        }
 
         public override void HandleEventGbxCallback(object o, ShootManiaXMLRPC.XmlRpc.GbxCallbackEventArgs e)
         {
             if (o == null || e == null) return;
             var Name = e.Response.MethodName;
+            Console.WriteLine(Name);
+            if (Name == "ManiaPlanet.BeginMap" || Name == "ManiaPlanet.BeginRound")
+            {
+                LoadMapUID();
+                LoadRecord();
+            }
             if (Name == "TrackMania.PlayerFinish")
             {
                 var Timez = int.Parse(e.Response.Params[2].ToString());
@@ -294,7 +312,7 @@ namespace Commands
 
                     // Save to json
                     var stringJson = JsonMapper.ToJson(Records);
-                    File.WriteAllText("Plugins/misc/records.json", stringJson);
+                    File.WriteAllText("Plugins/misc/records_" + mapUID + ".json", stringJson);
 
                     /*List<KeyValuePair<string, Management>> tempList = Records.ToList();
                     tempList.Sort();
