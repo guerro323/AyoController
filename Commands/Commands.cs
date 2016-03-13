@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Collections.Generic;
 using AyoController;
 using AyoController.Plugins;
+using Newtonsoft.Json;
+using LitJson;
 
 namespace Commands
 {
@@ -54,7 +56,7 @@ namespace Commands
         public override void OnLoad ()
 		{
 			RefreshAdmins();
-
+            
         }
 
 		public override void OnServerManagerInitialize (AyoController.Classes.ServerManager ServerManager)
@@ -63,14 +65,45 @@ namespace Commands
 			this.ServerManager = ServerManager;
 			this.ServerManager.OnConnectionSuccessful += HandleOnConnectionSuccessful;
 
-		}
+            Records = new Dictionary<string, Management>();
+
+            bool exists = Directory.Exists("Plugins/misc");
+
+            if (!exists)
+                Directory.CreateDirectory("Plugins/misc");
+
+            // Load
+            if (File.Exists("Plugins/misc/records.json"))
+            {
+                // var JsonString = File.ReadAllText("Plugins/misc/records.json");
+                // Records = JsonMapper.ToObject<Dictionary<string, Management>>(JsonString);
+                //if (Records.Count <= 0) Records = new Dictionary<string, Management>();
+                using (StreamReader r = new StreamReader("Plugins/misc/records.json"))
+                {
+                    string json = r.ReadToEnd();
+                    Console.WriteLine(json);
+                    Records = JsonConvert.DeserializeObject<Dictionary<string, Management>>(json); ;
+                }
+            } else
+            {
+                File.Create("Plugins/misc/records.json");
+                Records = new Dictionary<string, Management>();
+            }
+
+            Console.WriteLine(Records.Count);
+            foreach (var Record in Records)
+            {
+                Console.WriteLine(Record.Value.Login);
+            }
+        }
 
 		public override void OnConsoleCommand (string Command)
 		{
 
 			if (Command == "igadmin reload") {
 				RefreshAdmins();
-			}
+                ServerManager.Server.SetTATime(-1);
+            }
 
 		}
 
@@ -132,9 +165,7 @@ namespace Commands
 
         private void UpdateInterface(string playerName, object[] Params, List<Management> LocalRecords, List<Management> DedimaniaRecords)
         {
-            var toreturn = @"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?>
-	<manialink version=""2"">
-		<label posn=""-148 83 0"" style=""TextButtonBig"" sizen=""25 14"" text=" + Params[0].ToString() + @" valign=""center2"" halign=""center"" textsize=""3""/>
+            var toreturn = @"<label posn=""-148 83 0"" style=""TextButtonBig"" sizen=""25 14"" text=" + Params[0].ToString() + @" valign=""center2"" halign=""center"" textsize=""3""/>
 		<label posn=""-123 83 0"" style=""TextButtonBig"" sizen=""25 14"" text=""#1"" valign=""center2"" halign=""center"" textsize=""6""/>
 		<quad posn=""-160 70.5 1"" sizen=""25 0.5"" bgcolor=""FFFFFFFF""/>
 		<label posn=""-148 73 0"" sizen=""25 6"" text=""LOCAL"" valign=""center2"" halign=""center"" textsize=""2""/>
@@ -144,16 +175,17 @@ namespace Commands
 		<quad posn=""-160 71 -1"" sizen=""50 10"" bgcolor=""000000AA"" style=""Bgs1InRace"" substyle=""BgGradTop""/>
 		<quad posn=""-160 20 -1"" sizen=""50 10"" bgcolor=""0000006D"" style=""Bgs1InRace"" substyle=""BgGradBottom"" modulatecolor=""00000087"" opacity=""0.5""/>
 		<quad posn=""-160 76 0"" sizen=""50 6"" bgcolor=""000000AA""/>
-		<quad posn=""-160 76 0"" sizen=""25 6"" bgcolor=""000000AA""/>
-        ";
+		<quad posn=""-160 76 0"" sizen=""25 6"" bgcolor=""000000AA""/>";
             int rank = 0;
-            foreach (var record in LocalRecords)
+            List<Management> SortedList = LocalRecords.OrderBy(o => o.Time).ToList();
+            foreach (var record in SortedList)
             {
                 toreturn += @"<label posn=""0 " + -rank*10 + @" 0"" text=""#" + rank+1 + @" " + record.Time + @" by " + record.Pseudo + @""" />";
+                Records[record.Login] = record;
                 rank++;
             }
-            toreturn += "</manialink>";
-            ServerManager.Server.SendManialink(playerName, toreturn, 0, false);
+            
+            ServerManager.AddThisManialink(playerName, toreturn, "Records", true);
         }
 
         class Management
@@ -186,19 +218,35 @@ namespace Commands
             return "Hey!";
         }
 
+
         public override void OnLoop ()
         {
             if (ChangeTimeMessage < Now)
             {
-                ChangeTimeMessage = Now + 30000;
+                ChangeTimeMessage = Now + 75000;
                 ChatSendServerMessage("$999» $i$fff" + RandomHelloServer());
             }
             // ChatSendServerMessage(Now.ToString());
             foreach (ShootManiaXMLRPC.Structs.PlayerList Player in ServerManager.Server.GetPlayerList(100, 0))
             {
-               // UpdateInterface(Player.Login, new object[] { 0 });
-                if (!Records.ContainsKey(Player.Login)) continue;
-                    
+                // UpdateInterface(Player.Login, new object[] { 0 });
+                if (Records.Count > 0)
+                {
+                    if (Records.ContainsKey(Player.Login))
+                    {
+                        string format = ToTime(Records[Player.Login].Time);
+                        UpdateInterface(Player.Login, new object[] { format }, Records.Values.ToList(), Records.Values.ToList());
+                    }
+                    else
+                    {
+                        UpdateInterface(Player.Login, new object[] { "00:00.00" }, Records.Values.ToList(), Records.Values.ToList());
+                    }
+                } else if (Records.Count <= 0)
+                {
+                    {
+                        UpdateInterface(Player.Login, new object[] { "00:00.00" }, new List<Management>(), new List<Management>());
+                    }
+                }
             }
             Now = Environment.TickCount;
         }
@@ -223,13 +271,14 @@ namespace Commands
 
         public override void HandleEventGbxCallback(object o, ShootManiaXMLRPC.XmlRpc.GbxCallbackEventArgs e)
         {
+            if (o == null || e == null) return;
             var Name = e.Response.MethodName;
             if (Name == "TrackMania.PlayerFinish")
             {
                 var Timez = int.Parse(e.Response.Params[2].ToString());
                 if (Timez == 0) return;
                 var ID = ServerManager.GetPlayer(e.Response.Params[1].ToString()).Login;
-                if (!Records.ContainsKey(ID)) Records.Add(ID, new Management { Time = Timez + 5, Pseudo = ServerManager.GetPlayer(ID).Nickname });
+                if (!Records.ContainsKey(ID)) Records.Add(ID, new Management { Time = Timez + 5, Pseudo = ServerManager.GetPlayer(e.Response.Params[1].ToString()).Nickname, Login = ServerManager.GetPlayer(e.Response.Params[1].ToString()).Login });
                 if (Records[ID].Time > Timez)
                 {
                     Records[ID].Time = Timez;
@@ -243,15 +292,23 @@ namespace Commands
                     result += "4th place!";
                     ChatSendServerMessage(result);
 
-                   /* List<KeyValuePair<string, Management>> tempList = Records.ToList();
+                    // Save to json
+                    var stringJson = JsonMapper.ToJson(Records);
+                    File.WriteAllText("Plugins/misc/records.json", stringJson);
+
+                    /*List<KeyValuePair<string, Management>> tempList = Records.ToList();
                     tempList.Sort();
+                    Console.WriteLine("+1");
+                    Records.Clear();
+                    Console.WriteLine("+2");
                     foreach (var list in tempList)
                     {
-                        Records[tempList.IndexOf(list).ToString()] = list.Value;
+                        Console.WriteLine("bug");
+                        Records[list.Key] = list.Value;
                     }*/
                     Console.WriteLine("test");
-                    string format = ToTime(Records[ID].Time);
-                    UpdateInterface(ID, new object[] { format }, Records.Values.ToList(), Records.Values.ToList());
+                    Console.WriteLine(Records.Count);
+                    Console.WriteLine(Records[ID].Login + " " + Records[ID].Time);
                     //UpdateInterface();
                 }
                 else ChatSendServerMessage("$fffProgress $999» $fff" + ServerManager.GetPlayer(e.Response.Params[1].ToString()).Nickname + "$z$s$> best :" + Records[ID].Time + " current :" + Timez);

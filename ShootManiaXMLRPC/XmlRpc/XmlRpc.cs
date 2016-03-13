@@ -87,6 +87,7 @@ namespace ShootManiaXMLRPC.XmlRpc
             }
             else
             {
+                Console.WriteLine("6error");
                 throw new NotConnectedException();
             }
         }
@@ -124,6 +125,7 @@ namespace ShootManiaXMLRPC.XmlRpc
             }
             else
             {
+                Console.WriteLine("3error");
                 throw new NotConnectedException();
             }
         }

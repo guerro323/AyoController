@@ -2,4 +2,3 @@ C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXML
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\bin\Release\ShootManiaXMLRPC.pdb
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\obj\Release\ShootManiaXMLRPC.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\obj\Release\ShootManiaXMLRPC.pdb
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\obj\Release\ShootManiaXMLRPC.csprojResolveAssemblyReference.cache

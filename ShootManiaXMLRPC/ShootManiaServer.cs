@@ -628,10 +628,24 @@ namespace ShootManiaXMLRPC
 
         }
 
+        public void SetTATime(int Time)
+        {
+            GbxCall request = Client.Request("SetTimeAttackLimit", new object[] { Time });
+            GbxCall done = Client.GetResponse(request.Handle);
+            Console.WriteLine(done.Error);
+        }
+
         public void SendManialink(string playerName, String ManialinkToDisplay, int TimeOut = 0, Boolean HideWhenClicked = false)
         {
-            GbxCall request = Client.Request("SendDisplayManialinkPageToLogin", new object[] { playerName, ManialinkToDisplay, TimeOut, HideWhenClicked });
-            GbxCall done = Client.GetResponse(request.Handle);
+            if (playerName != null)
+            {
+                GbxCall request = Client.Request("SendDisplayManialinkPageToLogin", new object[] { playerName, ManialinkToDisplay, TimeOut, HideWhenClicked });
+                GbxCall done = Client.GetResponse(request.Handle);
+            } else
+            {
+                GbxCall request = Client.Request("SendDisplayManialinkPage", new object[] { ManialinkToDisplay, TimeOut, HideWhenClicked });
+                GbxCall done = Client.GetResponse(request.Handle);
+            }
         }
 
 		public Structs.PlayerList GetPlayerListByPlayerLogin(string Login)

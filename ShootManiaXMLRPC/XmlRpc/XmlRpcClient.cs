@@ -153,6 +153,7 @@ namespace ShootManiaXMLRPC.XmlRpc
             }
             else
             {
+                Console.WriteLine("2error");
                 throw new NotConnectedException();
             }
         }
@@ -258,7 +259,10 @@ namespace ShootManiaXMLRPC.XmlRpc
 
             // did we get disconnected ?
             if (!tcpSocket.Connected)
+            {
+                Console.WriteLine("5error");
                 throw new NotConnectedException();
+            }
 
             // get the call and return it ...
             return GetResponse(handle);
