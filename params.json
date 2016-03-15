@@ -1,7 +1,7 @@
 {
-  "name": "Ayo.Controller",
+  "name": "AyO C# XmlRpc-Controller",
   "tagline": "Based on SMAdminTools by JuJuBoSc",
-  "body": "# Another Controller for ManiaPlanet in C#\r\n### Welcome to the project page of this Maniaplanet Controller named AYO.\r\nAyO ( not the official name yet ) is another controller for ManiaPlanet in C# based on SMAdminTools.\r\n\r\n***\r\n\r\nAyO features :\r\n* Fully C# supported.\r\n* Dynamic manialinks.\r\n* Create Manialinks like you do in ManiaPlanet.\r\n* Relay server for communication between server and client ( for sending var to the client for example ).\r\n* AyO include a powerful plugin named \"Commands\".\r\n* Creating plugins is easy.\r\n* Full XmlRpc methods support.\r\n* For Windows/Mac and Linux servers.\r\n* Works in Local\r\n* Fast build.\r\n* And some features from SMAdminTools :)",
+  "body": "\r\n### Welcome to the project page of this Maniaplanet Controller named AYO.\r\nAyO ( not the official name yet ) is another controller for ManiaPlanet in C# based on SMAdminTools.\r\n\r\n***\r\n\r\nAyO features :\r\n* Fully C# supported.\r\n* Dynamic manialinks.\r\n* Create Manialinks like you do in ManiaPlanet.\r\n* Relay server for communication between server and client ( for sending var to the client for example ).\r\n* AyO include a powerful plugin named \"Commands\".\r\n* Creating plugins is easy.\r\n* Full XmlRpc methods support.\r\n* For Windows/Mac and Linux servers.\r\n* Works in Local\r\n* Fast build.\r\n* And some features from SMAdminTools :)",
   "google": "",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
