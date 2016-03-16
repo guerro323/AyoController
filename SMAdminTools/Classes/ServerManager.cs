@@ -16,6 +16,8 @@ namespace AyoController.Classes
         public delegate void OnConnectionSuccessfulEventHandler();
         public event OnConnectionSuccessfulEventHandler OnConnectionSuccessful;
 
+        public cAdmins Admins = new cAdmins();
+
         public string[][] Commands;
 
         public ServerManager(Config Config)
@@ -43,6 +45,8 @@ namespace AyoController.Classes
             return nullplayer;
         }
 
+
+
         public List<cManialink> Manialinks = new List<cManialink>();
 
         public class cManialink
@@ -61,14 +65,18 @@ namespace AyoController.Classes
         {
             // Ajout
             var AlreadyExist = false;
+            cManialink Index = null;
             if (Manialinks.Count > 0)
             {
                 foreach (var Ml in Manialinks)
                 {
                     if (Ml.Name == _Name || Refresh)
                     {
-                        AlreadyExist = true;//< already exist
+                        Index = Ml;
                         Ml.Manialink = _Manialink;//< refresh?
+                        
+                        Manialinks.Remove(Index);
+                        AlreadyExist = false;
                     }
                 }
             }
@@ -82,8 +90,21 @@ namespace AyoController.Classes
                 FinalManialink += Ml.Manialink;
                 FinalManialink += "\n</manialink>";
             }
+            Console.WriteLine(Manialinks.Count);
             Server.SendManialink(playerName, FinalManialink, 0, false);
         }
+
+        /*public void RemoveThisManialink(string playerName, string _Name)
+        {
+            foreach (var Ml in Manialinks)
+            {
+                if (Ml.Name == _Name)
+                {
+                    Manialinks.Remove(Ml);
+                }
+            }
+            AddThisManialink(playerName, "", "", true);
+        }*/
 
         private void HandleConnection()
         {
@@ -103,6 +124,8 @@ namespace AyoController.Classes
 
                         if (Server.Authenticate(Config.ShootMania__SuperAdmin_Login, Config.ShootMania__SuperAdmin_Password))
                         {
+
+                            Manialinks = new List<cManialink>(100);
 
                             Console.WriteLine("Authentication success !");
                             Server.ChatSendServerMessage("$999AY$fffo $f00» $fffLoading . . .");
@@ -144,6 +167,9 @@ namespace AyoController.Classes
 
                             Console.WriteLine("Everythings is up and running !");
                             Server.ChatSendServerMessage("$999AY$fffo $ff0» $0f0Sucessfully loaded!");
+
+                            cAdmins.cPermissions MyGroup = Admins.AddGroup("Admins");
+                            MyGroup.AddPlayer("guerro");
 
                             // Loop
                             while (true)
@@ -202,6 +228,7 @@ namespace AyoController.Classes
         void HandleOnPlayerDisconnect(ShootManiaXMLRPC.Structs.PlayerDisconnect PC)
         {
             Console.WriteLine("Player [" + PC.Login + "] disconnected");
+            Server.ChatSendServerMessage("$fff" + PC.Login + " $z$> $f00» $i$fffleft the server!");
         }
 
         void HandleOnPlayerConnect(ShootManiaXMLRPC.Structs.PlayerConnect PC)
@@ -217,10 +244,67 @@ namespace AyoController.Classes
             Console.WriteLine(PlayerConnectText);
 
             Server.SendNoticeToLogin(PC.Login, "$fffWelcome to you " + PC.Login + "! $0f0:)");
-            Server.ChatSendServerMessage("$fff" + PC.Login + " $z$> $999» $i$fffjoined the server!");
+            Server.ChatSendServerMessage("$fff" + Admins.GetGroupForLogin(PC.Login) + " : " + GetPlayer(PC.Login).Nickname + " $z$> $0f0» $i$fffjoined the server!");
 
-            Server.SetServerName("I'm on a server!");
+        }
 
+        public class cAdmins
+        {
+            public class cPermissions
+            {
+                public string Name = "";
+                public List<string> playersIn = new List<string>();
+                public Dictionary<string, bool> currentPermissions = new Dictionary<string, bool>();
+
+                public cPermissions(string _Name, Dictionary<string, bool> _Permissions)
+                {
+                    Name = _Name;
+                    currentPermissions = _Permissions;
+                }
+
+                public void AddPlayer(string Login)
+                {
+                    playersIn.Add(Login);
+                }
+            }
+
+            public List<cPermissions> currentGroups = new List<cPermissions>();
+
+            public string GetGroupForLogin(string Login)
+            {
+                foreach (var Group in this.currentGroups)
+                {
+                    if (Group != null)
+                    {
+                        foreach (var player in Group.playersIn)
+                        {
+                            if (Login == player)
+                            {
+                                return Group.Name;
+                            }
+                        }
+                    }
+                }
+                return "Player";
+            }
+
+            public cPermissions GetGroup(string Name)
+            {
+                foreach (var Group in this.currentGroups)
+                {
+                    if (Group.Name == Name)
+                    {
+                        return Group;
+                    }
+                }
+                return null;
+            }
+
+            public cPermissions AddGroup(string Name)
+            {
+                currentGroups.Add(new cPermissions(Name, new Dictionary<string, bool>()));
+                return GetGroup(Name);
+            }
         }
 
         public void Initialize()

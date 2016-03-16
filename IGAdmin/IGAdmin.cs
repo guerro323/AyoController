@@ -88,9 +88,9 @@ namespace IGAdmin
 
 		void HandleOnPlayerConnect (ShootManiaXMLRPC.Structs.PlayerConnect PC)
 		{
-			if (Admins.Contains (PC.Login)) {
+			/*if (Admins.Contains (PC.Login)) {
 				ChatSendServerMessage("Admin connected : " + PC.Login);
-			}
+			}*/
 		}
 
 		void HandleOnPlayerChat (ShootManiaXMLRPC.Structs.PlayerChat PC)

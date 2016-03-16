@@ -12,19 +12,16 @@ namespace IGAdmin
             {
                 foreach (string admin in Admins)
                 {
-                    ChatSendServerMessage("Admin : " + admin);
-                    ServerManager.Server.ChatSendToLogin(PC.Login, "bonjour!");
-                    ServerManager.Server.SendNoticeToLogin(PC.Login, "hello");
+                    ServerManager.Server.ChatSendToLogin(PC.Login, "Admin : " + admin);
                 }
             }
-            else if (PC.Text == "/players" &&
-              Admins.Contains(PC.Login))
+            else if (PC.Text == "/players")
             {
                 foreach (var player in ServerManager.Server.GetPlayerList(100, 0))
                 {
                     if (player.PlayerId > 0)
                     {
-                        ChatSendServerMessage("[" + player.PlayerId + "] " + player.Nickname);
+                        ServerManager.Server.ChatSendToLogin(PC.Login,"[" + player.PlayerId + "] " + player.Nickname);
                     }
                 }
             }
@@ -76,11 +73,11 @@ namespace IGAdmin
                 ChatSendServerMessage("Restart map ...");
                 ServerManager.Server.RestartMap(false);
             }
-            else if (PC.Text == "!nextmap" &&
+            else if (PC.Text == PRFX + "skip" &&
               Admins.Contains(PC.Login))
             {
                 ChatSendServerMessage("Next map ...");
-                ServerManager.Server.NextMap(false);
+                //ServerManager.Server.NextMap(false);
             }
             else if (PC.Text.StartsWith("!map ") &&
               Admins.Contains(PC.Login))

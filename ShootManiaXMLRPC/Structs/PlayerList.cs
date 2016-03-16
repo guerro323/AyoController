@@ -11,6 +11,7 @@ namespace ShootManiaXMLRPC.Structs
         public int Id;
         public string Login;
         public string Pseudo;
+        public int Rank;
     }
 
     public class PlayerList

@@ -8,5 +8,6 @@ namespace ShootManiaXMLRPC.Structs
     public struct PlayerDisconnect
     {
         public string Login;
+        public string NickName;
     }
 }

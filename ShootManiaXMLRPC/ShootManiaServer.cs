@@ -101,6 +101,7 @@ namespace ShootManiaXMLRPC
                     Structs.PlayerDisconnect PD = new Structs.PlayerDisconnect();
                     PD.Login = (string)e.Response.Params[0];
 
+
                     if (OnPlayerDisconnect != null)
                         OnPlayerDisconnect(PD);
 
@@ -633,6 +634,43 @@ namespace ShootManiaXMLRPC
             GbxCall request = Client.Request("SetTimeAttackLimit", new object[] { Time });
             GbxCall done = Client.GetResponse(request.Handle);
             Console.WriteLine(done.Error);
+        }
+
+        public void SendData(string playerName, object ToSend)
+        {
+            GbxCall request = Client.Request("GetModeScriptVariables", new object[] {  });
+            GbxCall done = Client.GetResponse(request.Handle);
+            Console.WriteLine(done.ErrorString);
+        }
+
+        public void SetSpectator(string Login)
+        {
+            GbxCall request = Client.Request("ForceSpectator", new object[] { Login, 3 });
+        }
+
+        public void SetPlayer(string Login)
+        {
+            GbxCall request = Client.Request("ForceSpectator", new object[] { Login, 2 });
+        }
+
+        public void SetNoUI(string UI)
+        {
+            GbxCall request = Client.Request("TriggerModeScriptEvent", new object[] { "UI_SetProperties", UI });
+        }
+        
+
+        public string[] GetAllXmlMethod()
+        {
+            GbxCall request = Client.Request("system.listMethods", new object[] { });
+            GbxCall response = Client.GetResponse(request.Handle);
+            List<string> final = new List<string>();
+            ArrayList ht = (ArrayList)response.Params[0];
+            foreach (object resp in ht)
+            {
+                final.Add(resp.ToString());
+            }
+            Console.WriteLine(response.Params[0]);
+            return final.ToArray();
         }
 
         public void SendManialink(string playerName, String ManialinkToDisplay, int TimeOut = 0, Boolean HideWhenClicked = false)
