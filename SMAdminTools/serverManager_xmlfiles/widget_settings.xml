@@ -1,0 +1,91 @@
+﻿<frame posn="115 -82.5" id="settingframes">
+  <frame posn="0 36 0" name="scriptsetting">
+    <quad posn="0 0 0" halign="center" valign="center" sizen="40 10" id="[setting]hover" style="BgsPlayerCard" scriptevents="true" substyle="ProgressBar" />
+    <label sizen="20 10" posn="15 0 1" text="Script-Parameters" halign="right" valign="center" style="TextButtonBig" styleselected="1" textsize="1.5" translate="1"/>
+    <quad sizen="8 8" posn="-12 0 1" halign="center" valign="center" style="UIConstruction_Buttons" substyle="Options" />
+  </frame>
+  <frame posn="0 24 0" name="maplist">
+    <quad posn="0 0 0" halign="center" valign="center" sizen="40 10" id="[setting]hover" style="BgsPlayerCard" scriptevents="true" substyle="ProgressBar" />
+    <label sizen="20 10" posn="15 0 1" text="Playlists" halign="right" valign="center" style="TextButtonBig" styleselected="1" textsize="1.5" translate="1"/>
+    <quad sizen="8 8" posn="-12 0 1" halign="center" valign="center" style="ManiaPlanetMainMenu" substyle="IconStore" />
+  </frame>
+  <frame posn="0 12 0" name="playerlist">
+    <quad posn="0 0 0" halign="center" valign="center" sizen="40 10" id="[setting]hover" style="BgsPlayerCard" scriptevents="true" substyle="ProgressBar" />
+    <label sizen="20 10" posn="15 0 1" text="Players" halign="right" valign="center" style="TextButtonBig" styleselected="1" textsize="1.5" translate="1"/>
+    <quad sizen="8 8" posn="-12 0 1" halign="center" valign="center" style="UIConstruction_Buttons" substyle="ActionMaker" />
+  </frame>
+  <frame posn="0 0 0" name="setting">
+    <quad posn="0 0 0" halign="center" valign="center" sizen="40 10" id="[setting]hover" style="BgsPlayerCard" scriptevents="true" substyle="ProgressBar" />
+    <label sizen="20 10" posn="15 0 1" text="Settings" halign="right" valign="center" style="TextButtonBig" styleselected="1" textsize="1.5" translate="1"/>
+    <quad sizen="8 8" posn="-12 0 1" halign="center" valign="center" style="ManiaPlanetMainMenu" substyle="IconSettings" />
+  </frame>
+
+  <quad sizen="42.5 50" posn="0 18" halign="center" valign="center" style="Bgs1" substyle="BgHealthBar"/>
+  <quad sizen="8 8" posn="0 45" halign="center" valign="center" style="ManiaPlanetMainMenu" substyle="IconAdd" />
+</frame>
+
+<quad sizen="41 81" halign="center" valign="center" bgcolor="999" id="[setting]hover" posn="115 -72.5 -1" scriptevents="1" opacity="0."/>
+
+<script>
+    <!--
+    
+    
+    #Include "AnimLib" as AL
+    #Const C_FrameAnimTime 500
+    #Const C_FrameAnim 250
+    #Const C_FrameAnimToWait 10
+    
+    ***Process_Animations***
+    ***
+      if (IsHover_Setting)
+      {
+        if (!SwitchHover_Setting)
+        {
+          SwitchHover_Setting = True;
+          LastHover_Setting = Now + C_FrameAnimToWait;
+        }
+        Transition = AL::EaseInSine(Now - LastHover_Setting, -130., 50., C_FrameAnimTime);
+        TotalFrame.RelativePosition[1] = Transition;
+      }
+      else
+      {
+        if (SwitchHover_Setting)
+        {
+          SwitchHover_Setting = False;
+          LastHover_Setting = Now + C_FrameAnimToWait;  
+        }
+        Transition = AL::EaseInSine(Now - LastHover_Setting, -80., -50., C_FrameAnimTime);
+        TotalFrame.RelativePosition[1] = Transition;
+      }
+    ***
+    
+  main() {
+    declare HelpHovering for This = False;
+    declare TotalFrame = (Page.GetFirstChild("settingframes") as CMlFrame);
+    
+    declare Boolean IsHover_Setting         for This = False;
+    declare Boolean SwitchHover_Setting     for This = False;
+    declare Integer LastHover_Setting       for This = Now;
+    
+    declare Transition for This = 0.;
+    
+    while(True) {
+      foreach (Event in PendingEvents) {
+        if (Event.Type == CMlEvent::Type::MouseOver)
+        {
+          if (Event.ControlId == "[setting]hover") {
+            IsHover_Setting = True;
+          }
+        }
+        if (Event.Type == CMlEvent::Type::MouseOut)
+        {
+          if (Event.ControlId == "[setting]hover") {
+            IsHover_Setting = False;
+          }
+        }
+      }
+      +++Process_Animations+++
+      yield;
+    }
+  }
+--></script>

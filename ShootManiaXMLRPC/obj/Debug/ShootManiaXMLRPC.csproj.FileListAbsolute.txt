@@ -1,5 +1,4 @@
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\bin\Debug\ShootManiaXMLRPC.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\bin\Debug\ShootManiaXMLRPC.pdb
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\obj\Debug\ShootManiaXMLRPC.csprojResolveAssemblyReference.cache
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\obj\Debug\ShootManiaXMLRPC.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\ShootManiaXMLRPC\obj\Debug\ShootManiaXMLRPC.pdb

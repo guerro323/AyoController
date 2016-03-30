@@ -1,0 +1,11 @@
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Release\Dedimania.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Release\Dedimania.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Release\AyoController.exe
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Release\ShootManiaXMLRPC.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Release\ShootManiaXMLRPC.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Dedimania.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Dedimania.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Release\Dedimania.csprojResolveAssemblyReference.cache
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Release\Dedimania.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Release\Dedimania.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\serverManager_xmlfiles\widget_settings.xml

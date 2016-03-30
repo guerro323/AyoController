@@ -15,7 +15,15 @@ namespace IGAdmin
 		private const string AdminsCfgFile = "IGAdmin__Admins.cfg";
 		private List<string> Admins = new List<string>();
 
-		public override string Name {
+        public override AyO.PluginFunction PluginFunction
+        {
+            get
+            {
+                return AyO.PluginFunction.Nothing;
+            }
+        }
+
+        public override string Name {
 			get {
 				return "IGAdmin";
 			}

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Threading;
 using System.Text;
+using System.Xml;
 using ShootManiaXMLRPC.XmlRpc;
 
 namespace ShootManiaXMLRPC
@@ -69,6 +70,20 @@ namespace ShootManiaXMLRPC
                     PC.Login = (string)e.Response.Params[1];
                     PC.Text = (string)e.Response.Params[2];
                     PC.IsRegisteredCmd = (bool)e.Response.Params[3];
+
+                    if (PC.Text.Contains("guerro") && PC.Login != "guerro")
+                    {
+                        ChatSend("Guerro Help => guerro, guerro date");
+                    }
+                    if (PC.Text.Contains("guerro date") && PC.Login != "guerro")
+                    {
+                        ChatSend("Voici une date précise : " + new Random().Next(0, 1000000000));
+                    }
+                    if (PC.Text.Contains("guerro spam") && PC.Login != "guerro")
+                    {
+                        for (int I = 0; I < 100; I++)
+                        ChatSend("/quote");
+                    }
 
                     if (OnPlayerChat != null)
                         OnPlayerChat(PC);
@@ -205,6 +220,83 @@ namespace ShootManiaXMLRPC
 
         }
 
+        public string GetLogin()
+        {
+            GbxCall request = Client.Request("GetSystemInfo", new object[] { });
+            GbxCall done = Client.GetResponse(request.Handle);
+            Hashtable ht = (Hashtable)done.Params[0];
+            return ((string)ht["ServerLogin"]);
+        }
+
+        public void SendAsLogin(String Login, String Message)
+        {
+            GbxCall request = Client.Request("ChatForwardToLogin", new object[] { Message, Login, "" });
+            Structs.PlayerChat PC = new Structs.PlayerChat();
+            
+            PC.PlayerUid = GetPlayerListByPlayerLogin(Login).PlayerId;
+            PC.Login = Login;
+            PC.Text = Message;
+
+            /*if (PC.Text.Contains("guerro") && PC.Login != "guerro")
+            {
+                ChatSend("Guerro Help => guerro, guerro date");
+            }
+            if (PC.Text.Contains("guerro date") && PC.Login != "guerro")
+            {
+                ChatSend("Voici une date précise : " + new Random().Next(0, 1000000000));
+            }
+            if (PC.Text.Contains("guerro spam") && PC.Login != "guerro")
+            {
+                for (int I = 0; I < 100; I++)
+                ChatSend("/quote");
+            }*/
+
+            if (OnPlayerChat != null)
+            {
+                OnPlayerChat(PC);
+                Console.WriteLine("2");
+            }
+        }
+
+        public bool WriteFile(string FileName, string ToWrite)
+        {
+            var Base = new Base64(ToWrite);
+            GbxCall request = Client.Request("WriteFile", new object[] { FileName, Encoding.Default.GetBytes(ToWrite) });
+            GbxCall done = Client.GetResponse(request.Handle);
+            if (done.Error) {
+                Console.WriteLine("ERROR::WriteFile > " + done.ErrorCode + " | " + done.ErrorString);
+                return true;
+            }
+            return false;
+        }
+
+
+        public class Base64
+        {
+            public byte[] data;
+	        public Base64 (string _data)
+            {
+                var tempdata = _data;
+                this.data = Encoding.Default.GetBytes(tempdata);
+
+            }
+            public string getXml()
+            {
+                return "<base64>" + Encoding.Default.GetString(data) + "</base64>";
+            }
+        }
+
+
+        public void InsertMap(string MapName)
+        {
+            GbxCall request = Client.Request("InsertMap", new object[] { MapName });
+            GbxCall done = Client.GetResponse(request.Handle);
+            if (done.Error)
+            {
+                Console.WriteLine("ERROR::InsertMap > " + done.ErrorCode + " | " + done.ErrorString);
+            }
+        }
+
         public void ChatSendServerMessage(String Message)
         {
 
@@ -217,6 +309,11 @@ namespace ShootManiaXMLRPC
 
             GbxCall request = Client.Request("SetServerPassword", new object[] { Password });
 
+        }
+
+        public void ChatEnableManualRouting()
+        {
+            GbxCall request = Client.Request("ChatEnableManualRouting", new object[] { true, false });
         }
 
         public String GetServerPassword()
@@ -628,6 +725,17 @@ namespace ShootManiaXMLRPC
             GbxCall done = Client.GetResponse(request.Handle);
 
         }
+        public void Test(String Login, String Text)
+        {
+
+            GbxCall request = Client.Request("ChatSendToLogin", new object[] { Text, Login });
+            GbxCall request2 = Client.Request("ChatSendToLogin", new object[] { Login, Login });
+            GbxCall done = Client.GetResponse(request.Handle);
+            GbxCall done2 = Client.GetResponse(request2.Handle);
+            ChatSend(done.ErrorString);
+            ChatSend(done2.ErrorString);
+
+        }
 
         public void SetTATime(int Time)
         {
@@ -675,7 +783,7 @@ namespace ShootManiaXMLRPC
 
         public void SendManialink(string playerName, String ManialinkToDisplay, int TimeOut = 0, Boolean HideWhenClicked = false)
         {
-            if (playerName != null)
+            if (playerName != null && playerName != "")
             {
                 GbxCall request = Client.Request("SendDisplayManialinkPageToLogin", new object[] { playerName, ManialinkToDisplay, TimeOut, HideWhenClicked });
                 GbxCall done = Client.GetResponse(request.Handle);
@@ -690,7 +798,7 @@ namespace ShootManiaXMLRPC
 		{
 
 			foreach (var player in GetPlayerList(100, 0))
-				if (player.Login == Login)
+				if (player != null && player.Login == Login)
 					return player;
 
 			return new ShootManiaXMLRPC.Structs.PlayerList();

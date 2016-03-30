@@ -1,0 +1,8 @@
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\XmlInterface\Widget3.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\XmlInterface\Widget1.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\XmlInterface\Widget2.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Commands.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Commands.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Commands\obj\Debug\Commands.csprojResolveAssemblyReference.cache
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Commands\obj\Debug\Commands.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Commands\obj\Debug\Commands.pdb

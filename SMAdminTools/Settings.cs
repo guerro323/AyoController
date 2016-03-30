@@ -6,8 +6,8 @@ namespace AyoController
 	public class Settings
 	{
 
-		internal const String Version = "0.1";
-		internal const String ShootManiaApiVersion = "2012-06-19";
+		internal const String Version = "AyO.2";
+		internal const String ShootManiaApiVersion = "2016-03-27";
 
 	}
 }

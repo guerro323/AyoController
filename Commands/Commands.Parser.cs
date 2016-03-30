@@ -55,7 +55,7 @@ namespace Commands
             return "Hey!";
         }
 
-        string[] BadWords = new string[] { "cazzo", "merda", "kurwa", "fuck off", "dick", "fuck", "anus", "merde" };
+        string[] BadWords = new string[] { "cazzo", "merda", "kurwa", "fuck off", "dick", "fuck", "anus", "merde", "putain" };
 
         private void ParseChatCommand (ShootManiaXMLRPC.Structs.PlayerChat PC)
 		{
@@ -65,9 +65,11 @@ namespace Commands
                 {
                     ChatSendServerMessage("Bad word detected!");
                     ServerManager.AddThisManialink(PC.Login, @"<label text=""fuck you then"" />", "Warning", true);
-                    ServerManager.AddThisManialink(PC.Login, @"<label posn=""0 -10 0"" text=""fuck you then"" />", "Warning2", true);
+                    ServerManager.AddThisManialink(PC.Login, @"<label posn=""0 -10 0"" text=""xd"" />", "Warning2", true);
                 }
+
             }
+
             switch (PC.Text)
             {
                 case "/help":

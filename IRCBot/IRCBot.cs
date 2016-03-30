@@ -20,7 +20,15 @@ namespace IRCBot
 		private Thread Thread_IrcListen;
 		private AyoController.Classes.ServerManager Server;
 
-		public override string Name {
+        public override AyO.PluginFunction PluginFunction
+        {
+            get
+            {
+                return AyO.PluginFunction.Nothing;
+            }
+        }
+
+        public override string Name {
 			get {
 				return "IRCBot";
 			}
@@ -152,7 +160,7 @@ namespace IRCBot
 		{
 			if (IRCBotSettings.ShootMania_GameChatToIRC == 1)
 			{
-				foreach (var player in Server.Server.GetPlayerList(100, 0))
+				foreach (var player in Server.GetPlayers())
 				{
 					if (player.Login == PC.Login &&
 					    player.TeamId >= 0)

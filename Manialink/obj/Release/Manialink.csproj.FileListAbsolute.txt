@@ -1,0 +1,7 @@
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Core\Manialink.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Core\Manialink.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Manialink\obj\Release\Manialink.csprojResolveAssemblyReference.cache
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Manialink\obj\Release\Manialink.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Manialink\obj\Release\Manialink.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Manialink.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Manialink.pdb

@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="SMAdminTools\AyoController.csproj">
+  <DisabledProjects>
+    <String>Dedimania\Dedimania.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Commands\Commands.cs">
+    <Files>
+      <File FileName="Commands\Commands.cs" Line="132" Column="65" />
+      <File FileName="SMAdminTools\Classes\Manialinks_System\ML_Quad.cs" Line="23" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

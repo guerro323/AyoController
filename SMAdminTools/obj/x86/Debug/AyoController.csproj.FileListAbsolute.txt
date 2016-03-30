@@ -1,0 +1,9 @@
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Debug\AyoController.exe.config
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Debug\AyoController.exe
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Debug\AyoController.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Debug\LitJson.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Debug\ShootManiaXMLRPC.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Debug\ShootManiaXMLRPC.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\obj\x86\Debug\AyoController.csprojResolveAssemblyReference.cache
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\obj\x86\Debug\AyoController.exe
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\obj\x86\Debug\AyoController.pdb

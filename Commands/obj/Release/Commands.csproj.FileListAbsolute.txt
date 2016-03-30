@@ -1,3 +1,8 @@
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Commands.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Commands\obj\Release\Commands.csprojResolveAssemblyReference.cache
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Commands\obj\Release\Commands.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Commands_xmlfiles\Widget3.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Commands_xmlfiles\Widget1.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Commands_xmlfiles\Widget2.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Commands_xmlfiles\I_Records.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\serverManager_xmlfiles\widget_settings.xml

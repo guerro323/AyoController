@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3AB7196B-6387-42D4-A03F-265F4E616546}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>AyoController</RootNamespace>
@@ -49,19 +47,26 @@
     <Externalconsole>true</Externalconsole>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LitJson, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\LitJson.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="LitJson">
+      <HintPath>..\LitJson.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Manialinks_System\ML_Label.cs" />
+    <Compile Include="Classes\MathHelper.cs" />
+    <Compile Include="Classes\Matrix.cs" />
+    <Compile Include="Classes\ManiaExchange.cs" />
+    <Compile Include="Classes\Quaternion.cs" />
+    <Compile Include="Classes\Vector2.cs" />
+    <Compile Include="Classes\Vector3.cs" />
+    <Compile Include="Classes\ManialinkSystem.cs" />
+    <Compile Include="Classes\Manialinks_System\ML_Quad.cs" />
+    <Compile Include="Classes\Manialinks_System\ML_Nodes.cs" />
+    <Compile Include="Classes\Manialinks_System\ML_Frame.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Classes\IniFile.cs" />
@@ -94,8 +99,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LitJson.dll" />
+    <Content Include="serverManager_xmlfiles\widget_settings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\" />
   </ItemGroup>
 </Project>

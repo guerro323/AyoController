@@ -1,0 +1,13 @@
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\Dedimania.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\Dedimania.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\AyoController.exe
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\ManiaNet.DedicatedServer.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\ShootManiaXMLRPC.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\XmlRpc.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\ShootManiaXMLRPC.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\AyoController.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\ManiaNet.DedicatedServer.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\bin\Debug\XmlRpc.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Debug\Dedimania.csprojResolveAssemblyReference.cache
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Debug\Dedimania.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Debug\Dedimania.pdb

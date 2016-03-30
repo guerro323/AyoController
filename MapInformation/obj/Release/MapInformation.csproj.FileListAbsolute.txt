@@ -1,0 +1,14 @@
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\obj\Release\MapInformation.csprojResolveAssemblyReference.cache
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\bin\Release\MapInformation_xmlfiles\XMLFile1.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\bin\Release\MapInformation.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\bin\Release\MapInformation.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\bin\Release\AyoController.exe
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\bin\Release\ShootManiaXMLRPC.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\bin\Release\ShootManiaXMLRPC.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\obj\Release\MapInformation.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\obj\Release\MapInformation.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation.pdb
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation_xmlfiles\Widget.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation_xmlfiles\Widget_MXList_Frame.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\serverManager_xmlfiles\widget_settings.xml

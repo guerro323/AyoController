@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShootManiaXMLRPC.Structs
 {
-    public struct CurrentMapInfo
+    public class CurrentMapInfo
     {
         public string UId;
         public string Name;

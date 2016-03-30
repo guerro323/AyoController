@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
+using System.IO;
 using System.Collections.Generic;
+using System.Text;
 using ShootManiaXMLRPC;
 using AyoController.Plugins;
 
@@ -26,28 +28,67 @@ namespace AyoController.Classes
             this.Server = new ShootManiaServer(this.Config.ShootMania__IP, this.Config.ShootMania__XML_RPC_Port);
         }
 
+        public bool AddMXMap(ManiaExchange MX, int Name)
+        {
+            if (MX != null && Name != 0)
+            {
+                MX.AddMap(Name);
+                if (File.Exists("Plugins/misc/mx/" + Name + ".Map.Gbx"))
+                {
+                    var booleable = Server.WriteFile("Ayo_MXMAPS/" + Name.ToString() + ".Map.Gbx", File.ReadAllText("Plugins/misc/mx/" + Name.ToString() + ".Map.Gbx"));
+                    Server.InsertMap("Ayo_MXMAPS/" + Name.ToString() + ".Map.Gbx");
+                    return booleable;
+                }
+                else return true;
+            }
+            return false;
+        }
+
         public ShootManiaXMLRPC.Structs.PlayerList GetPlayer(object ID)
         {
             ShootManiaXMLRPC.Structs.PlayerList nullplayer = null; //< Because :/.
 
             foreach (ShootManiaXMLRPC.Structs.PlayerList player in Server.GetPlayerList(100, 0))
             {
-                if (ID is int)
+                if (player != null)
                 {
-                    if (player.PlayerId == (int)ID) return player;
-                }
-                else if (ID is string)
-                {
-                    if (player.Login == (string)ID) return player;
+                    if (ID is int)
+                    {
+                        if (player.PlayerId == (int)ID) return player;
+                    }
+                    else if (ID is string)
+                    {
+                        if (player.Login == (string)ID) return player;
+                    }
                 }
             }
 
             return nullplayer;
         }
 
+        static public void CreateNewFile(string pluginName, string name, string contents, Action AfterJson)
+        {
+            bool exists = Directory.Exists("Plugins/misc/" + pluginName);
+
+            if (!exists)
+                Directory.CreateDirectory("Plugins/misc/" + pluginName);
+
+            File.WriteAllText("Plugins/misc/" + pluginName + "/" + name, contents);
+
+            /*if (File.Exists("Plugins/misc/" + pluginName + "/" + name))
+            {
+                AfterJson();
+                File.WriteAllText("Plugins/misc/" + pluginName + "/" + name, contents);
+            }
+            else
+            {
+                File.WriteAllText("Plugins/misc/" + pluginName + "/" + name, contents);
+            }*/
+        }
 
 
-        public List<cManialink> Manialinks = new List<cManialink>();
+
+        public Dictionary<Dictionary<string, string>, cManialink> Manialinks = new Dictionary<Dictionary<string, string>, cManialink>();
 
         public class cManialink
         {
@@ -59,55 +100,169 @@ namespace AyoController.Classes
                 Manialink = _Ml;
                 Name = _Na;
             }
+
+        }
+
+        public ShootManiaXMLRPC.Structs.PlayerList[] GetPlayers()
+        {
+            List<ShootManiaXMLRPC.Structs.PlayerList> listPlayers = new List<ShootManiaXMLRPC.Structs.PlayerList>();
+            foreach (var Player in Server.GetPlayerList(100, 0))
+            {
+                if (Player != null)
+                {
+                    listPlayers.Add(Player);
+                }
+            }
+            return listPlayers.ToArray();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pluginName">Name of the plugin</param>
+        /// <param name="Type">Type of the file ---> 
+        /// [0: xml, 
+        /// 1: misc]</param>
+        /// <param name="ToRead"></param>
+        /// <returns></returns>
+        public string ReadText(string pluginName, int Type, string ToRead)
+        {
+            if (Type == 0) {
+                if (!File.Exists("Plugins/" + pluginName + "_xmlfiles/" + ToRead + ".xml")) return "The file don't exist";
+                else return File.ReadAllText("Plugins/" + pluginName + "_xmlfiles/" + ToRead + ".xml");
+            }
+            if (Type == 1)
+            {
+                if (!File.Exists("Plugins/misc/" + pluginName + "/" + ToRead + ".misc")) return "The file don't exist";
+                else return File.ReadAllText("Plugins/misc/" + pluginName + "/" + ToRead + ".misc");
+            }
+            return "";
         }
 
         public void AddThisManialink(string playerName, string _Manialink, string _Name, bool Refresh)
         {
             // Ajout
             var AlreadyExist = false;
-            cManialink Index = null;
-            if (Manialinks.Count > 0)
+            if (playerName == "" || playerName == null)
             {
-                foreach (var Ml in Manialinks)
+                foreach (var Player in GetPlayers())
                 {
-                    if (Ml.Name == _Name || Refresh)
+                    Dictionary<string, string> Index = new Dictionary<string, string>();
+                    Dictionary<string, string> iPlayer = new Dictionary<string, string>();
+                    iPlayer[Player.Login] = _Name;
+                    Console.WriteLine("Adding : " + _Name + ",  for : " + Player.Login);
+                    if (Manialinks.Count > 0)
                     {
-                        Index = Ml;
-                        Ml.Manialink = _Manialink;//< refresh?
-                        
-                        Manialinks.Remove(Index);
-                        AlreadyExist = false;
+                        foreach (var Ml in Manialinks)
+                        {
+                            if (Ml.Value.Name == _Name || Refresh)
+                            {
+                                if (Ml.Value.Name == _Name)
+                                {
+                                    Index = Ml.Key;
+                                    Ml.Value.Manialink = _Manialink;//< refresh?
+                                    Console.WriteLine("removing " + Ml.Value.Name);
+                                    AlreadyExist = false;
+
+                                    if (Refresh)
+                                    {
+                                        Index = null;
+                                        AlreadyExist = true;
+                                        Ml.Value.Manialink = _Manialink;
+                                    }
+                                }
+                            }
+                        }
                     }
+                    if (Index != null) Manialinks.Remove(Index);
+                    if (!AlreadyExist) Manialinks.Add(iPlayer, new cManialink(_Manialink, _Name));
+                    // Organisation
+                    var FinalManialink = "";
+                    FinalManialink += "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>";
+                    foreach (var Ml in Manialinks)
+                    {
+                        Console.WriteLine(Ml.Value.Name);
+                        FinalManialink += "\n<manialink name=\"" + Ml.Value.Name + "\" version=\"2\">\n";
+                        FinalManialink += Ml.Value.Manialink;
+                        FinalManialink += "\n</manialink>";
+                    }
+                    Server.SendManialink(Player.Login, FinalManialink, 0, false);
                 }
             }
-            if (!AlreadyExist) Manialinks.Add(new cManialink(_Manialink, _Name));
-            // Organisation
-            var FinalManialink = "";
-            FinalManialink += "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>";
-            foreach (var Ml in Manialinks)
-            {
-                FinalManialink += "\n<manialink version=\"2\">\n";
-                FinalManialink += Ml.Manialink;
-                FinalManialink += "\n</manialink>";
+            else {
+                Dictionary<string, string> Index = new Dictionary<string, string>();
+                Dictionary<string, string> Player = new Dictionary<string, string>();
+                Player[playerName] = _Name;
+                Console.WriteLine("Adding : " + _Name + ",  for : " + playerName);
+                if (Manialinks.Count > 0)
+                {
+                    foreach (var Ml in Manialinks)
+                    {
+                        if (Ml.Value.Name == _Name || Refresh)
+                        {
+                            if (Ml.Value.Name == _Name)
+                            {
+                                Index = Ml.Key;
+                                Ml.Value.Manialink = _Manialink;//< refresh?
+                                Console.WriteLine("removing " + Ml.Value.Name);
+                                AlreadyExist = false;
+
+                                if (Refresh)
+                                {
+                                    Index = null;
+                                    AlreadyExist = true;
+                                    Ml.Value.Manialink = _Manialink;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (Index != null) Manialinks.Remove(Index);
+                if (!AlreadyExist) Manialinks.Add(Player, new cManialink(_Manialink, _Name));
+                // Organisation
+                var FinalManialink = "";
+                FinalManialink += "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>";
+                foreach (var Ml in Manialinks)
+                {
+                    Console.WriteLine(Ml.Value.Name);
+                    FinalManialink += "\n<manialink name=\"" + Ml.Value.Name + "\" version=\"2\">\n";
+                    FinalManialink += Ml.Value.Manialink;
+                    FinalManialink += "\n</manialink>";
+                }
+                Server.SendManialink(playerName, FinalManialink, 0, false);
             }
-            Console.WriteLine(Manialinks.Count);
-            Server.SendManialink(playerName, FinalManialink, 0, false);
         }
 
-        /*public void RemoveThisManialink(string playerName, string _Name)
+        public void RemoveThisManialink(string playerName, string _Name)
         {
             foreach (var Ml in Manialinks)
             {
-                if (Ml.Name == _Name)
+                if (Ml.Value.Name == _Name)
                 {
-                    Manialinks.Remove(Ml);
+                    Manialinks.Remove(Ml.Key);
                 }
             }
             AddThisManialink(playerName, "", "", true);
-        }*/
+        }
+
+        public int RefreshTime;
+        public int Now;
+
+        private string Widget_Setting;
 
         private void HandleConnection()
         {
+            ManialinkSystem ManiaLinkTest = new ManialinkSystem();
+            /*Quad MyQuad = new Quad("test", Vector3.Zero, Vector3.Zero, false);
+            Quad SecondQuad = new Quad("", new Vector3(0, 0, 4), new Vector3(10, 10, 10), false);
+            Label MyLabel = new Label("", Vector3.Zero, Vector3.Zero, false);
+            SecondQuad.style = "Bgs1";
+            SecondQuad.substyle = "BgGlow2";
+            SecondQuad.Halign = ManialinkSystem.Halign.Center;
+            MyLabel.text = "MANIALINK GENERATOR :D";
+            ManiaLinkTest.Add(MyQuad, true);
+            ManiaLinkTest.Add(SecondQuad, true);
+            ManiaLinkTest.Add(MyLabel, true);*/
             while (true)
             {
 
@@ -125,10 +280,8 @@ namespace AyoController.Classes
                         if (Server.Authenticate(Config.ShootMania__SuperAdmin_Login, Config.ShootMania__SuperAdmin_Password))
                         {
 
-                            Manialinks = new List<cManialink>(100);
-
                             Console.WriteLine("Authentication success !");
-                            Server.ChatSendServerMessage("$999AY$fffo $f00» $fffLoading . . .");
+                            Server.ChatSendServerMessage("$999AY$fffo $f00» $fffLoading KEK . . .");
 
                             Console.WriteLine("Set API version : " + Settings.ShootManiaApiVersion + " ...");
                             Server.SetApiVersion(Settings.ShootManiaApiVersion);
@@ -161,15 +314,20 @@ namespace AyoController.Classes
                                 rankCommand++;
                             }
 
-                            foreach (ShootManiaXMLRPC.Structs.PlayerList Player in Server.GetPlayerList(5, 0))
-                            {
-                            }
-
                             Console.WriteLine("Everythings is up and running !");
                             Server.ChatSendServerMessage("$999AY$fffo $ff0» $0f0Sucessfully loaded!");
 
                             cAdmins.cPermissions MyGroup = Admins.AddGroup("Admins");
                             MyGroup.AddPlayer("guerro");
+
+                            Widget_Setting = ReadText("serverManager", 0, "widget_settings");
+                            Server.SetTATime(-1);
+
+                            Dictionary<string, bool> RemoveLegacy = new Dictionary<string, bool>();
+                            RemoveLegacy.Add("Settings", false);
+
+                            Console.WriteLine(ManiaLinkTest.CurrentBuild);
+                            AddThisManialink("", ManiaLinkTest.CurrentBuild, "ololololol", true);
 
                             // Loop
                             while (true)
@@ -177,7 +335,27 @@ namespace AyoController.Classes
                                 foreach (Plugins.Plugin plugin in Plugins.Manager.LoadedPlugins)
                                 {
                                     plugin.OnLoop();
+                                    if (plugin.PluginFunction == AyO.PluginFunction.Settings) RemoveLegacy["Settings"] = true;
                                 }
+                                // manialink of ayo
+                                if (RefreshTime < Now)
+                                {
+                                    RefreshTime = Now + 1000;
+                                    if (!RemoveLegacy["Settings"]) AddThisManialink("", Widget_Setting, "[AYO]Widget_Settings", true);
+                                    else
+                                    {
+                                        foreach (var Player in GetPlayers())
+                                        {
+                                            Dictionary<string, string> Tempkey = new Dictionary<string, string>();
+                                            Tempkey[Player.Login] = "[AYO]Widget_Settings";
+                                            if (Manialinks.ContainsKey(Tempkey))
+                                            {
+                                                RemoveThisManialink(Player.Login, "[AYO]Widget_Settings");
+                                            }
+                                        }
+                                    }
+                                }
+                                Now = Environment.TickCount;
                             }
 
                         }
@@ -197,7 +375,6 @@ namespace AyoController.Classes
 
                 if (!Server.IsConnected)
                     Console.WriteLine("Retry in " + Config.ShootMania__ReconnectTimeout + "ms ...");
-
                 Thread.Sleep(Config.ShootMania__ReconnectTimeout);
             }
         }

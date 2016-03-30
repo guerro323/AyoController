@@ -4,6 +4,7 @@ namespace AyoController.Plugins
 {
     public abstract class Plugin
     {
+        public abstract AyO.PluginFunction PluginFunction { get; }
 
         public abstract String Name { get; }
 

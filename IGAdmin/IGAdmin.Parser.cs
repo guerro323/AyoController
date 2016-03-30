@@ -17,7 +17,7 @@ namespace IGAdmin
             }
             else if (PC.Text == "/players")
             {
-                foreach (var player in ServerManager.Server.GetPlayerList(100, 0))
+                foreach (var player in ServerManager.GetPlayers())
                 {
                     if (player.PlayerId > 0)
                     {

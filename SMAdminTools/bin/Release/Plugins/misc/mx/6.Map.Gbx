@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>File Error &raquo; TM2 - Mania Exchange</title>
+	<meta http-equiv="description" content="Mania Exchange, is the biggest and best Mania track-swapping website! Use this website to share you track/map/quest creations with the entire Mania Community!" />
+	<meta http-equiv="copyright" content="Copyright &copy; 2010 - 2011, www.mania-exchange.com" />
+	<meta name="google-site-verification" content="HeSjqOdwlvt5sbMGfQ0VchZ-DqcGkbTDR9B1pQz_8Y4" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="keywords" content="trackmania, mx, mania exchange, mania, exchange, tm, trackmania 2, tm2, shootmania, sm, questmania, qm, tracks, swapping, nadeo, ubisoft, track swapping, biggest, best, fastforza, focus home" />
+	<meta http-equiv="apple-touch-icon" content="/apple-touch-icon.png" />
+	<link href="/css.mx?v=684a1d0ea4" rel="Stylesheet" type="text/css" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" /> 
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="//images.mania-exchange.com/select2-3.4.5/select2.css" rel="Stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:700' rel='stylesheet' type='text/css'>
+	
+	
+	
+		<!-- Anything but IE! -->
+		<style type="text/css">
+			body
+			{
+				background-image: url("//images.mania-exchange.com/backgrounds/sc-8.jpg") !important;
+				background-size: cover !important;
+                background-attachment: fixed;
+                background-position-y: top;
+			}
+		</style>
+</head>
+    <body>
+	
+    <div class="userbar">
+        <div class="userbar-inner">
+            <a class="pull-left userbar-button" style="position: relative;" id="userbar-sitenav-toggle">
+                <span class="userbar-sitetitle"><span style="position: relative; top: -1px;" class="">Mania Exchange <i class="icon-caret-down"></i></span></span>
+            </a>
+
+                <a class="pull-right userbar-button" href="http://accounts.mania-exchange.com/auth/register/">
+                    <span><i class="icon-rocket"></i> Sign up</span>
+                </a>
+                <a class="pull-right userbar-button" href="/auth/login?returnurl=%2ferror%2fcorruptfile">
+                    <span><i class="icon-signin"></i> Log in</span>
+                </a>
+
+            
+
+            <div class="userbar-search-container">
+                <i class="icon-search" id="userbar-search-icon"></i><input placeholder="Search... (S)" id="userbar-search" class="" value=""/>
+            </div>
+
+            <div id="userbar-search-ql">
+                <div class="userbar-search-caret userbar-search-caret-outline"></div>
+                <div class="userbar-search-caret"></div>
+                <div style="width: 600px; background-color: #eee; color: #111; border: 1px solid #333; border-radius: 10px; box-shadow: 0 0 10px #222;">
+                    <ul id="userbar-search-quicks">
+                        <li data-sq="" id="userbar-search-special" >SpecialStr</li>
+                        <li data-sq="tracksearch2?trackname={q}" class="userbar-search-quicks-active">Search tracks for "<span class="userbar-search-term"></span>"</li>
+                        <li data-sq="tracksearch2?author={q}" >Search tracks built by "<span class="userbar-search-term"></span>"</li>
+                        <li data-sq="user/search?username={q}" >Search users named "<span class="userbar-search-term"></span>"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="userbar-sitenav">
+                <a href="http://tm.mania-exchange.com/">TrackMania&sup2; Exchange</a>
+                <a href="http://sm.mania-exchange.com/">ShootMania Exchange</a>
+                <div class="userbar-sitenav-splitter"></div>
+                <a href="http://mania-exchange.com/">Portal</a>
+                <a href="http://accounts.mania-exchange.com/">Accounts</a>
+            </div>
+        </div>
+    </div>
+
+    
+	<div id="container">
+        <div class="container-inner">
+
+			<div id="main-header">
+			    <a href="/"><img width="900" height="90" alt="" src="//images.mania-exchange.com/headers/tm_1.png" /></a>
+			</div>
+            <div style="margin-bottom:30px;">
+			    <ul id="mpxmenu">
+	<li>
+		
+        <a href="/home"><i class="icon-home" style="font-size:20px;line-height:23px;padding-top:2px"></i></a>
+	</li>
+	<li>
+		
+        <a href="/tracksearch2">Find Tracks</a>
+		<ul>
+			
+            <li><a href="/tracksearch/random">Random</a></li>
+			
+			
+			
+            <li><a href="/tracksearch2?mode=1&amp;authorid=21">Nadeo Tracks</a></li>
+			<li><a href="/tracksearch2?rtype=1">Classic Tracks</a></li>
+			
+            <li><a href="/tracksearch2?mode=11">Duo Tracks</a></li>
+			
+		</ul>
+	</li>
+	<li>
+		
+        <a href="/upload/track/files">Upload Track</a>
+	</li>
+	
+    <li>
+        <a href="/leaderboard">Leaderboards</a>
+        <ul>
+            <li><a href="/leaderboard/best25replays">Best 25 Replays</a></li>
+            <li><a href="/leaderboard?type=1">Classic</a></li>
+            <li><a href="/leaderboard?type=0">Cumulative</a></li>
+            <li><a href="/leaderboard?type=2">Nadeo</a></li>
+        </ul>
+    </li>
+	<li>
+            <a href="/auth/login">Account</a>
+	</li>
+	<li>
+		
+        <a href="/forums">Forums</a>
+		<!--<ul>
+			<li><a href="#">My Posts</a></li>
+			<li><a href="#">Recent Posts</a></li>
+			<li><a href="#">New Topics</a></li>
+			<li><a href="#">Hot Topics</a></li>
+		</ul>-->
+	</li>
+	
+    <li>
+        <a href="/playpalonline" class="pbadge-container">PlayPal Online<span class="pbadge-label" title="Player count" id="ppo-players"></span></a>
+        <ul>
+            <li><a href="/playpalonline/combined" class="pbadge-container">Combined<span class="pbadge-label pbadge-label-lower" title="Player count" id="ppo-players-0"></span></a></li>
+            <li><a href="/playpalonline/canyon" class="pbadge-container">Canyon<span class="pbadge-label pbadge-label-lower" title="Player count" id="ppo-players-1"></span></a></li>
+            <li><a href="/playpalonline/stadium" class="pbadge-container">Stadium<span class="pbadge-label pbadge-label-lower" title="Player count" id="ppo-players-2"></span></a></li>
+            <li><a href="/playpalonline/valley" class="pbadge-container">Valley<span class="pbadge-label pbadge-label-lower" title="Player count" id="ppo-players-3"></span></a></li>
+        </ul>
+    </li>
+	
+    <li>
+        <a href="/home/about">About MX</a>
+        <ul>
+            <li><a href="/home/rules">Rules &amp; Guides</a></li>
+            <li><a href="/api">API</a></li>
+            <li><a href="/irc">IRC Webchat</a></li>
+        </ul>
+    </li>
+	
+    <li>
+        <a href="/user/search">Users</a>
+        <ul>
+            <li><a href="/blogs">User Blogs</a></li>
+            <li><a href="/user/team">Team</a></li>
+        </ul>
+    </li>
+        <li><a href="/statistics">Site Stats</a></li>
+</ul>
+            </div>
+			<div>
+                <div class="ly-box ly-box-n">
+                    Location:&nbsp;<span><a href="/home/index" title="Home">Home</a>&nbsp;<i class="icon-angle-right large" style="line-height:1px;position: relative;top: 1px;"></i>&nbsp;<b>File Error</b>&nbsp;</span><span style="float:right;">
+    <a href="javascript:;" class="tipsy-e dark-grey quicklink ly-quicklink" title="Link to this page">
+        <i class="icon-link"></i>
+    </a>
+</span>
+                </div>
+                <div class="ly-box-open">
+				
+<div class="box-col-6">
+    <div class="windowv2-panel">
+        <div class="windowv2-header windowv2-header-focus">
+			<i class="icon-exclamation-sign"></i> Corrupt file
+        </div>
+        <div class="windowv2-content">
+			<div class="windowv2-textcontents">
+                The file you are trying to access seems corrupted.
+			</div>
+            <div class="windowv2-buttonbar">
+                <a id="form_preview" class="margin-left-btn btn btn-tight margin-top-sm" href="javascript:history.back()"><i class="icon-arrow-left"></i> Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+			</div>
+            <div style="padding-top: 5px;">
+				<span class="TextQuiet">&copy; Mania Exchange (www.mania-exchange.com) 2016.</span>
+				<span class="TextQuiet pull-right"><a href="#">Top</a></span>
+            </div>
+        </div>
+	</div>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script type="text/javascript" src="//images.mania-exchange.com/scripts/jqueryui/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="//images.mania-exchange.com/scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+	<script type="text/javascript" src="/scripts.mx?v=S2G91Q"></script>
+    <script type="text/javascript" src="//images.mania-exchange.com/select2-3.4.5/select2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Enable buttons.
+            $('#mx-form-button').attr('disabled', false);
+
+            $('#notifswnd').fancybox({
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic',
+                'speedIn': 430,
+                'speedOut': 200,
+                'type': 'ajax',
+                'centerOnScroll': true,
+                'padding': 0
+            });
+
+            $('form').submit(function () {
+                $('#mx-form-button').attr('disabled', 'disabled'); // Disable button.
+            });
+
+            // Workaround for double linebreaks..
+            $(".prettyprint br").remove();
+        });
+
+        $(window).load(function () {
+            // Fetch PPO data if it's outdated.
+            $.getJSON("/api/ppoplayers/", function (data) {
+                var total = 0;
+                for (var server in data) {
+                    total += data[server];
+                    if (data[server] > 0) {
+                        $('#ppo-players-' + server).text(data[server]).show();
+                    }
+                }
+                if (total > 0)
+                    $('#ppo-players').text(total).show();
+            });
+
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-43415251-1', 'mania-exchange.com');
+            ga('send', 'pageview');
+        });
+
+    </script>
+	
+</body>
+</html>
