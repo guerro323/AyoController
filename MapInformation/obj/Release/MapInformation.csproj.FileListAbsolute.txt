@@ -9,6 +9,12 @@ C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformatio
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\MapInformation\obj\Release\MapInformation.pdb
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation.pdb
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation_xmlfiles\Widget.xml
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation_xmlfiles\Widget_MXList_Frame.xml
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\serverManager_xmlfiles\widget_settings.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation.dll
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\MapInformation.pdb
+C:\Users\Moi\Documents\SMAdminTools\MapInformation\obj\Release\MapInformation.csprojResolveAssemblyReference.cache
+C:\Users\Moi\Documents\SMAdminTools\MapInformation\obj\Release\MapInformation.dll
+C:\Users\Moi\Documents\SMAdminTools\MapInformation\obj\Release\MapInformation.pdb
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\Map_Information_xmlfiles\Widget.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\Map_Information_xmlfiles\Widget_MXList_Frame.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Map_Information_xmlfiles\Widget.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Map_Information_xmlfiles\Widget_MXList_Frame.xml

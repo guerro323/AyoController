@@ -38,17 +38,17 @@ namespace AyoController
     {
         #region Private Fields
 
-        private static Vector3 zero = new Vector3(0f, 0f, 0f);
-        private static Vector3 one = new Vector3(1f, 1f, 1f);
-        private static Vector3 unitX = new Vector3(1f, 0f, 0f);
-        private static Vector3 unitY = new Vector3(0f, 1f, 0f);
-        private static Vector3 unitZ = new Vector3(0f, 0f, 1f);
-        private static Vector3 up = new Vector3(0f, 1f, 0f);
-        private static Vector3 down = new Vector3(0f, -1f, 0f);
-        private static Vector3 right = new Vector3(1f, 0f, 0f);
-        private static Vector3 left = new Vector3(-1f, 0f, 0f);
-        private static Vector3 forward = new Vector3(0f, 0f, -1f);
-        private static Vector3 backward = new Vector3(0f, 0f, 1f);
+        private static Vector3 _zero = new Vector3(0f, 0f, 0f);
+        private static readonly Vector3 _one = new Vector3(1f, 1f, 1f);
+        private static readonly Vector3 _unitX = new Vector3(1f, 0f, 0f);
+        private static readonly Vector3 _unitY = new Vector3(0f, 1f, 0f);
+        private static readonly Vector3 _unitZ = new Vector3(0f, 0f, 1f);
+        private static readonly Vector3 _up = new Vector3(0f, 1f, 0f);
+        private static readonly Vector3 _down = new Vector3(0f, -1f, 0f);
+        private static readonly Vector3 _right = new Vector3(1f, 0f, 0f);
+        private static readonly Vector3 _left = new Vector3(-1f, 0f, 0f);
+        private static readonly Vector3 _forward = new Vector3(0f, 0f, -1f);
+        private static readonly Vector3 _backward = new Vector3(0f, 0f, 1f);
 
         #endregion Private Fields
 
@@ -66,57 +66,57 @@ namespace AyoController
 
         public static Vector3 Zero
         {
-            get { return zero; }
+            get { return _zero; }
         }
 
         public static Vector3 One
         {
-            get { return one; }
+            get { return _one; }
         }
 
         public static Vector3 UnitX
         {
-            get { return unitX; }
+            get { return _unitX; }
         }
 
         public static Vector3 UnitY
         {
-            get { return unitY; }
+            get { return _unitY; }
         }
 
         public static Vector3 UnitZ
         {
-            get { return unitZ; }
+            get { return _unitZ; }
         }
 
         public static Vector3 Up
         {
-            get { return up; }
+            get { return _up; }
         }
 
         public static Vector3 Down
         {
-            get { return down; }
+            get { return _down; }
         }
 
         public static Vector3 Right
         {
-            get { return right; }
+            get { return _right; }
         }
 
         public static Vector3 Left
         {
-            get { return left; }
+            get { return _left; }
         }
 
         public static Vector3 Forward
         {
-            get { return forward; }
+            get { return _forward; }
         }
 
         public static Vector3 Backward
         {
-            get { return backward; }
+            get { return _backward; }
         }
 
         #endregion Properties
@@ -126,25 +126,25 @@ namespace AyoController
 
         public Vector3(double x, double y, double z)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
 
         public Vector3(double value)
         {
-            this.X = value;
-            this.Y = value;
-            this.Z = value;
+            X = value;
+            Y = value;
+            Z = value;
         }
 
 
         public Vector3(Vector2 value, double z)
         {
-            this.X = value.X;
-            this.Y = value.Y;
-            this.Z = z;
+            X = value.X;
+            Y = value.Y;
+            Z = z;
         }
 
 
@@ -310,7 +310,7 @@ namespace AyoController
 
         public override int GetHashCode()
         {
-            return (int)(this.X + this.Y + this.Z);
+            return (int)(X + Y + Z);
         }
 
         public static Vector3 Hermite(Vector3 value1, Vector3 tangent1, Vector3 value2, Vector3 tangent2, double amount)
@@ -330,14 +330,14 @@ namespace AyoController
         public double Length()
         {
             double result;
-            DistanceSquared(ref this, ref zero, out result);
+            DistanceSquared(ref this, ref _zero, out result);
             return (double)Math.Sqrt(result);
         }
 
         public double LengthSquared()
         {
             double result;
-            DistanceSquared(ref this, ref zero, out result);
+            DistanceSquared(ref this, ref _zero, out result);
             return result;
         }
 
@@ -444,7 +444,7 @@ namespace AyoController
         public static void Normalize(ref Vector3 value, out Vector3 result)
         {
             double factor;
-            Distance(ref value, ref zero, out factor);
+            Distance(ref value, ref _zero, out factor);
             factor = 1f / factor;
             result.X = value.X * factor;
             result.Y = value.Y * factor;
@@ -515,11 +515,11 @@ namespace AyoController
         {
             StringBuilder sb = new StringBuilder(32);
             sb.Append("{X:");
-            sb.Append(this.X);
+            sb.Append(X);
             sb.Append(" Y:");
-            sb.Append(this.Y);
+            sb.Append(Y);
             sb.Append(" Z:");
-            sb.Append(this.Z);
+            sb.Append(Z);
             sb.Append("}");
             return sb.ToString();
         }

@@ -11,28 +11,38 @@ namespace AyoController
     {
         public Quad(string name, Vector3 posn, Vector2 size, bool hidden)
         {
-            this.name = name;
-            this.position = posn;
-            this.size = size;
-            this.hidden = hidden;
+            this.Name = name;
+            Position = posn;
+            this.Size = size;
+            this.Hidden = hidden;
+            Opacity = 1.0;
 
-            childs = new List<Nodes>();
-            parents = new List<Nodes>();
+            Childs = new List<Nodes>();
+            Parents = new List<Nodes>();
         }
 
         public override void OnBuild()
         {
-            this.BuildResult = "<quad ";
-            if (this.substyle != "") this.BuildResult += "substyle=\"" + this.substyle + "\" ";
-            if (this.style != "") this.BuildResult += "style=\"" + this.style + "\" ";
-            if (this.Halign != ManialinkSystem.Halign.None) this.BuildResult += "halign=\"" + AlignToText(this.Halign) +  "\" ";
-            if (this.Valign != ManialinkSystem.Valign.None) this.BuildResult += "valign=\"" + AlignToText(this.Valign) + "\" ";
-            this.BuildResult += "id=\"" + (this.GetHashCode().ToString() + name) + "\" ";
-            this.BuildResult += "posn=\"" + this.position.X + " " + this.position.Y + " " + this.position.Z + "\" ";
-            this.BuildResult = this.BuildResult.Replace(",", ".");
-            this.BuildResult += "sizen=\"" + this.size.X + " " + this.size.Y +  "\" ";
-            this.BuildResult += "hidden=\"" + "false" + "\" ";
-            this.BuildResult += "/>";
+            var scriptevents = 1;
+            if (Usescriptevents) scriptevents = 1;
+            else scriptevents = 0;
+
+            BuildResult = "<quad ";
+            if (substyle != "") BuildResult += "substyle=\"" + substyle + "\" ";
+            if (style != "") BuildResult += "style=\"" + style + "\" ";
+            if (Halign != ManialinkSystem.Halign.None) BuildResult += "halign=\"" + AlignToText(Halign) +  "\" ";
+            if (Valign != ManialinkSystem.Valign.None) BuildResult += "valign=\"" + AlignToText(Valign) + "\" ";
+            if (Scale != 0.01456297) BuildResult += "scale=\"" + Scale + "\" ";
+            if (scriptevents == 1) BuildResult += "scriptevents=\"" + scriptevents + "\" ";
+            if (Name == "") BuildResult += "id=\"" + (GetHashCode().ToString()) + "\" ";
+            else BuildResult += "id=\"" + (Name) + "\" ";
+            BuildResult += "posn=\"" + Position.X + " " + Position.Y + " " + Position.Z + "\"";
+            BuildResult += "opacity=\"" + Opacity + "\" ";
+            BuildResult += "sizen=\"" + Size.X + " " + Size.Y +  "\" ";
+            BuildResult += "hidden=\"" + "false" + "\" ";
+            BuildResult += "/>";
+
+            BuildResult = BuildResult.Replace(",", ".");
             return;
         }
     }

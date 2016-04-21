@@ -1,0 +1,8 @@
+/home/pat/Documents/SMAdminTools/Commands/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/serverManager_xmlfiles/widget_settings.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/Commands_xmlfiles/Widget3.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/Commands_xmlfiles/Widget1.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/Commands_xmlfiles/Widget2.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/Commands_xmlfiles/I_Records.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/Commands.dll
+/home/pat/Documents/SMAdminTools/Commands/obj/Release/Commands.dll

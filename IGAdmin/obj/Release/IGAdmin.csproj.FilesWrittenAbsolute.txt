@@ -1,0 +1,3 @@
+/home/pat/Documents/SMAdminTools/IGAdmin/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/IGAdmin.dll
+/home/pat/Documents/SMAdminTools/IGAdmin/obj/Release/IGAdmin.dll

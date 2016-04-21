@@ -35,22 +35,22 @@ namespace AyoController {
         public Matrix(double m11, double m12, double m13, double m14, double m21, double m22, double m23, double m24, double m31,
                       double m32, double m33, double m34, double m41, double m42, double m43, double m44)
         {
-            this.M11 = m11;
-            this.M12 = m12;
-            this.M13 = m13;
-            this.M14 = m14;
-            this.M21 = m21;
-            this.M22 = m22;
-            this.M23 = m23;
-            this.M24 = m24;
-            this.M31 = m31;
-            this.M32 = m32;
-            this.M33 = m33;
-            this.M34 = m34;
-            this.M41 = m41;
-            this.M42 = m42;
-            this.M43 = m43;
-            this.M44 = m44;
+            M11 = m11;
+            M12 = m12;
+            M13 = m13;
+            M14 = m14;
+            M21 = m21;
+            M22 = m22;
+            M23 = m23;
+            M24 = m24;
+            M31 = m31;
+            M32 = m32;
+            M33 = m33;
+            M34 = m34;
+            M41 = m41;
+            M42 = m42;
+            M43 = m43;
+            M44 = m44;
         }
 
         #endregion Public Constructors
@@ -79,7 +79,7 @@ namespace AyoController {
 
 
         #region Private Members
-        private static Matrix identity = new Matrix(1f, 0f, 0f, 0f,
+        private static readonly Matrix _identity = new Matrix(1f, 0f, 0f, 0f,
                                                     0f, 1f, 0f, 0f,
                                                     0f, 0f, 1f, 0f,
                                                     0f, 0f, 0f, 1f);
@@ -92,13 +92,13 @@ namespace AyoController {
         {
             get
             {
-                return new Vector3(this.M31, this.M32, this.M33);
+                return new Vector3(M31, M32, M33);
             }
             set
             {
-                this.M31 = value.X;
-                this.M32 = value.Y;
-                this.M33 = value.Z;
+                M31 = value.X;
+                M32 = value.Y;
+                M33 = value.Z;
             }
         }
 
@@ -107,13 +107,13 @@ namespace AyoController {
         {
             get
             {
-                return new Vector3(-this.M21, -this.M22, -this.M23);
+                return new Vector3(-M21, -M22, -M23);
             }
             set
             {
-                this.M21 = -value.X;
-                this.M22 = -value.Y;
-                this.M23 = -value.Z;
+                M21 = -value.X;
+                M22 = -value.Y;
+                M23 = -value.Z;
             }
         }
 
@@ -122,20 +122,20 @@ namespace AyoController {
         {
             get
             {
-                return new Vector3(-this.M31, -this.M32, -this.M33);
+                return new Vector3(-M31, -M32, -M33);
             }
             set
             {
-                this.M31 = -value.X;
-                this.M32 = -value.Y;
-                this.M33 = -value.Z;
+                M31 = -value.X;
+                M32 = -value.Y;
+                M33 = -value.Z;
             }
         }
 
 
         public static Matrix Identity
         {
-            get { return identity; }
+            get { return _identity; }
         }
 
 
@@ -155,13 +155,13 @@ namespace AyoController {
         {
             get
             {
-                return new Vector3(-this.M11, -this.M12, -this.M13);
+                return new Vector3(-M11, -M12, -M13);
             }
             set
             {
-                this.M11 = -value.X;
-                this.M12 = -value.Y;
-                this.M13 = -value.Z;
+                M11 = -value.X;
+                M12 = -value.Y;
+                M13 = -value.Z;
             }
         }
 
@@ -170,13 +170,13 @@ namespace AyoController {
         {
             get
             {
-                return new Vector3(this.M11, this.M12, this.M13);
+                return new Vector3(M11, M12, M13);
             }
             set
             {
-                this.M11 = value.X;
-                this.M12 = value.Y;
-                this.M13 = value.Z;
+                M11 = value.X;
+                M12 = value.Y;
+                M13 = value.Z;
             }
         }
 
@@ -185,13 +185,13 @@ namespace AyoController {
         {
             get
             {
-                return new Vector3(this.M41, this.M42, this.M43);
+                return new Vector3(M41, M42, M43);
             }
             set
             {
-                this.M41 = value.X;
-                this.M42 = value.Y;
-                this.M43 = value.Z;
+                M41 = value.X;
+                M42 = value.Y;
+                M43 = value.Z;
             }
         }
 
@@ -200,13 +200,13 @@ namespace AyoController {
         {
             get
             {
-                return new Vector3(this.M21, this.M22, this.M23);
+                return new Vector3(M21, M22, M23);
             }
             set
             {
-                this.M21 = value.X;
-                this.M22 = value.Y;
-                this.M23 = value.Z;
+                M21 = value.X;
+                M22 = value.Y;
+                M23 = value.Z;
             }
         }
         #endregion Public Properties
@@ -644,25 +644,25 @@ namespace AyoController {
 
         public static Matrix CreateLookAt(Vector3 cameraPosition, Vector3 cameraTarget, Vector3 cameraUpVector)
         {
-            Vector3 vector3_1 = Vector3.Normalize(cameraPosition - cameraTarget);
-            Vector3 vector3_2 = Vector3.Normalize(Vector3.Cross(cameraUpVector, vector3_1));
-            Vector3 vector1 = Vector3.Cross(vector3_1, vector3_2);
+            Vector3 vector31 = Vector3.Normalize(cameraPosition - cameraTarget);
+            Vector3 vector32 = Vector3.Normalize(Vector3.Cross(cameraUpVector, vector31));
+            Vector3 vector1 = Vector3.Cross(vector31, vector32);
             Matrix matrix;
-            matrix.M11 = vector3_2.X;
+            matrix.M11 = vector32.X;
             matrix.M12 = vector1.X;
-            matrix.M13 = vector3_1.X;
+            matrix.M13 = vector31.X;
             matrix.M14 = 0.0f;
-            matrix.M21 = vector3_2.Y;
+            matrix.M21 = vector32.Y;
             matrix.M22 = vector1.Y;
-            matrix.M23 = vector3_1.Y;
+            matrix.M23 = vector31.Y;
             matrix.M24 = 0.0f;
-            matrix.M31 = vector3_2.Z;
+            matrix.M31 = vector32.Z;
             matrix.M32 = vector1.Z;
-            matrix.M33 = vector3_1.Z;
+            matrix.M33 = vector31.Z;
             matrix.M34 = 0.0f;
-            matrix.M41 = -Vector3.Dot(vector3_2, cameraPosition);
+            matrix.M41 = -Vector3.Dot(vector32, cameraPosition);
             matrix.M42 = -Vector3.Dot(vector1, cameraPosition);
-            matrix.M43 = -Vector3.Dot(vector3_1, cameraPosition);
+            matrix.M43 = -Vector3.Dot(vector31, cameraPosition);
             matrix.M44 = 1f;
             return matrix;
 
@@ -1303,22 +1303,22 @@ namespace AyoController {
 
         public double Determinant()
         {
-            double num22 = this.M11;
-            double num21 = this.M12;
-            double num20 = this.M13;
-            double num19 = this.M14;
-            double num12 = this.M21;
-            double num11 = this.M22;
-            double num10 = this.M23;
-            double num9 = this.M24;
-            double num8 = this.M31;
-            double num7 = this.M32;
-            double num6 = this.M33;
-            double num5 = this.M34;
-            double num4 = this.M41;
-            double num3 = this.M42;
-            double num2 = this.M43;
-            double num = this.M44;
+            double num22 = M11;
+            double num21 = M12;
+            double num20 = M13;
+            double num19 = M14;
+            double num12 = M21;
+            double num11 = M22;
+            double num10 = M23;
+            double num9 = M24;
+            double num8 = M31;
+            double num7 = M32;
+            double num6 = M33;
+            double num5 = M34;
+            double num4 = M41;
+            double num3 = M42;
+            double num2 = M43;
+            double num = M44;
             double num18 = (num6 * num) - (num5 * num2);
             double num17 = (num7 * num) - (num5 * num3);
             double num16 = (num7 * num2) - (num6 * num3);
@@ -1419,7 +1419,7 @@ namespace AyoController {
 
         public bool Equals(Matrix other)
         {
-            return ((((((this.M11 == other.M11) && (this.M22 == other.M22)) && ((this.M33 == other.M33) && (this.M44 == other.M44))) && (((this.M12 == other.M12) && (this.M13 == other.M13)) && ((this.M14 == other.M14) && (this.M21 == other.M21)))) && ((((this.M23 == other.M23) && (this.M24 == other.M24)) && ((this.M31 == other.M31) && (this.M32 == other.M32))) && (((this.M34 == other.M34) && (this.M41 == other.M41)) && (this.M42 == other.M42)))) && (this.M43 == other.M43));
+            return ((((((M11 == other.M11) && (M22 == other.M22)) && ((M33 == other.M33) && (M44 == other.M44))) && (((M12 == other.M12) && (M13 == other.M13)) && ((M14 == other.M14) && (M21 == other.M21)))) && ((((M23 == other.M23) && (M24 == other.M24)) && ((M31 == other.M31) && (M32 == other.M32))) && (((M34 == other.M34) && (M41 == other.M41)) && (M42 == other.M42)))) && (M43 == other.M43));
         }
 
 
@@ -1428,7 +1428,7 @@ namespace AyoController {
             bool flag = false;
             if (obj is Matrix)
             {
-                flag = this.Equals((Matrix)obj);
+                flag = Equals((Matrix)obj);
             }
             return flag;
         }
@@ -1436,7 +1436,7 @@ namespace AyoController {
 
         public override int GetHashCode()
         {
-            return (((((((((((((((this.M11.GetHashCode() + this.M12.GetHashCode()) + this.M13.GetHashCode()) + this.M14.GetHashCode()) + this.M21.GetHashCode()) + this.M22.GetHashCode()) + this.M23.GetHashCode()) + this.M24.GetHashCode()) + this.M31.GetHashCode()) + this.M32.GetHashCode()) + this.M33.GetHashCode()) + this.M34.GetHashCode()) + this.M41.GetHashCode()) + this.M42.GetHashCode()) + this.M43.GetHashCode()) + this.M44.GetHashCode());
+            return (((((((((((((((M11.GetHashCode() + M12.GetHashCode()) + M13.GetHashCode()) + M14.GetHashCode()) + M21.GetHashCode()) + M22.GetHashCode()) + M23.GetHashCode()) + M24.GetHashCode()) + M31.GetHashCode()) + M32.GetHashCode()) + M33.GetHashCode()) + M34.GetHashCode()) + M41.GetHashCode()) + M42.GetHashCode()) + M43.GetHashCode()) + M44.GetHashCode());
         }
 
 
@@ -1998,10 +1998,10 @@ namespace AyoController {
 
         public override string ToString()
         {
-            return "{" + String.Format("M11:{0} M12:{1} M13:{2} M14:{3}", M11, M12, M13, M14) + "}"
-                + " {" + String.Format("M21:{0} M22:{1} M23:{2} M24:{3}", M21, M22, M23, M24) + "}"
-                + " {" + String.Format("M31:{0} M32:{1} M33:{2} M34:{3}", M31, M32, M33, M34) + "}"
-                + " {" + String.Format("M41:{0} M42:{1} M43:{2} M44:{3}", M41, M42, M43, M44) + "}";
+            return "{" + string.Format("M11:{0} M12:{1} M13:{2} M14:{3}", M11, M12, M13, M14) + "}"
+                + " {" + string.Format("M21:{0} M22:{1} M23:{2} M24:{3}", M21, M22, M23, M24) + "}"
+                + " {" + string.Format("M31:{0} M32:{1} M33:{2} M34:{3}", M31, M32, M33, M34) + "}"
+                + " {" + string.Format("M41:{0} M42:{1} M43:{2} M44:{3}", M41, M42, M43, M44) + "}";
         }
 
 
@@ -2043,7 +2043,7 @@ namespace AyoController {
         /// Helper method for using the Laplace expansion theorem using two rows expansions to calculate major and 
         /// minor determinants of a 4x4 matrix. This method is used for inverting a matrix.
         /// </summary>
-        private static void findDeterminants(ref Matrix matrix, out double major,
+        private static void FindDeterminants(ref Matrix matrix, out double major,
                                              out double minor1, out double minor2, out double minor3, out double minor4, out double minor5, out double minor6,
                                              out double minor7, out double minor8, out double minor9, out double minor10, out double minor11, out double minor12)
         {
@@ -2079,17 +2079,17 @@ namespace AyoController {
 
         public bool Decompose(out Vector3 scale, out Quaternion rotation, out Vector3 translation)
         {
-            translation.X = this.M41;
-            translation.Y = this.M42;
-            translation.Z = this.M43;
+            translation.X = M41;
+            translation.Y = M42;
+            translation.Z = M43;
 
             double xs = (Math.Sign(M11 * M12 * M13 * M14) < 0) ? -1f : 1f;
             double ys = (Math.Sign(M21 * M22 * M23 * M24) < 0) ? -1f : 1f;
             double zs = (Math.Sign(M31 * M32 * M33 * M34) < 0) ? -1f : 1f;
 
-            scale.X = xs * (double)Math.Sqrt(this.M11 * this.M11 + this.M12 * this.M12 + this.M13 * this.M13);
-            scale.Y = ys * (double)Math.Sqrt(this.M21 * this.M21 + this.M22 * this.M22 + this.M23 * this.M23);
-            scale.Z = zs * (double)Math.Sqrt(this.M31 * this.M31 + this.M32 * this.M32 + this.M33 * this.M33);
+            scale.X = xs * (double)Math.Sqrt(M11 * M11 + M12 * M12 + M13 * M13);
+            scale.Y = ys * (double)Math.Sqrt(M21 * M21 + M22 * M22 + M23 * M23);
+            scale.Z = zs * (double)Math.Sqrt(M31 * M31 + M32 * M32 + M33 * M33);
 
             if (scale.X == 0.0 || scale.Y == 0.0 || scale.Z == 0.0)
             {
@@ -2097,9 +2097,9 @@ namespace AyoController {
                 return false;
             }
 
-            Matrix m1 = new Matrix(this.M11 / scale.X, M12 / scale.X, M13 / scale.X, 0,
-                                      this.M21 / scale.Y, M22 / scale.Y, M23 / scale.Y, 0,
-                                      this.M31 / scale.Z, M32 / scale.Z, M33 / scale.Z, 0,
+            Matrix m1 = new Matrix(M11 / scale.X, M12 / scale.X, M13 / scale.X, 0,
+                                      M21 / scale.Y, M22 / scale.Y, M23 / scale.Y, 0,
+                                      M31 / scale.Z, M32 / scale.Z, M33 / scale.Z, 0,
                                       0, 0, 0, 1);
 
             rotation = Quaternion.CreateFromRotationMatrix(m1);

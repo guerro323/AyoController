@@ -55,11 +55,13 @@
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SMAdminTools\AyoController.csproj">
-      <Project>{3ab7196b-6387-42d4-a03f-265f4e616546}</Project>
+      <Project>{3AB7196B-6387-42D4-A03F-265F4E616546}</Project>
       <Name>AyoController</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

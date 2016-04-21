@@ -1,16 +1,37 @@
 ﻿<Properties StartupItem="SMAdminTools\AyoController.csproj">
-  <DisabledProjects>
-    <String>Dedimania\Dedimania.csproj</String>
-  </DisabledProjects>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Commands\Commands.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Dedimania\DediMania.cs">
     <Files>
-      <File FileName="Commands\Commands.cs" Line="132" Column="65" />
-      <File FileName="SMAdminTools\Classes\Manialinks_System\ML_Quad.cs" Line="23" Column="1" />
+      <File FileName="MapInformation\MapInformation.cs" Line="133" Column="17" />
+      <File FileName="SMAdminTools\Classes\Config.cs" Line="22" Column="5" />
+      <File FileName="SMAdminTools\Classes\ServerManager.cs" Line="119" Column="30" />
+      <File FileName="SMAdminTools\Main.cs" Line="1" Column="1" />
+      <File FileName="Dedimania\DediMania.cs" Line="80" Column="36" />
+      <File FileName="SMAdminTools\Classes\MainGUI.cs" Line="1" Column="1" />
+      <File FileName="SMAdminTools\Classes\ManialinkSystem.cs" Line="1" Column="1" />
+      <File FileName="SMAdminTools\Plugins\Plugin.cs" Line="31" Column="3" />
+      <File FileName="SMAdminTools\Classes\Relay.cs" Line="1" Column="1" />
+      <File FileName="IGAdmin\IGAdmin.cs" Line="1" Column="1" />
+      <File FileName="IRCBot\IRCBot.cs" Line="1" Column="1" />
+      <File FileName="Commands\Commands.cs" Line="168" Column="34" />
+      <File FileName="ShootManiaXMLRPC\ShootManiaServer.cs" Line="782" Column="1" />
+      <File FileName="SMAdminTools\app.config" Line="1" Column="1" />
+      <File FileName="SMAdminTools\Config.ini" Line="1" Column="1" />
+      <File FileName="SMAdminTools\Classes\IniFile.cs" Line="1" Column="1" />
+      <File FileName="IRCBot\Classes\IRCBotSettings.cs" Line="1" Column="1" />
+      <File FileName="Dedimania\DediMania_xmlfiles\Widget.xml" Line="1" Column="1" />
+      <File FileName="Dedimania\DediMania_xmlfiles\Widget_RecordBar.xml" Line="9" Column="9" />
+      <File FileName="Dedimania\packages.config" Line="1" Column="1" />
+      <File FileName="SMAdminTools\Classes\JsonHelper.cs" Line="19" Column="8" />
+      <File FileName="SMAdminTools\Classes\Matrix.cs" Line="679" Column="13" />
+      <File FileName="SMAdminTools\Classes\ManiaExchange.cs" Line="67" Column="13" />
+      <File FileName="NextAyOPack1\MyClass.cs" Line="76" Column="3" />
+      <File FileName="Dedimania\Properties\AssemblyInfo.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <AuthorInfo Name="guerro" Email="kaltobattle@gmail.com" Copyright="guerro" Company="&quot;no company&quot;" Trademark="&quot;/&quot;" />
 </Properties>

@@ -8,29 +8,35 @@ namespace AyoController
 {
     public class Label : NodesVisible
     {
-        public string text;
+        public string Text;
+        public double Textsize = 0.01456297;
         public Label(string name, Vector3 posn, Vector2 size, bool hidden)
         {
-            this.name = name;
-            this.position = posn;
-            this.size = size;
-            this.hidden = hidden;
+            this.Name = name;
+            Position = posn;
+            this.Size = size;
+            this.Hidden = hidden;
 
-            childs = new List<Nodes>();
-            parents = new List<Nodes>();
+            Childs = new List<Nodes>();
+            Parents = new List<Nodes>();
         }
 
         public override void OnBuild()
         {
-            this.BuildResult = "<label ";
-            if (this.substyle != "") this.BuildResult += "substyle=\"" + this.substyle + "\" ";
-            if (this.style != "") this.BuildResult += "style=\"" + this.style + "\" ";
-            this.BuildResult += "id=\"" + (this.GetHashCode().ToString() + name) + "\" ";
-            this.BuildResult += "posn=\"" + this.position.X + " " + this.position.Y + " " + this.position.X + "\" ";
-            this.BuildResult += "sizen=\"" + this.size.X + " " + this.size.Y + " " + this.size.X + "\" ";
-            this.BuildResult += "text=\"" + this.text + "\" ";
-            this.BuildResult += "hidden=\"" + hidden + "\" ";
-            this.BuildResult += "/>";
+            BuildResult = "<label ";
+            if (substyle != "") BuildResult += "substyle=\"" + substyle + "\" ";
+            if (style != "") BuildResult += "style=\"" + style + "\" ";
+            if (Halign != ManialinkSystem.Halign.None) BuildResult += "halign=\"" + AlignToText(Halign) + "\" ";
+            if (Valign != ManialinkSystem.Valign.None) BuildResult += "valign=\"" + AlignToText(Valign) + "\" ";
+            if (Textsize != 0.01456297) BuildResult += "textsize=\"" + Textsize + "\" ";
+            if (Scale != 0.01456297) BuildResult += "scale=\"" + Scale + "\" ";
+            BuildResult += "id=\"" + (GetHashCode().ToString() + Name) + "\" ";
+            BuildResult += "posn=\"" + Position.X + " " + Position.Y + " " + Position.X + "\" ";
+            BuildResult += "sizen=\"" + Size.X + " " + Size.Y + " " + Size.X + "\" ";
+            BuildResult += "text=\"" + Text + "\" ";
+            BuildResult += "hidden=\"" + Hidden + "\" ";
+            BuildResult += "/>";
+            BuildResult = BuildResult.Replace(",", ".");
             return;
         }
     }

@@ -1,0 +1,24 @@
+{
+    "guerro": {
+        "Time": 37302,
+        "Id": 0,
+        "Login": "guerro",
+        "Pseudo": "$i$o$n$fffר$29fד .· $29fG$fffuerro ·.",
+        "Rank": 1,
+        "MapuId": "aPk6QE70NWJIg8SHDXCRgT4J3tc",
+        "CheckpointRecords": {
+            "0": 7874,
+            "1": 11355,
+            "2": 13797,
+            "3": 24539,
+            "4": 37307
+        },
+        "TempCheckpoints": {
+            "0": 7874,
+            "1": 11355,
+            "2": 13797,
+            "3": 24539,
+            "4": 37307
+        }
+    }
+}

@@ -1,0 +1,6 @@
+/home/guerro/Documents/ServerController/MapInformation/obj/Debug/.NETFramework,Version=v4.5.2.AssemblyAttribute.cs
+/home/guerro/Documents/ServerController/MapInformation/bin/Debug/ShootManiaXMLRPC.dll
+/home/guerro/Documents/ServerController/MapInformation/bin/Debug/ShootManiaXMLRPC.dll.mdb
+/home/guerro/Documents/ServerController/MapInformation/bin/Debug/AyoController.exe
+/home/guerro/Documents/ServerController/MapInformation/bin/Debug/AyoController.exe.mdb
+/home/guerro/Documents/ServerController/MapInformation/bin/Debug/LitJson.dll

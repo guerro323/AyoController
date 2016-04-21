@@ -8,20 +8,22 @@ using ShootManiaXMLRPC.XmlRpc;
 
 namespace IGAdmin
 {
-	public partial class IGAdmin : Plugin
+	public partial class IgAdmin : Plugin
 	{
 
 		private AyoController.Classes.ServerManager ServerManager { get; set; }
 		private const string AdminsCfgFile = "IGAdmin__Admins.cfg";
-		private List<string> Admins = new List<string>();
+		private readonly List<string> _admins = new List<string>();
 
-        public override AyO.PluginFunction PluginFunction
-        {
-            get
-            {
-                return AyO.PluginFunction.Nothing;
-            }
-        }
+		public override AyO.PluginFunction[] PluginFunction
+		{
+			get
+			{
+				return new AyO.PluginFunction[] {
+					AyO.PluginFunction.Nothing
+				};
+			}
+		}
 
         public override string Name {
 			get {
@@ -35,7 +37,7 @@ namespace IGAdmin
 			}
 		}
 
-        public string StructAD
+        public string StructAd
         {
             get
             {
@@ -49,7 +51,7 @@ namespace IGAdmin
 			}
 		}
 
-        public override string[] listofCommands
+        public override string[] ListofCommands
         {
             get
             {
@@ -71,46 +73,46 @@ namespace IGAdmin
         }
 
 
-        public override void OnServerManagerInitialize (AyoController.Classes.ServerManager ServerManager)
+        public override void OnServerManagerInitialize (AyoController.Classes.ServerManager serverManager)
 		{
 
-			this.ServerManager = ServerManager;
+			this.ServerManager = serverManager;
 			this.ServerManager.OnConnectionSuccessful += HandleOnConnectionSuccessful;
 
 		}
 
-		public override void OnConsoleCommand (string Command)
+		public override void OnConsoleCommand (string command)
 		{
 
-			if (Command == "igadmin reload") {
+			if (command == "igadmin reload") {
 				RefreshAdmins();
 			}
 
 		}
 
-		void HandleOnConnectionSuccessful ()
+	    public override void HandleOnConnectionSuccessful ()
 		{
-			this.ServerManager.Server.OnPlayerChat += HandleOnPlayerChat;
-			this.ServerManager.Server.OnPlayerConnect += HandleOnPlayerConnect;;
+            ServerManager.Server.OnPlayerChat += HandleOnPlayerChat;
+            ServerManager.Server.OnPlayerConnect += HandleOnPlayerConnect;;
 		}
 
-		void HandleOnPlayerConnect (ShootManiaXMLRPC.Structs.PlayerConnect PC)
+		void HandleOnPlayerConnect (ShootManiaXMLRPC.Structs.PlayerConnect pc)
 		{
 			/*if (Admins.Contains (PC.Login)) {
 				ChatSendServerMessage("Admin connected : " + PC.Login);
 			}*/
 		}
 
-		void HandleOnPlayerChat (ShootManiaXMLRPC.Structs.PlayerChat PC)
+		void HandleOnPlayerChat (ShootManiaXMLRPC.Structs.PlayerChat pc)
 		{
-			ParseChatCommand(PC);
+			ParseChatCommand(pc);
 		}
 
 		private void RefreshAdmins ()
 		{
             Console.WriteLine(" Load admins ...");
 
-			Admins.Clear();
+			_admins.Clear();
 
 			string currentAssemblyDirectoryName = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location);
 
@@ -127,10 +129,10 @@ namespace IGAdmin
 
 					if (line != string.Empty &&
 					    !line.StartsWith("#") &&
-					    !Admins.Contains(line))
+					    !_admins.Contains(line))
 					{
 						Console.WriteLine("[IGAdmin] Admin found : " + line);
-						Admins.Add(line);
+						_admins.Add(line);
 					}
 
 					line = sr.ReadLine();
@@ -162,18 +164,25 @@ namespace IGAdmin
 
 			StreamWriter sw = new StreamWriter(currentAssemblyDirectoryName + "/" + AdminsCfgFile);
 
-			foreach (string admin in Admins)
+			foreach (string admin in _admins)
 				sw.WriteLine(admin);
 
 			sw.Close();
 
 		}
 
-		public void ChatSendServerMessage(String Message)
+		public void ChatSendServerMessage(string message)
 		{
-			ServerManager.Server.ChatSendServerMessage(StructAD + " $fff "+ Message);
+			ServerManager.Server.ChatSendServerMessage(StructAd + " $fff "+ message);
 		}
 
-	}
+        public override void Unload()
+        {
+            ServerManager.Server.OnPlayerChat -= HandleOnPlayerChat;
+            ServerManager.Server.OnPlayerConnect -= HandleOnPlayerConnect;
+            ServerManager.OnConnectionSuccessful -= HandleOnConnectionSuccessful;
+        }
+
+    }
 }
 

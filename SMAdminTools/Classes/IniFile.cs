@@ -12,65 +12,65 @@ namespace AyoController.Classes
 #region "Declarations"
 
 		// *** Lock for thread-safe access to file and local cache ***
-		private object m_Lock = new object();
+		private readonly object _mLock = new object();
 
 		// *** File name ***
-		private string m_FileName = null;
+		private string _mFileName = null;
 		public string FileName
 		{
 			get
 			{
-				return m_FileName;
+				return _mFileName;
 			}
 		}
 
 		// *** Lazy loading flag ***
-		private bool m_Lazy = false;
+		private bool _mLazy = false;
 
 		// *** Local cache ***
-		private Dictionary<string, Dictionary<string, string>> m_Sections = new Dictionary<string,Dictionary<string, string>>(); 
+		private readonly Dictionary<string, Dictionary<string, string>> _mSections = new Dictionary<string,Dictionary<string, string>>(); 
 
 		// *** Local cache modified flag ***
-		private bool m_CacheModified = false;
+		private bool _mCacheModified = false;
 
 #endregion
 
 #region "Methods"
 
 		// *** Constructor ***
-		public IniFile(string FileName)
+		public IniFile(string fileName)
 		{
-			Initialize(FileName, false);
+			Initialize(fileName, false);
 		}
 
-		public IniFile(string FileName, bool Lazy)
+		public IniFile(string fileName, bool lazy)
 		{
-			Initialize(FileName, Lazy);
+			Initialize(fileName, lazy);
 		}
 
 		// *** Initialization ***
-		private void Initialize (string FileName, bool Lazy)
+		private void Initialize (string fileName, bool lazy)
 		{
-			m_FileName = FileName;
-			m_Lazy = Lazy;
-			if (!m_Lazy) Refresh();
+			_mFileName = fileName;
+			_mLazy = lazy;
+			if (!_mLazy) Refresh();
 		}
 
 		// *** Read file contents into local cache ***
 		public void Refresh()
 		{
-			lock (m_Lock)
+			lock (_mLock)
 			{
 				StreamReader sr = null;
 				try
 				{
 					// *** Clear local cache ***
-					m_Sections.Clear();
+					_mSections.Clear();
 
 					// *** Open the INI file ***
 					try
 					{
-						sr = new StreamReader(m_FileName);
+						sr = new StreamReader(_mFileName);
 					}
 					catch (FileNotFoundException)
 					{
@@ -78,7 +78,7 @@ namespace AyoController.Classes
 					}
 
 					// *** Read up the file content ***
-					Dictionary<string, string> CurrentSection = null;
+					Dictionary<string, string> currentSection = null;
 					string s;
 					while ((s = sr.ReadLine()) != null)
 					{
@@ -89,35 +89,35 @@ namespace AyoController.Classes
 						{
 							if (s.Length > 2)
 							{
-								string SectionName = s.Substring(1,s.Length-2);
+								string sectionName = s.Substring(1,s.Length-2);
 								
 								// *** Only first occurrence of a section is loaded ***
-								if (m_Sections.ContainsKey(SectionName))
+								if (_mSections.ContainsKey(sectionName))
 								{
-									CurrentSection = null;
+									currentSection = null;
 								}
 								else
 								{
-									CurrentSection = new Dictionary<string, string>();
-									m_Sections.Add(SectionName,CurrentSection);
+									currentSection = new Dictionary<string, string>();
+									_mSections.Add(sectionName,currentSection);
 								}
 							}
 						}
-						else if (CurrentSection != null)
+						else if (currentSection != null)
 						{
 							// *** Check for key+value pair ***
 							int i;
 							if ((i=s.IndexOf('=')) > 0)
 							{
 								int j = s.Length - i - 1;
-								string Key = s.Substring(0,i).Trim();
-								if (Key.Length  > 0)
+								string key = s.Substring(0,i).Trim();
+								if (key.Length  > 0)
 								{
 									// *** Only first occurrence of a key is loaded ***
-									if (!CurrentSection.ContainsKey(Key))
+									if (!currentSection.ContainsKey(key))
 									{
-										string Value = (j > 0) ? (s.Substring(i+1,j).Trim()) : ("");
-										CurrentSection.Add(Key,Value);
+										string value = (j > 0) ? (s.Substring(i+1,j).Trim()) : ("");
+										currentSection.Add(key,value);
 									}
 								}
 							}
@@ -136,37 +136,37 @@ namespace AyoController.Classes
 		// *** Flush local cache content ***
 		public void Flush()
 		{
-			lock(m_Lock)
+			lock(_mLock)
 			{
 				// *** If local cache was not modified, exit ***
-				if (!m_CacheModified) return;				
-				m_CacheModified=false;
+				if (!_mCacheModified) return;				
+				_mCacheModified=false;
 
 				// *** Open the file ***
-				StreamWriter sw = new StreamWriter(m_FileName);
+				StreamWriter sw = new StreamWriter(_mFileName);
 
 				try
 				{
 					// *** Cycle on all sections ***
-					bool First = false;
-					foreach (KeyValuePair<string, Dictionary<string, string>> SectionPair in m_Sections)
+					bool first = false;
+					foreach (KeyValuePair<string, Dictionary<string, string>> sectionPair in _mSections)
 					{
-						Dictionary<string, string> Section = SectionPair.Value;
-						if (First) sw.WriteLine();
-						First = true;
+						Dictionary<string, string> section = sectionPair.Value;
+						if (first) sw.WriteLine();
+						first = true;
 
 						// *** Write the section name ***
 						sw.Write('[');
-						sw.Write(SectionPair.Key);
+						sw.Write(sectionPair.Key);
 						sw.WriteLine(']');
 					
 						// *** Cycle on all key+value pairs in the section ***
-						foreach (KeyValuePair<string, string> ValuePair in Section)
+						foreach (KeyValuePair<string, string> valuePair in section)
 						{
 							// *** Write the key+value pair ***
-							sw.Write(ValuePair.Key);
+							sw.Write(valuePair.Key);
 							sw.Write('=');
-							sw.WriteLine(ValuePair.Value);
+							sw.WriteLine(valuePair.Value);
 						}
 					}
 			    }
@@ -180,67 +180,67 @@ namespace AyoController.Classes
 		}
 		
 		// *** Read a value from local cache ***
-		public string GetValue(string SectionName, string Key, string DefaultValue)
+		public string GetValue(string sectionName, string key, string defaultValue)
 		{
 			// *** Lazy loading ***
-			if (m_Lazy)
+			if (_mLazy)
 			{
-				m_Lazy = false;
+				_mLazy = false;
 				Refresh();
 			}
 
-			lock (m_Lock)
+			lock (_mLock)
 			{
 				// *** Check if the section exists ***
-				Dictionary<string, string> Section;
-				if (!m_Sections.TryGetValue(SectionName, out Section)) return DefaultValue;
+				Dictionary<string, string> section;
+				if (!_mSections.TryGetValue(sectionName, out section)) return defaultValue;
 
 				// *** Check if the key exists ***
-				string Value;
-				if (!Section.TryGetValue(Key, out Value)) return DefaultValue;
+				string value;
+				if (!section.TryGetValue(key, out value)) return defaultValue;
 			
 				// *** Return the found value ***
-				return Value;
+				return value;
 			}
 		}
 
 		// *** Insert or modify a value in local cache ***
-		public void SetValue(string SectionName, string Key, string Value)
+		public void SetValue(string sectionName, string key, string value)
 		{
 			// *** Lazy loading ***
-			if (m_Lazy)
+			if (_mLazy)
 			{
-				m_Lazy = false;
+				_mLazy = false;
 				Refresh();
 			}
 
-			lock (m_Lock)
+			lock (_mLock)
 			{
 				// *** Flag local cache modification ***
-				m_CacheModified = true;
+				_mCacheModified = true;
 
 				// *** Check if the section exists ***
-				Dictionary<string, string> Section;
-				if (!m_Sections.TryGetValue(SectionName, out Section))
+				Dictionary<string, string> section;
+				if (!_mSections.TryGetValue(sectionName, out section))
 				{
 					// *** If it doesn't, add it ***
-					Section = new Dictionary<string, string>();
-					m_Sections.Add(SectionName,Section);
+					section = new Dictionary<string, string>();
+					_mSections.Add(sectionName,section);
 				}
 
 				// *** Modify the value ***
-				if (Section.ContainsKey(Key)) Section.Remove(Key);
-				Section.Add(Key, Value);
+				if (section.ContainsKey(key)) section.Remove(key);
+				section.Add(key, value);
 			}
 		}
 
 		// *** Encode byte array ***
-		private string EncodeByteArray(byte[] Value)
+		private string EncodeByteArray(byte[] value)
 		{
-			if (Value == null) return null;
+			if (value == null) return null;
 
 			StringBuilder sb = new StringBuilder();
-			foreach (byte b in Value)
+			foreach (byte b in value)
 			{
 				string hex = Convert.ToString(b,16);
 				int l = hex.Length;
@@ -258,76 +258,76 @@ namespace AyoController.Classes
 		}
 
 		// *** Decode byte array ***
-		private byte[] DecodeByteArray(string Value)
+		private byte[] DecodeByteArray(string value)
 		{
-			if (Value == null) return null;
+			if (value == null) return null;
 
-			int l = Value.Length;
+			int l = value.Length;
 			if (l < 2) return new byte[] { };
 			
 			l /= 2;
-			byte[] Result = new byte[l];
-			for (int i=0; i<l; i++) Result[i] = Convert.ToByte(Value.Substring(i*2,2),16);
-			return Result;
+			byte[] result = new byte[l];
+			for (int i=0; i<l; i++) result[i] = Convert.ToByte(value.Substring(i*2,2),16);
+			return result;
 		}
 
 		// *** Getters for various types ***
-		public bool GetValue(string SectionName, string Key, bool DefaultValue)
+		public bool GetValue(string sectionName, string key, bool defaultValue)
 		{
-			string StringValue=GetValue(SectionName, Key, DefaultValue.ToString(System.Globalization.CultureInfo.InvariantCulture));
-			int Value;
-			if (int.TryParse(StringValue, out Value)) return (Value != 0);
-			return DefaultValue;
+			string stringValue=GetValue(sectionName, key, defaultValue.ToString(System.Globalization.CultureInfo.InvariantCulture));
+			int value;
+			if (int.TryParse(stringValue, out value)) return (value != 0);
+			return defaultValue;
 		}
 
-		public int GetValue(string SectionName, string Key, int DefaultValue)
+		public int GetValue(string sectionName, string key, int defaultValue)
 		{
-			string StringValue=GetValue(SectionName, Key, DefaultValue.ToString(CultureInfo.InvariantCulture));
-			int Value;
-			if (int.TryParse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out Value)) return Value;
-			return DefaultValue;
+			string stringValue=GetValue(sectionName, key, defaultValue.ToString(CultureInfo.InvariantCulture));
+			int value;
+			if (int.TryParse(stringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out value)) return value;
+			return defaultValue;
 		}
 
-		public double GetValue(string SectionName, string Key, double DefaultValue)
+		public double GetValue(string sectionName, string key, double defaultValue)
 		{
-			string StringValue=GetValue(SectionName, Key, DefaultValue.ToString(CultureInfo.InvariantCulture));
-			double Value;
-			if (double.TryParse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out Value)) return Value;
-			return DefaultValue;
+			string stringValue=GetValue(sectionName, key, defaultValue.ToString(CultureInfo.InvariantCulture));
+			double value;
+			if (double.TryParse(stringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out value)) return value;
+			return defaultValue;
 		}
 
-		public byte[] GetValue(string SectionName, string Key, byte[] DefaultValue)
+		public byte[] GetValue(string sectionName, string key, byte[] defaultValue)
 		{
-			string StringValue = GetValue(SectionName, Key, EncodeByteArray(DefaultValue));
+			string stringValue = GetValue(sectionName, key, EncodeByteArray(defaultValue));
 			try
 			{
-				return DecodeByteArray(StringValue);
+				return DecodeByteArray(stringValue);
 			}
 			catch (FormatException)
 			{
-				return DefaultValue;
+				return defaultValue;
 			}
 		}
 
 		// *** Setters for various types ***
-		public void SetValue(string SectionName, string Key, bool Value)
+		public void SetValue(string sectionName, string key, bool value)
 		{
-			SetValue(SectionName, Key, (Value) ? ("1") : ("0"));
+			SetValue(sectionName, key, (value) ? ("1") : ("0"));
 		}
 
-		public void SetValue(string SectionName, string Key, int Value)
+		public void SetValue(string sectionName, string key, int value)
 		{
-			SetValue(SectionName, Key, Value.ToString(CultureInfo.InvariantCulture));
+			SetValue(sectionName, key, value.ToString(CultureInfo.InvariantCulture));
 		}
 
-		public void SetValue(string SectionName, string Key, double Value)
+		public void SetValue(string sectionName, string key, double value)
 		{
-			SetValue(SectionName, Key, Value.ToString(CultureInfo.InvariantCulture));
+			SetValue(sectionName, key, value.ToString(CultureInfo.InvariantCulture));
 		}
 
-		public void SetValue(string SectionName, string Key, byte[] Value)
+		public void SetValue(string sectionName, string key, byte[] value)
 		{
-			SetValue(SectionName, Key, EncodeByteArray(Value));
+			SetValue(sectionName, key, EncodeByteArray(value));
 		}
 
 #endregion

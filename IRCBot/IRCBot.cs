@@ -9,24 +9,26 @@ using Meebey.SmartIrc4net;
 
 namespace IRCBot
 {
-	public partial class IRCBot : Plugin
+	public partial class IrcBot : Plugin
 	{
 
-		private const string IRCBotSettingsFile = "IRCBot__Settings.ini";
+		private const string IrcBotSettingsFile = "IRCBot__Settings.ini";
 
-		private Classes.IRCBotSettings IRCBotSettings = new Classes.IRCBotSettings();
-		private IrcClient irc = new IrcClient();
-		private bool IsLoaded = false;
-		private Thread Thread_IrcListen;
-		private AyoController.Classes.ServerManager Server;
+		private readonly Classes.IrcBotSettings _ircBotSettings = new Classes.IrcBotSettings();
+		private readonly IrcClient _irc = new IrcClient();
+		private bool _isLoaded = false;
+		private Thread _threadIrcListen;
+		private AyoController.Classes.ServerManager _server;
 
-        public override AyO.PluginFunction PluginFunction
-        {
-            get
-            {
-                return AyO.PluginFunction.Nothing;
-            }
-        }
+		public override AyO.PluginFunction[] PluginFunction
+		{
+			get
+			{
+				return new AyO.PluginFunction[] {
+					AyO.PluginFunction.Nothing
+				};
+			}
+		}
 
         public override string Name {
 			get {
@@ -46,7 +48,7 @@ namespace IRCBot
 			}
 		}
 
-        public override string[] listofCommands
+        public override string[] ListofCommands
         {
             get
             {
@@ -67,30 +69,30 @@ namespace IRCBot
 
 			string currentAssemblyDirectoryName = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location);
 
-			if (File.Exists (currentAssemblyDirectoryName + "/" + IRCBotSettingsFile)) {
-				if (!IRCBotSettings.ParseFromIniFile(currentAssemblyDirectoryName + "/" + IRCBotSettingsFile))
+			if (File.Exists (currentAssemblyDirectoryName + "/" + IrcBotSettingsFile)) {
+				if (!_ircBotSettings.ParseFromIniFile(currentAssemblyDirectoryName + "/" + IrcBotSettingsFile))
 				    {
 						Console.WriteLine("[IRCBot] Unable to load settings !");
 					return;
 				}
 			} else {
-				Console.WriteLine("[IRCBot] " + IRCBotSettingsFile + " not found !");
+				Console.WriteLine("[IRCBot] " + IrcBotSettingsFile + " not found !");
 			}
 
-			irc.Encoding = System.Text.Encoding.UTF8;
-			irc.SendDelay = 200;
-			irc.ActiveChannelSyncing = true;
-			irc.AutoReconnect = true;
-			irc.AutoRejoin = true;
-			irc.AutoRetry = true;
+			_irc.Encoding = System.Text.Encoding.UTF8;
+			_irc.SendDelay = 200;
+			_irc.ActiveChannelSyncing = true;
+			_irc.AutoReconnect = true;
+			_irc.AutoRejoin = true;
+			_irc.AutoRetry = true;
 
-			irc.OnRawMessage += HandleOnRawMessage;
-			irc.OnChannelMessage += HandleOnChannelMessage;
+			_irc.OnRawMessage += HandleOnRawMessage;
+			_irc.OnChannelMessage += HandleOnChannelMessage;
 
 			Console.WriteLine("[IRCBot] Connecting to IRC server ...");
 
 			try {
-				irc.Connect (IRCBotSettings.IRC_Server, IRCBotSettings.IRC_Port);
+				_irc.Connect (_ircBotSettings.IrcServer, _ircBotSettings.IrcPort);
 				Console.WriteLine("[IRCBot] Connected to IRC server !");
 			} catch {
 				Console.WriteLine("[IRCBot] Cannot connect to IRC server !");
@@ -98,23 +100,23 @@ namespace IRCBot
 			}
 
 
-			irc.Login(IRCBotSettings.IRC_Nickname, "AyoController IRC Plugin", 0, "AyoController");
-			irc.RfcJoin(IRCBotSettings.IRC_Channel);
+			_irc.Login(_ircBotSettings.IrcNickname, "AyoController IRC Plugin", 0, "AyoController");
+			_irc.RfcJoin(_ircBotSettings.IrcChannel);
 
-			Thread_IrcListen = new Thread(irc.Listen);
-			Thread_IrcListen.IsBackground = true;
-			Thread_IrcListen.Start();
+			_threadIrcListen = new Thread(_irc.Listen);
+			_threadIrcListen.IsBackground = true;
+			_threadIrcListen.Start();
 
-			IsLoaded = true;
+			_isLoaded = true;
 
 		}
 
 		void HandleOnChannelMessage (object sender, IrcEventArgs e)
 		{
-			if (e.Data.Channel == IRCBotSettings.IRC_Channel &&
-			    IRCBotSettings.ShootMania_IRCChatToGame == 1 &&
-			    Server != null) {
-				Server.Server.ChatSendServerMessage("$08F$o[IRC]$z <" + e.Data.Nick + "> " + e.Data.Message);
+			if (e.Data.Channel == _ircBotSettings.IrcChannel &&
+			    _ircBotSettings.ShootManiaIrcChatToGame == 1 &&
+			    _server != null) {
+				_server.Server.ChatSendServerMessage("$08F$o[IRC]$z <" + e.Data.Nick + "> " + e.Data.Message);
 			}
 		}
 
@@ -123,61 +125,68 @@ namespace IRCBot
 
 		}
 
-		public override void OnServerManagerInitialize (AyoController.Classes.ServerManager ServerManager)
+		public override void OnServerManagerInitialize (AyoController.Classes.ServerManager serverManager)
 		{
-			if (IsLoaded) {
+			if (_isLoaded) {
 
-				this.Server = ServerManager;
-				this.Server.OnConnectionSuccessful += HandleOnConnectionSuccessful;
+                _server = serverManager;
+                _server.OnConnectionSuccessful += HandleOnConnectionSuccessful;
 
 			}
 		}
 
-		void HandleOnPlayerConnect (ShootManiaXMLRPC.Structs.PlayerConnect PC)
+        public override void HandleOnPlayerConnect (ShootManiaXMLRPC.Structs.PlayerConnect pc)
 		{
-			if (IRCBotSettings.ShootMania_SayPlayerConnected == 1) {
-				irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] Player connected : " + PC.Login);
+			if (_ircBotSettings.ShootManiaSayPlayerConnected == 1) {
+				_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] Player connected : " + pc.Login);
 			}
 		}
 
-		void HandleOnPlayerDisconnect (ShootManiaXMLRPC.Structs.PlayerDisconnect PC)
+		void HandleOnPlayerDisconnect (ShootManiaXMLRPC.Structs.PlayerDisconnect pc)
 		{
-			if (IRCBotSettings.ShootMania_SayPlayerDisconnected == 1) {
-				irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] Player disconnected : " + PC.Login);
+			if (_ircBotSettings.ShootManiaSayPlayerDisconnected == 1) {
+				_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] Player disconnected : " + pc.Login);
 			}
 		}
 
-		void HandleOnConnectionSuccessful ()
+        public override void HandleOnConnectionSuccessful ()
 		{
-			this.Server.Server.OnPlayerConnect += HandleOnPlayerConnect;
-			this.Server.Server.OnPlayerDisconnect += HandleOnPlayerDisconnect;
-			this.Server.Server.OnPlayerChat += HandleOnPlayerChat;
-			this.Server.Server.OnModeScriptCallback += HandleOnModeScriptCallback;
-			irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "Connected to ShootMania server !");
+            _server.Server.OnPlayerConnect += HandleOnPlayerConnect;
+            _server.Server.OnPlayerDisconnect += HandleOnPlayerDisconnect;
+            _server.Server.OnPlayerChat += HandleOnPlayerChat;
+            _server.Server.OnModeScriptCallback += HandleOnModeScriptCallback;
+			_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "Connected to ShootMania server !");
 		}
 
-		void HandleOnPlayerChat (ShootManiaXMLRPC.Structs.PlayerChat PC)
+		public override void HandleOnPlayerChat (ShootManiaXMLRPC.Structs.PlayerChat pc)
 		{
-			if (IRCBotSettings.ShootMania_GameChatToIRC == 1)
+			if (_ircBotSettings.ShootManiaGameChatToIrc == 1)
 			{
-				foreach (var player in Server.GetPlayers())
+				foreach (var player in _server.GetPlayers())
 				{
-					if (player.Login == PC.Login &&
+					if (player.Login == pc.Login &&
 					    player.TeamId >= 0)
 					{
-						irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] [Chat] <" + AyoController.Functions.Mania.StripNadeoColours(player.Nickname) + "> " + AyoController.Functions.Mania.StripNadeoColours(PC.Text));
+						_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] [Chat] <" + AyoController.Functions.Mania.StripNadeoColours(player.Nickname) + "> " + AyoController.Functions.Mania.StripNadeoColours(pc.Text));
 					}
 				}
 			}
 		}
 
-		public override void OnConsoleCommand (string Command)
+		public override void OnConsoleCommand (string command)
 		{
-			if (IsLoaded) {
+			if (_isLoaded) {
 
 			}
 		}
 
-	}
+        public override void Unload()
+        {
+            _server.Server.OnPlayerChat -= HandleOnPlayerChat;
+            _server.Server.OnPlayerConnect -= HandleOnPlayerConnect;
+            _server.OnConnectionSuccessful -= HandleOnConnectionSuccessful;
+        }
+
+    }
 }
 

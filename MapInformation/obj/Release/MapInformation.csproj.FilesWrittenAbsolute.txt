@@ -1,0 +1,8 @@
+/home/pat/Documents/SMAdminTools/MapInformation/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/serverManager_xmlfiles/widget_settings.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/MapInformation_xmlfiles/Widget.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/MapInformation_xmlfiles/Widget_MXList_Frame.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/MapInformation.dll.mdb
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/MapInformation.dll
+/home/pat/Documents/SMAdminTools/MapInformation/obj/Release/MapInformation.dll
+/home/pat/Documents/SMAdminTools/MapInformation/obj/Release/MapInformation.dll.mdb

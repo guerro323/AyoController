@@ -1,67 +1,68 @@
 using System;
+using System.Configuration;
 
 namespace AyoController.Classes
 {
 	public class Config
 	{
 
-		public string ShootMania__IP = "";
-		public int ShootMania__XML_RPC_Port = 0;
-		public int ShootMania__ReconnectTimeout = 0;
-		public string ShootMania__SuperAdmin_Login = string.Empty;
-		public string ShootMania__SuperAdmin_Password = string.Empty;
-		public bool AyoController__Debug = false;
+		public string ShootManiaIp = "";
+		public int ShootManiaXmlRpcPort = 0;
+		public int ShootManiaReconnectTimeout = 0;
+		public string ShootManiaSuperAdminLogin = string.Empty;
+		public string ShootManiaSuperAdminPassword = string.Empty;
+	    public int XmlRpcType = 0;
+		public bool AyoControllerDebug = false;
 
-		public Boolean ParseFromIniFile (string fileName)
+		public Boolean ParseFromConfigFile ()
 		{
 
-			IniFile ini = new IniFile (fileName);
+			ShootManiaIp = ConfigurationManager.AppSettings ["IP"];
+		    XmlRpcType = int.Parse(ConfigurationManager.AppSettings["UseXMLRPC"]);
 
-			this.ShootMania__IP = ini.GetValue ("ShootMania", "IP", string.Empty);
-
-			if (this.ShootMania__IP == string.Empty) {
+			if (ShootManiaIp == string.Empty) {
 				Console.WriteLine ("Invalid ShootMania IP !");
 				return false;
 			}
-
-			if (!int.TryParse (ini.GetValue ("ShootMania", "XML_RPC_Port", string.Empty), out this.ShootMania__XML_RPC_Port)) {
+				
+			if (!int.TryParse(ConfigurationManager.AppSettings ["XMLRPC Port"], out ShootManiaXmlRpcPort)) {
 				Console.WriteLine ("Invalid ShootMania XML-RPC Port !");
 				return false;
 			}
 
-			if (this.ShootMania__XML_RPC_Port == 0) {
+			if (ShootManiaXmlRpcPort == 0) {
 				Console.WriteLine ("Invalid ShootMania XML-RPC Port !");
 				return false;
 			}
 
-			if (!int.TryParse (ini.GetValue ("ShootMania", "ReconnectTimeout", string.Empty), out this.ShootMania__ReconnectTimeout)) {
+			if (!int.TryParse (ConfigurationManager.AppSettings ["Reconnect TimeOut"], out ShootManiaReconnectTimeout)) {
 				Console.WriteLine ("Invalid ShootMania Reconnect Timeout !");
 				return false;
 			}
 
-			if (this.ShootMania__ReconnectTimeout == 0) {
+			if (ShootManiaReconnectTimeout == 0) {
 				Console.WriteLine ("Invalid ShootMania Reconnect Timeout !");
 				return false;
 			}
 
-			this.ShootMania__SuperAdmin_Login = ini.GetValue ("ShootMania", "SuperAdmin_Login", string.Empty);
+			ShootManiaSuperAdminLogin = ConfigurationManager.AppSettings ["SuperAdmin Login"];
 
-			if (this.ShootMania__SuperAdmin_Login == string.Empty) {
+			if (ShootManiaSuperAdminLogin == string.Empty) {
 				Console.WriteLine ("Invalid ShootMania SuperAdmin login !");
 				return false;
 			}
 
-			this.ShootMania__SuperAdmin_Password = ini.GetValue ("ShootMania", "SuperAdmin_Password", string.Empty);
+			ShootManiaSuperAdminPassword = ConfigurationManager.AppSettings ["SuperAdmin Password"];
 
-			if (this.ShootMania__SuperAdmin_Password == string.Empty) {
+			if (ShootManiaSuperAdminPassword == string.Empty) {
 				Console.WriteLine ("Invalid ShootMania SuperAdmin password !");
 				return false;
 			}
 
-			int m_AyoController__Debug = ini.GetValue("AyoController", "Debug", 0);
+			//int mAyoControllerDebug = ini.GetValue("AyoController", "Debug", 0);
 
-			if (m_AyoController__Debug == 1)
-				this.AyoController__Debug = true;
+			/*if (mAyoControllerDebug == 1)
+                AyoControllerDebug = true;*/
 		
 			return true;
 

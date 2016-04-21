@@ -8,6 +8,6 @@ namespace AyoController.Plugins
     public class CommandSystem
     {
         public bool IsUsable = true;
-        public string hisName = "";
+        public string HisName = "";
     }
 }

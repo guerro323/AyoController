@@ -1,0 +1,5 @@
+/home/guerro/Documents/ServerController/IGAdmin/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/IGAdmin.dll.mdb
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/IGAdmin.dll
+/home/guerro/Documents/ServerController/IGAdmin/obj/Debug/IGAdmin.dll
+/home/guerro/Documents/ServerController/IGAdmin/obj/Debug/IGAdmin.dll.mdb

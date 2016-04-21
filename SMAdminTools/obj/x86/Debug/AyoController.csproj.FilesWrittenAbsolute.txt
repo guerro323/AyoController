@@ -1,0 +1,10 @@
+/home/guerro/Documents/ServerController/SMAdminTools/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Debug/serverManager_xmlfiles/widget_settings.xml
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Debug/AyoController.exe.config
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Debug/AyoController.exe.mdb
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Debug/AyoController.exe
+/home/guerro/Documents/ServerController/SMAdminTools/obj/x86/Debug/AyoController.exe
+/home/guerro/Documents/ServerController/SMAdminTools/obj/x86/Debug/AyoController.exe.mdb
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Debug/LitJson.dll
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Debug/ShootManiaXMLRPC.dll
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Debug/ShootManiaXMLRPC.dll.mdb

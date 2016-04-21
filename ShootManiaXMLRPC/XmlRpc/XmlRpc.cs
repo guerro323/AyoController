@@ -15,16 +15,16 @@ namespace ShootManiaXMLRPC.XmlRpc
 {
     public class XmlRpc
     {
-        private static bool SendRpc(Socket in_socket, byte[] in_data)
+        private static bool SendRpc(Socket inSocket, byte[] inData)
         {
             int offset = 0;
-            int len = in_data.Length;
+            int len = inData.Length;
             int bytesSent;
             try
             {
                 while (len > 0)
                 {
-                    bytesSent = in_socket.Send(in_data, offset, len, SocketFlags.None);
+                    bytesSent = inSocket.Send(inData, offset, len, SocketFlags.None);
                     len -= bytesSent;
                     offset += bytesSent;
                 }
@@ -36,37 +36,38 @@ namespace ShootManiaXMLRPC.XmlRpc
             }
         }
 
-        private static byte[] ReceiveRpc(Socket in_socket, int in_length)
+        private static byte[] ReceiveRpc(Socket inSocket, int inLength)
         {
-            byte[] data = new byte[in_length];
+            byte[] data = new byte[inLength];
             int offset = 0;
             byte[] buffer;
-            while (in_length > 0)
+            while (inLength > 0)
             {
-                int read = Math.Min(in_length, 1024);
+                int read = Math.Min(inLength, 1024);
                 buffer = new byte[read];
-                int bytesRead = in_socket.Receive(buffer, 0, buffer.Length, SocketFlags.None);
+                int bytesRead = inSocket.Receive(buffer, 0, buffer.Length, SocketFlags.None);
                 Array.Copy(buffer, 0, data, offset, buffer.Length);
-                in_length -= bytesRead;
+                inLength -= bytesRead;
                 offset += bytesRead;
             }
             return data;
         }
 
-        public static int SendCall(Socket in_socket, GbxCall in_call)
+        public static int SendCall(Socket inSocket, GbxCall inCall)
         {
-            if (in_socket.Connected)
+            if (inSocket == null || inCall == null) return 0;
+            if (inSocket.Connected)
             {
-                lock (in_socket)
+                lock (inSocket)
                 {
                     try
                     {
                         // create request body ...
-                        byte[] body = Encoding.UTF8.GetBytes(in_call.Xml);
+                        byte[] body = Encoding.UTF8.GetBytes(inCall.Xml);
 
                         // create response header ...
                         byte[] bSize = BitConverter.GetBytes(body.Length);
-                        byte[] bHandle = BitConverter.GetBytes(in_call.Handle);
+                        byte[] bHandle = BitConverter.GetBytes(inCall.Handle);
 
                         // create call data ...
                         byte[] call = new byte[bSize.Length + bHandle.Length + body.Length];
@@ -75,9 +76,9 @@ namespace ShootManiaXMLRPC.XmlRpc
                         Array.Copy(body, 0, call, 8, body.Length);
 
                         // send call ...
-                        in_socket.Send(call);
+                        inSocket.Send(call);
 
-                        return in_call.Handle;
+                        return inCall.Handle;
                     }
                     catch
                     {
@@ -85,27 +86,22 @@ namespace ShootManiaXMLRPC.XmlRpc
                     }
                 }
             }
-            else
-            {
-                Console.WriteLine("ERROR! <NotConnectedException");
-                return -1;
-                //throw new NotConnectedException();
-            }
+            throw new NotConnectedException();
         }
 
-        public static GbxCall ReceiveCall(Socket in_socket, byte[] inHeader)
+        public static GbxCall ReceiveCall(Socket inSocket, byte[] inHeader)
         {
-            if (in_socket.Connected)
+            if (inSocket.Connected)
             {
-                lock (in_socket)
+                lock (inSocket)
                 {
                     // read response size and handle ...
                     byte[] bSize = new byte[4];
                     byte[] bHandle = new byte[4];
                     if (inHeader == null)
                     {
-                        in_socket.Receive(bSize);
-                        in_socket.Receive(bHandle);
+                        inSocket.Receive(bSize);
+                        inSocket.Receive(bHandle);
                     }
                     else
                     {
@@ -116,7 +112,7 @@ namespace ShootManiaXMLRPC.XmlRpc
                     int handle = BitConverter.ToInt32(bHandle, 0);
 
                     // receive response body ...
-                    byte[] data = ReceiveRpc(in_socket, size);
+                    byte[] data = ReceiveRpc(inSocket, size);
 
                     // parse the response ...
                     GbxCall call = new GbxCall(handle, data);

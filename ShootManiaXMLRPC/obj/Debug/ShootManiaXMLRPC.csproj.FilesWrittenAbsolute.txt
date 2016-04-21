@@ -1,0 +1,5 @@
+/home/guerro/Documents/ServerController/ShootManiaXMLRPC/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/guerro/Documents/ServerController/ShootManiaXMLRPC/bin/Debug/ShootManiaXMLRPC.dll.mdb
+/home/guerro/Documents/ServerController/ShootManiaXMLRPC/bin/Debug/ShootManiaXMLRPC.dll
+/home/guerro/Documents/ServerController/ShootManiaXMLRPC/obj/Debug/ShootManiaXMLRPC.dll
+/home/guerro/Documents/ServerController/ShootManiaXMLRPC/obj/Debug/ShootManiaXMLRPC.dll.mdb

@@ -9,11 +9,11 @@ using LitJson;
 
 namespace AyoController.Classes
 {
-    public class result
+    public class Result
     {
         public List<MapInfo> results;
     }
-    public partial class MapInfo
+    public partial struct MapInfo
     {
         public int TrackID;
         public int UserID;
@@ -21,15 +21,15 @@ namespace AyoController.Classes
         public string Name;
         public int AwardCount;
 
-        public string cdEnviro = "tm";
+        public string CdEnviro;
     }
 
     public partial class MapArgument
     {
-        public string argEnviro = "tm";
-        public string argAuthor = "";
-        public int ID;
-        public string uID;
+        public string ArgEnviro = "tm";
+        public string ArgAuthor = "";
+        public int Id;
+        public string UId;
     }
 
     public partial class ManiaExchangeAyoErrorCode
@@ -39,7 +39,7 @@ namespace AyoController.Classes
         public string ErrorString;
     }
 
-    public enum MXAPIType
+    public enum MxapiType
     {
         Site = 1,
         Api = 2
@@ -48,13 +48,13 @@ namespace AyoController.Classes
     public partial class ManiaExchange
     {
         public MapArgument CurrentSearch = new MapArgument();
-        public string Request(MXAPIType _T, MapArgument Param)
+        public string Request(MxapiType t, MapArgument param)
         {
-            CurrentSearch = Param;
-            string url = "https://" + Param.argEnviro + ".mania-exchange.com/tracksearch2/search?api=on&format=json&anyauthor=" + Param.argAuthor + "";
-            if (_T == MXAPIType.Api)
+            CurrentSearch = param;
+            string url = "https://" + param.ArgEnviro + ".mania-exchange.com/tracksearch2/search?api=on&format=json&anyauthor=" + param.ArgAuthor + "";
+            if (t == MxapiType.Api)
             {
-                url = "https://api.mania-exchange.com/" + CurrentSearch.argEnviro + "/maps/" + CurrentSearch.uID;
+                url = "https://api.mania-exchange.com/" + CurrentSearch.ArgEnviro + "/maps/" + CurrentSearch.UId;
             }
             // Create a request for the URL. 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -77,28 +77,28 @@ namespace AyoController.Classes
             return responseFromServer;
         }
 
-        public MapInfo[] ToResults(string _result)
+        public MapInfo[] ToResults(string result)
         {
-            result TempResult = new result();
-            TempResult = JsonMapper.ToObject<result>(_result);
-            List<MapInfo> MapResult = new List<MapInfo>();
-            foreach (var res in TempResult.results)
+            Result tempResult = new Result();
+            tempResult = JsonMapper.ToObject<Result>(result);
+            List<MapInfo> mapResult = new List<MapInfo>();
+            foreach (var res in tempResult.results)
             {
-                MapResult.Add(res);
+                mapResult.Add(res);
             }
-            return MapResult.ToArray();
+            return mapResult.ToArray();
         }
 
-        public MapInfo GetMapInformation(string _enviro, string _uID)
+        public MapInfo GetMapInformation(string enviro, string uId)
         {
-            MapInfo TempMapInfo = new MapInfo();
-            if (_uID != "")
+            MapInfo tempMapInfo = new MapInfo();
+            if (uId != "")
             {
-                if (Request(MXAPIType.Api, new MapArgument { uID = _uID }) ==
-                    "[]") return TempMapInfo;
-                TempMapInfo = JsonMapper.ToObject<MapInfo[]>(Request(MXAPIType.Api, new MapArgument { uID = _uID }))[0];
+                if (Request(MxapiType.Api, new MapArgument { UId = uId }) ==
+                    "[]") return tempMapInfo;
+                tempMapInfo = JsonMapper.ToObject<MapInfo[]>(Request(MxapiType.Api, new MapArgument { UId = uId }))[0];
             }
-            return TempMapInfo;
+            return tempMapInfo;
         }
 
         /// <summary>
@@ -106,14 +106,14 @@ namespace AyoController.Classes
         /// WARNING! The environnement for the map will be selected using the last Request function :
         /// If you used SM as a request, then it will add a SM map and not TM map.
         /// </summary>
-        /// <param name="MapID"></param>
+        /// <param name="mapId"></param>
         /// <returns></returns>
-        public ManiaExchangeAyoErrorCode AddMap(int MapID)
+        public ManiaExchangeAyoErrorCode AddMap(int mapId)
         {
-            ManiaExchangeAyoErrorCode Error = new ManiaExchangeAyoErrorCode();
+            ManiaExchangeAyoErrorCode error = new ManiaExchangeAyoErrorCode();
             // Create a request for the URL. 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(
-              "https://" + CurrentSearch.argEnviro + ".mania-exchange.com/tracks/download/" + MapID);
+              "https://" + CurrentSearch.ArgEnviro + ".mania-exchange.com/tracks/download/" + mapId);
             // If required by the server, set the credentials.
             request.UserAgent = "Mozilla/5.0";
             // Get the response.
@@ -131,9 +131,9 @@ namespace AyoController.Classes
             response.Close();
             /* ------------------- */
             /// Create the map
-            ServerManager.CreateNewFile("mx", MapID + ".Map.Gbx", responseFromServer, DoNothing);
+            ServerManager.CreateNewFile("mx", mapId + ".Map.Gbx", responseFromServer, DoNothing);
 
-            return Error;
+            return error;
         }
 
         void DoNothing()

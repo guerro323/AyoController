@@ -7,7 +7,7 @@ namespace Commands.System
 {
     class CommandSystem
     {
-        bool IsUsable = true;
-        string IsName = "";
+        bool _isUsable = true;
+        string _isName = "";
     }
 }

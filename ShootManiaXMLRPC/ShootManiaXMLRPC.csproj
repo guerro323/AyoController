@@ -40,6 +40,10 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="XmlRpc, Version=2.1.5352.29245, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XmlRpc.2.1.1\lib\net45\XmlRpc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ShootManiaServer.cs" />

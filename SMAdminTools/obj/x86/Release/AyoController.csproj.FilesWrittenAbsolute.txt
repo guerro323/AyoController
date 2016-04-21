@@ -1,0 +1,9 @@
+/home/pat/Documents/SMAdminTools/SMAdminTools/obj/x86/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/pat/Documents/SMAdminTools/SMAdminTools/obj/x86/Release/AyoController.gtk-gui.gui.stetic
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/serverManager_xmlfiles/widget_settings.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/AyoController_Linux86.exe.config
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/AyoController_Linux86.exe
+/home/pat/Documents/SMAdminTools/SMAdminTools/obj/x86/Release/AyoController_Linux86.exe
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/LitJson.dll
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/ShootManiaXMLRPC.dll
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/ShootManiaXMLRPC.dll.mdb

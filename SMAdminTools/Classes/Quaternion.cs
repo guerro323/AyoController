@@ -56,29 +56,29 @@ namespace AyoController
 #endif
         public double W;
 
-        static Quaternion identity = new Quaternion(0, 0, 0, 1);
+        static readonly Quaternion _identity = new Quaternion(0, 0, 0, 1);
 
 
         public Quaternion(double x, double y, double z, double w)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
-            this.W = w;
+            X = x;
+            Y = y;
+            Z = z;
+            W = w;
         }
 
 
         public Quaternion(Vector3 vectorPart, double scalarPart)
         {
-            this.X = vectorPart.X;
-            this.Y = vectorPart.Y;
-            this.Z = vectorPart.Z;
-            this.W = scalarPart;
+            X = vectorPart.X;
+            Y = vectorPart.Y;
+            Z = vectorPart.Z;
+            W = scalarPart;
         }
 
         public static Quaternion Identity
         {
-            get { return identity; }
+            get { return _identity; }
         }
 
 
@@ -151,9 +151,9 @@ namespace AyoController
         //AÃ±adida por Syderis
         public void Conjugate()
         {
-            this.X = -this.X;
-            this.Y = -this.Y;
-            this.Z = -this.Z;
+            X = -X;
+            Y = -Y;
+            Z = -Z;
         }
 
         //AÃ±adida por Syderis
@@ -395,7 +395,7 @@ namespace AyoController
             bool flag = false;
             if (obj is Quaternion)
             {
-                flag = this.Equals((Quaternion)obj);
+                flag = Equals((Quaternion)obj);
             }
             return flag;
         }
@@ -403,13 +403,13 @@ namespace AyoController
 
         public bool Equals(Quaternion other)
         {
-            return ((((this.X == other.X) && (this.Y == other.Y)) && (this.Z == other.Z)) && (this.W == other.W));
+            return ((((X == other.X) && (Y == other.Y)) && (Z == other.Z)) && (W == other.W));
         }
 
 
         public override int GetHashCode()
         {
-            return (((this.X.GetHashCode() + this.Y.GetHashCode()) + this.Z.GetHashCode()) + this.W.GetHashCode());
+            return (((X.GetHashCode() + Y.GetHashCode()) + Z.GetHashCode()) + W.GetHashCode());
         }
 
 
@@ -438,14 +438,14 @@ namespace AyoController
 
         public double Length()
         {
-            double num = (((this.X * this.X) + (this.Y * this.Y)) + (this.Z * this.Z)) + (this.W * this.W);
+            double num = (((X * X) + (Y * Y)) + (Z * Z)) + (W * W);
             return (double)Math.Sqrt((double)num);
         }
 
 
         public double LengthSquared()
         {
-            return ((((this.X * this.X) + (this.Y * this.Y)) + (this.Z * this.Z)) + (this.W * this.W));
+            return ((((X * X) + (Y * Y)) + (Z * Z)) + (W * W));
         }
 
 
@@ -678,12 +678,12 @@ namespace AyoController
 
         public void Normalize()
         {
-            double num2 = (((this.X * this.X) + (this.Y * this.Y)) + (this.Z * this.Z)) + (this.W * this.W);
+            double num2 = (((X * X) + (Y * Y)) + (Z * Z)) + (W * W);
             double num = 1f / ((double)Math.Sqrt((double)num2));
-            this.X *= num;
-            this.Y *= num;
-            this.Z *= num;
-            this.W *= num;
+            X *= num;
+            Y *= num;
+            Z *= num;
+            W *= num;
         }
 
 
@@ -824,13 +824,13 @@ namespace AyoController
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder(32);
             sb.Append("{X:");
-            sb.Append(this.X);
+            sb.Append(X);
             sb.Append(" Y:");
-            sb.Append(this.Y);
+            sb.Append(Y);
             sb.Append(" Z:");
-            sb.Append(this.Z);
+            sb.Append(Z);
             sb.Append(" W:");
-            sb.Append(this.W);
+            sb.Append(W);
             sb.Append("}");
             return sb.ToString();
         }

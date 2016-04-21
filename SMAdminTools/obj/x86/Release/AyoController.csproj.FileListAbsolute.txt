@@ -1,8 +1,27 @@
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\AyoController.exe.config
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\AyoController.exe
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\LitJson.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\ShootManiaXMLRPC.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\LitJson.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Mono.Posix.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\ShootManiaXMLRPC.pdb
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\obj\x86\Release\AyoController.csprojResolveAssemblyReference.cache
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\obj\x86\Release\AyoController.exe
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\serverManager_xmlfiles\widget_settings.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\obj\x86\Release\AyoController_Linux86.exe
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\AyoController_Linux86.exe.config
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\AyoController_Linux86.exe
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\serverManager_xmlfiles\widget_settings.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\AyoController_Linux86.exe.config
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\AyoController_Linux86.exe
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\LitJson.dll
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\ShootManiaXMLRPC.dll
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\ShootManiaXMLRPC.pdb
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\obj\x86\Release\AyoController.csprojResolveAssemblyReference.cache
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\obj\x86\Release\AyoController_Linux86.exe
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Mono.Posix.dll
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\misc\ManialinkLib\mlAnimlib.misc
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\misc\ManialinkLib\mlAnimlib.misc
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Newtonsoft.Json.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Newtonsoft.Json.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\misc\ManialinkLib\mlRelaylib.misc
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\XmlRpc.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\XmlRpc.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\serverManager_xmlfiles\widget_settings.xml

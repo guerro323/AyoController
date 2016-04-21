@@ -37,10 +37,10 @@ namespace AyoController
     {
         #region Private Fields
 
-        private static Vector2 zeroVector = new Vector2(0f, 0f);
-        private static Vector2 unitVector = new Vector2(1f, 1f);
-        private static Vector2 unitXVector = new Vector2(1f, 0f);
-        private static Vector2 unitYVector = new Vector2(0f, 1f);
+        private static readonly Vector2 ZeroVector = new Vector2(0f, 0f);
+        private static readonly Vector2 UnitVector = new Vector2(1f, 1f);
+        private static readonly Vector2 UnitXVector = new Vector2(1f, 0f);
+        private static readonly Vector2 UnitYVector = new Vector2(0f, 1f);
 
         #endregion Private Fields
 
@@ -57,22 +57,22 @@ namespace AyoController
 
         public static Vector2 Zero
         {
-            get { return zeroVector; }
+            get { return ZeroVector; }
         }
 
         public static Vector2 One
         {
-            get { return unitVector; }
+            get { return UnitVector; }
         }
 
         public static Vector2 UnitX
         {
-            get { return unitXVector; }
+            get { return UnitXVector; }
         }
 
         public static Vector2 UnitY
         {
-            get { return unitYVector; }
+            get { return UnitYVector; }
         }
 
         #endregion Properties
@@ -82,14 +82,14 @@ namespace AyoController
 
         public Vector2(double x, double y)
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
 
         public Vector2(double value)
         {
-            this.X = value;
-            this.Y = value;
+            X = value;
+            Y = value;
         }
 
         #endregion Constructors
@@ -470,7 +470,7 @@ namespace AyoController
         {
             CultureInfo currentCulture = CultureInfo.CurrentCulture;
             return string.Format(currentCulture, "{{X:{0} Y:{1}}}", new object[] {
-                this.X.ToString(currentCulture), this.Y.ToString(currentCulture) });
+                X.ToString(currentCulture), Y.ToString(currentCulture) });
         }
 
         #endregion Public Methods

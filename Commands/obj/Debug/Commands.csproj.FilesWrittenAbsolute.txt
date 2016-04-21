@@ -1,0 +1,10 @@
+/home/guerro/Documents/ServerController/Commands/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/serverManager_xmlfiles/widget_settings.xml
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/Commands_xmlfiles/Widget3.xml
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/Commands_xmlfiles/Widget1.xml
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/Commands_xmlfiles/Widget2.xml
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/Commands_xmlfiles/I_Records.xml
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/Commands.dll.mdb
+/home/guerro/Documents/ServerController/SMAdminTools/bin/Release/Plugins/Commands.dll
+/home/guerro/Documents/ServerController/Commands/obj/Debug/Commands.dll
+/home/guerro/Documents/ServerController/Commands/obj/Debug/Commands.dll.mdb

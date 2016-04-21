@@ -8,4 +8,15 @@ C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Release\Dedimania.csprojResolveAssemblyReference.cache
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Release\Dedimania.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\Dedimania\obj\Release\Dedimania.pdb
-C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\serverManager_xmlfiles\widget_settings.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania_xmlfiles\Widget.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania_xmlfiles\Widget.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania_xmlfiles\Widget_RecordBar.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\Dedimania.dll
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\Dedimania.pdb
+C:\Users\Moi\Documents\SMAdminTools\Dedimania\obj\Release\Dedimania.csprojResolveAssemblyReference.cache
+C:\Users\Moi\Documents\SMAdminTools\Dedimania\obj\Release\Dedimania.dll
+C:\Users\Moi\Documents\SMAdminTools\Dedimania\obj\Release\Dedimania.pdb
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania.cs
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania.cs
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania_xmlfiles\Widget_RecordBar.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\Dedimania.dll.config

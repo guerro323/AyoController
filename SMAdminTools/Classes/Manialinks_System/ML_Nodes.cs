@@ -10,35 +10,37 @@ namespace AyoController
 
     public class Nodes
     {
-        public string name = "";
-        public Vector3 position = new Vector3(0, 0, 0);
-        public Vector2 size = new Vector2(0, 0);
-        public bool hidden = false;
+        public string Name = "";
+        public Vector3 Position = new Vector3(0, 0, 0);
+        public Vector2 Size = new Vector2(0, 0);
+        public bool Hidden = false;
+        public double Scale = 0.01456297;
+        public bool Usescriptevents = false;
         public string BuildResult = "";
         public ManialinkSystem.Halign Halign = ManialinkSystem.Halign.None;
         public ManialinkSystem.Valign Valign = ManialinkSystem.Valign.None;
-        public int id
+        public int Id
         {
             get
             {
-                return name.GetHashCode();
+                return Name.GetHashCode();
             }
         }
 
-        public string AlignToText(object Align)
+        public string AlignToText(object align)
         {
-            if (Align.GetType() == typeof(ManialinkSystem.Halign))
+            if (align.GetType() == typeof(ManialinkSystem.Halign))
             {
-                var _Align = (ManialinkSystem.Halign)Align;
+                var _Align = (ManialinkSystem.Halign)align;
                 if (_Align == ManialinkSystem.Halign.Bottom) return "bottom";
                 if (_Align == ManialinkSystem.Halign.Top) return "top";
                 if (_Align == ManialinkSystem.Halign.Left) return "left";
                 if (_Align == ManialinkSystem.Halign.Right) return "right";
                 if (_Align == ManialinkSystem.Halign.Center) return "center";
             }
-            if (Align.GetType() == typeof(ManialinkSystem.Valign))
+            if (align.GetType() == typeof(ManialinkSystem.Valign))
             {
-                var _Align = (ManialinkSystem.Valign)Align;
+                var _Align = (ManialinkSystem.Valign)align;
                 if (_Align == ManialinkSystem.Valign.Bottom) return "bottom";
                 if (_Align == ManialinkSystem.Valign.Top) return "top";
                 if (_Align == ManialinkSystem.Valign.Left) return "left";
@@ -50,19 +52,19 @@ namespace AyoController
 
         public void Translate(double x, double y, double z)
         {
-            if (parents.Count == 0)
+            if (Parents.Count == 0)
             {
-                this.position = new Vector3(this.position.X + x, this.position.Y + y, this.position.Z + z);
+                Position = new Vector3(Position.X + x, Position.Y + y, Position.Z + z);
             }
             else
             {
-                foreach (var par in parents)
+                foreach (var par in Parents)
                 {
-                    this.position = new Vector3(((par.position.X) - (this.position.X + x)), ((par.position.Y) - (this.position.Y + y)), ((par.position.Z) - (this.position.Z + z)));
+                    Position = new Vector3(((par.Position.X) - (Position.X + x)), ((par.Position.Y) - (Position.Y + y)), ((par.Position.Z) - (Position.Z + z)));
                 }
             }
 
-            if (autobuild) AutoBuild();
+            if (Autobuild) AutoBuild();
         }
 
         public virtual void OnBuild()
@@ -76,82 +78,82 @@ namespace AyoController
         /// <param name="i">True or False</param>
         public bool AutoBuild(bool i)
         {
-            autobuild = i;
+            Autobuild = i;
             OnBuild();
-            return autobuild;
+            return Autobuild;
         }
         public bool AutoBuild()
         {
-            return this.AutoBuild(true);
+            return AutoBuild(true);
         }
 
-        public bool autobuild = true;
+        public bool Autobuild = true;
 
-        public List<Nodes> childs = new List<Nodes>();
-        public List<Nodes> parents = new List<Nodes>();
+        public List<Nodes> Childs = new List<Nodes>();
+        public List<Nodes> Parents = new List<Nodes>();
     }
 
     public class NodesVisible : Nodes
     {
-        public double opacity = 1;
+        public double Opacity = 1;
         public string style = "";
         public string substyle = "";
-        public string redirecturl = "";
+        public string Redirecturl = "";
 
         public void Style(string Style, string Substyle)
         {
-            this.style = Style;
-            this.substyle = Substyle;
+            style = Style;
+            substyle = Substyle;
 
-            if (autobuild) AutoBuild();
+            if (Autobuild) AutoBuild();
         }
         public void Style(string Style)
         {
-            this.style = Style;
+            style = Style;
 
-            if (autobuild) AutoBuild();
+            if (Autobuild) AutoBuild();
         }
         public void Substyle(string Substyle)
         {
-            this.substyle = Substyle;
+            substyle = Substyle;
 
-            if (autobuild) AutoBuild();
+            if (Autobuild) AutoBuild();
         }
     }
 
-    public class childOf
+    public class ChildOf
     {
-        public childOf(Nodes child, Nodes parent)
+        public ChildOf(Nodes child, Nodes parent)
         {
-            child.parents.Add(parent);
-            parent.childs.Add(child);
+            child.Parents.Add(parent);
+            parent.Childs.Add(child);
 
-            if (child.autobuild) child.AutoBuild();
-            if (parent.autobuild) parent.AutoBuild();
+            if (child.Autobuild) child.AutoBuild();
+            if (parent.Autobuild) parent.AutoBuild();
         }
-        public void removeFrom(Nodes child, Nodes parent)
+        public void RemoveFrom(Nodes child, Nodes parent)
         {
-            parent.childs.Remove(child);
+            parent.Childs.Remove(child);
 
-            if (child.autobuild) child.AutoBuild();
-            if (parent.autobuild) parent.AutoBuild();
+            if (child.Autobuild) child.AutoBuild();
+            if (parent.Autobuild) parent.AutoBuild();
         }
     }
-    public class parentOf
+    public class ParentOf
     {
-        public parentOf(Nodes parent, Nodes child)
+        public ParentOf(Nodes parent, Nodes child)
         {
-            parent.childs.Add(child);
+            parent.Childs.Add(child);
 
-            if (child.autobuild) child.AutoBuild();
-            if (parent.autobuild) parent.AutoBuild();
+            if (child.Autobuild) child.AutoBuild();
+            if (parent.Autobuild) parent.AutoBuild();
         }
-        public void removeFrom(Nodes parent, Nodes child)
+        public void RemoveFrom(Nodes parent, Nodes child)
         {
-            child.parents.Remove(parent);
+            child.Parents.Remove(parent);
 
-                        if (child.autobuild) child.AutoBuild();
-            if (parent.autobuild) parent.AutoBuild();
+                        if (child.Autobuild) child.AutoBuild();
+            if (parent.Autobuild) parent.AutoBuild();
         }
     }
 }

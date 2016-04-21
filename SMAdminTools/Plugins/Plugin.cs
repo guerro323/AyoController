@@ -1,29 +1,98 @@
 using System;
+using ShootManiaXMLRPC;
+using ShootManiaXMLRPC.XmlRpc;
 
 namespace AyoController.Plugins
 {
-    public abstract class Plugin
+    public partial class Plugin
     {
-        public abstract AyO.PluginFunction PluginFunction { get; }
+        public virtual Classes.ServerManager ServerManager { get; set; }
 
-        public abstract String Name { get; }
+        public virtual AyO.PluginFunction[] PluginFunction { get; set; }
 
-        public abstract String Author { get; }
+        public virtual string Name { get; set; }
 
-        public abstract String Version { get; }
+        public virtual string Author { get; set; }
 
-        public abstract String[] listofCommands { get; }
+        public virtual string Version { get; set; }
 
-        public abstract void OnLoad();
+        public virtual AyO.HelpCommands ListofCommands
+        {
+            get { return new AyO.HelpCommands(); }
+        }
 
-        public abstract void OnServerManagerInitialize(Classes.ServerManager ServerManager);
+        public bool Loaded;
 
-		public abstract void OnConsoleCommand(string Command);
+        public virtual void Nothing()
+        {
 
-        public abstract void OnLoop();
+        }
 
-        public abstract void HandleEventGbxCallback(object o, ShootManiaXMLRPC.XmlRpc.GbxCallbackEventArgs e);
+        public virtual void OnLoad()
+        {
+        }
 
+        public virtual void OnEverythingLoaded()
+        {
+
+        }
+
+        public virtual void OnServerManagerInitialize(Classes.ServerManager serverManager)
+        {
+            ServerManager = serverManager;
+            ServerManager.OnConnectionSuccessful += HandleOnConnectionSuccessful;
+
+            ServerManager.Instance_CreateNewFile(Name, "config.txt", "", Nothing);
+        }
+
+        public virtual void HandleOnConnectionSuccessful()
+        {
+            ServerManager.Server.OnPlayerChat += HandleOnPlayerChat;
+            ServerManager.Server.OnPlayerConnect += HandleOnPlayerConnect;
+        }
+
+        public virtual void HandleOnPlayerChat(ShootManiaXMLRPC.Structs.PlayerChat pc)
+        {
+
+        }
+
+        public virtual void HandleOnPlayerConnect(ShootManiaXMLRPC.Structs.PlayerConnect pc)
+        {
+
+        }
+
+        public virtual void HandleOnModeScriptCallback(ShootManiaXMLRPC.Structs.ModeScriptCallback msc)
+        {
+
+        }
+
+        public virtual void OnConsoleCommand(string command)
+        {
+
+        }
+
+        public virtual void OnLoop()
+        {
+        }
+
+        public virtual void HandleEventGbxCallback(object o, ShootManiaXMLRPC.XmlRpc.GbxCallbackEventArgs e)
+        {
+
+        }
+
+        public virtual void HandleFixedGbxCallBacks(GbxCallbackEventArgs reponse, string methodname,
+            ShootManiaServer maniaServer)
+        {
+        }
+
+        public virtual void OnCustomEvent(object[] responseObjects, string eventName)
+        {
+        }
+
+        public virtual void Unload()
+        {
+
+        }
     }
 }
 

@@ -1,0 +1,8 @@
+/home/pat/Documents/SMAdminTools/Dedimania/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/serverManager_xmlfiles/widget_settings.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/DediMania_xmlfiles/Widget.xml
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/Dedimania.dll.mdb
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/Dedimania.dll
+/home/pat/Documents/SMAdminTools/Dedimania/obj/Release/Dedimania.dll
+/home/pat/Documents/SMAdminTools/Dedimania/obj/Release/Dedimania.dll.mdb
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/DediMania_xmlfiles/Widget_RecordBar.xml

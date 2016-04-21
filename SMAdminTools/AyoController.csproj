@@ -6,8 +6,11 @@
     <ProjectGuid>{3AB7196B-6387-42D4-A03F-265F4E616546}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>AyoController</RootNamespace>
-    <AssemblyName>AyoController</AssemblyName>
+    <AssemblyName>AyoController_Linux86</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <StartupObject>AyoController.MainClass</StartupObject>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -20,10 +23,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,21 +47,49 @@
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
     <Prefer32Bit>false</Prefer32Bit>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" />
+      </CustomCommands>
+    </CustomCommands>
+    <Commandlineparameters>Config.ini</Commandlineparameters>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gbx.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="LitJson">
       <HintPath>..\LitJson.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="XmlRpc, Version=2.1.5352.29245, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XmlRpc.2.1.1\lib\net45\XmlRpc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Manialinks_System\ML_Label.cs" />
+    <Compile Include="Classes\Manialinks_System\ML_Script.cs" />
     <Compile Include="Classes\MathHelper.cs" />
     <Compile Include="Classes\Matrix.cs" />
     <Compile Include="Classes\ManiaExchange.cs" />
     <Compile Include="Classes\Quaternion.cs" />
+    <Compile Include="Classes\Relay.cs" />
     <Compile Include="Classes\Vector2.cs" />
     <Compile Include="Classes\Vector3.cs" />
     <Compile Include="Classes\ManialinkSystem.cs" />
@@ -69,7 +98,6 @@
     <Compile Include="Classes\Manialinks_System\ML_Frame.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Classes\IniFile.cs" />
     <Compile Include="Plugins\CommandSystem.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Classes\Config.cs" />
@@ -77,6 +105,8 @@
     <Compile Include="Plugins\Manager.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Functions\Mania.cs" />
+    <Compile Include="Classes\MainGUI.cs" />
+    <Compile Include="Classes\JsonHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -95,11 +125,18 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Config.ini" />
+    <None Include="Plugins\misc\ManialinkLib\mlRelaylib.misc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Plugins\misc\ManialinkLib\mlAnimlib.misc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gbx.ico" />
     <Content Include="LitJson.dll" />
-    <Content Include="serverManager_xmlfiles\widget_settings.xml">
+    <Content Include="Plugins\serverManager_xmlfiles\widget_settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
@@ -110,4 +147,13 @@
   <ItemGroup>
     <Folder Include="Core\" />
   </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <StandardHeader Text=" &#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software: you can redistribute it and/or modify&#xA; it under the terms of the GNU General Public License as published by&#xA; the Free Software Foundation, either version 3 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xA; GNU General Public License for more details.&#xA;&#xA; You should have received a copy of the GNU General Public License&#xA; along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;." IncludeInNewFiles="True" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>

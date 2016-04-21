@@ -1,0 +1,37 @@
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\DediMania_xmlfiles\Widget.xml
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\DediMania_xmlfiles\Widget_RecordBar.xml
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\serverManager_xmlfiles\widget_settings.xml
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\NextAyOPack1.dll
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\AyoController_Linux86.exe
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\Dedimania.dll
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\mscorlib.dll
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\ShootManiaXMLRPC.dll
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\LitJson.dll
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\Dedimania.pdb
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\ShootManiaXMLRPC.pdb
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\fr\mscorlib.resources.dll
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\normidna.nlp
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\normnfc.nlp
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\normnfd.nlp
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\normnfkc.nlp
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\bin\Release\normnfkd.nlp
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\NextAyOPack1.dll
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\obj\Release\NextAyOPack1.csprojResolveAssemblyReference.cache
+C:\Users\Moi\Documents\SMAdminTools\NextAyOPack1\obj\Release\NextAyOPack1.dll
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania.cs
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania_xmlfiles\Widget.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania_xmlfiles\Widget_RecordBar.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\NextAyOPack1.dll.config
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\App.config
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\AyONext_Plugin_Pack_1_xmlfiles\interface.xml
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\AyONext_Plugin_Pack_1_xmlfiles\ripp.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania.cs
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania_xmlfiles\Widget.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\DediMania_xmlfiles\Widget_RecordBar.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\AyONext_Plugin_Pack_1_xmlfiles\interface.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\AyONext_Plugin_Pack_1_xmlfiles\ripp.xml
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\App.config
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\NextAyOPack1.dll.config
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\NextAyOPack1.dll
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\NextAyOPack1\obj\Release\NextAyOPack1.csprojResolveAssemblyReference.cache
+C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\NextAyOPack1\obj\Release\NextAyOPack1.dll

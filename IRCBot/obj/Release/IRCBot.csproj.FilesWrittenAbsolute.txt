@@ -1,0 +1,3 @@
+/home/pat/Documents/SMAdminTools/IRCBot/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/pat/Documents/SMAdminTools/SMAdminTools/bin/Release/Plugins/IRCBot.dll
+/home/pat/Documents/SMAdminTools/IRCBot/obj/Release/IRCBot.dll

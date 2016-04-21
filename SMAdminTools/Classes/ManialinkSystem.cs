@@ -11,13 +11,15 @@ namespace AyoController
     public partial class ManialinkSystem : Plugin
     {
         public List<Nodes> CurrentNodes = new List<Nodes>();
-        public override AyO.PluginFunction PluginFunction
-        {
-            get
-            {
-                return AyO.PluginFunction.Global;
-            }
-        }
+		public override AyO.PluginFunction[] PluginFunction
+		{
+			get
+			{
+				return new AyO.PluginFunction[] {
+					AyO.PluginFunction.Global
+				};
+			}
+		}
 
         public override string Version
         {
@@ -40,11 +42,15 @@ namespace AyoController
                 return "Guerro";
             }
         }
-        public override string[] listofCommands
+        public override AyO.HelpCommands ListofCommands
         {
             get
             {
-                return new string[] { "/reload" };
+                return new AyO.HelpCommands()
+                {
+                    Path = "/ml",
+                    Commands = new[] {new AyO._Commands {Command = "rebuild", Params = new [] { "v|name" }}}
+                };
             }
         }
 
@@ -72,63 +78,87 @@ namespace AyoController
             None,
         }
 
+        public string ScriptMain = "";
+        public string ScriptWhile = "";
+
         public string Construct()
         {
-            List<Nodes> NextStage = new List<Nodes>();
-            string ToReturnString = "";
-            foreach (var Node in CurrentNodes)
+            List<Nodes> nextStage = new List<Nodes>();
+            string toReturnString = "";
+            ScriptMain = "<script>";
+            ScriptMain += "<!-- \n";
+            ScriptMain += "main() {\n";
+            foreach (var node in CurrentNodes)
             {
-                if (Node == null) continue;
+                if (node == null) continue;
                 else
                 {
-                    if (Node.childs.Count > 0)
+                    if (node.Autobuild) node.AutoBuild();
+                    // Render the script
+                    //
+                    if (node.Usescriptevents)
                     {
-                        NextStage.Add(Node);
+                        ScriptMain += "declare CMl" + node.ToString().Replace("AyoController.", "") + " node_" + node.GetHashCode() + " <=> (Page.GetFirstChild(\"" + (node.GetHashCode().ToString() + node.Name) + "\") as CMl" + node.ToString().Replace("AyoController.", "") + ");\n";
                     }
-                    else if (Node.parents.Count <= 0) {
-                        if (Node.autobuild) Node.AutoBuild();
-                        ToReturnString += Node.BuildResult;
-                        Console.WriteLine("test");
-                    }
-                }
-            }
-            foreach (var Node in NextStage)
-            {
-                ToReturnString += "<frame posn=\"" + Node.position.X + " " + Node.position.Y + " " + Node.position.Z + "\">";
 
-                foreach (var child in Node.childs)
-                {
-                    ToReturnString += child.BuildResult;
+                    if (node.Childs.Count > 0)
+                    {
+                        nextStage.Add(node);
+                    }
+                    else if (node.Parents.Count <= 0) {     
+                        toReturnString += node.BuildResult;
+                    }
                 }
-                ToReturnString += "</frame>";
             }
-            CurrentBuild = ToReturnString;
-            Console.WriteLine(CurrentBuild);
+            foreach (var node in nextStage)
+            {
+                var scale = "";
+                if (node.Scale != 0.01456297) scale = "scale=\"" + scale + "\" ";
+                toReturnString += "<frame posn=\"" + node.Position.X + " " + node.Position.Y + " " + node.Position.Z + "\" " + scale +">";
+
+                foreach (var child in node.Childs)
+                {
+                    child.AutoBuild();
+                    ScriptMain += "declare CMl" + child.ToString().Replace("AyoController.", "") + " node_" + child.GetHashCode() + " <=> (Page.GetFirstChild(\"" + (child.GetHashCode().ToString() + child.Name) + "\") as CMl" + child.ToString().Replace("AyoController.", "") + ");\n";
+                    toReturnString += child.BuildResult;
+                }
+                toReturnString += "</frame>";
+            }
+            ScriptWhile = "while(True) { yield;\n ";
+            ScriptWhile += "foreach (Event in PendingEvents) {\n";
+            ScriptWhile += "if (Event.Type == CMlEvent::Type::MouseClick) TriggerPageAction(Event.ControlId);";
+            ScriptWhile += "}\n}";
+            ScriptMain += ScriptWhile;
+            ScriptMain += "}\n";
+            ScriptMain += "--></script>";
+            CurrentBuild = toReturnString + ScriptMain;
             return CurrentBuild;
         }
 
-        public AyO.ErrorLog Add(Nodes _node, bool _Construct)
+
+
+        public AyO.ErrorLog Add(Nodes node, bool construct)
         {
-            if (_node != null)
+            if (node != null)
             {
-                this.CurrentNodes.Add(_node);
-                if (_Construct) Construct();
+                CurrentNodes.Add(node);
+                if (construct) Construct();
                 return new AyO.ErrorLog { IsError = false, ErrorString = "No error.", ErrorCode = -1 };
             }
             else
                 return new AyO.ErrorLog { IsError = true, ErrorString = "There is an error, but AyO can't know why. Check if the manialink is correct", ErrorCode = 0 };
         }
 
-        public void Add(Nodes _node)
+        public void Add(Nodes node)
         {
-            this.Add(_node, false);
+            Add(node, false);
         }
 
         public override void OnLoad()
         {
 
         }
-        public override void OnServerManagerInitialize(ServerManager ServerManager)
+        public override void OnServerManagerInitialize(ServerManager serverManager)
         {
 
         }
@@ -140,9 +170,27 @@ namespace AyoController
         {
 
         }
-        public override void OnConsoleCommand(string Command)
+        public override void OnConsoleCommand(string command)
         {
 
         }
-    }
+    } 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

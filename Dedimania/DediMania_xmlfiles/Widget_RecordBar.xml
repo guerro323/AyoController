@@ -1,0 +1,9 @@
+﻿<frame posn="0 ->POS.Y ->POS.Z" id="buttonshowlocal_->thislocal">
+<label posn="20 -4 0.6" sizen="20 6" text="->NAME" valign="center" halign="center" textsize="2"/>
+<label posn="38 -4 0.6" sizen="16 6" text="->00:00.00" valign="center" halign="center" textsize="1"/>
+<label posn="-3 -4 0" sizen="20 5" text="->1" halign="center" valign="center"/>
+<quad posn="-2.5 -4 0" sizen="15 7" bgcolor="FFFA" style="Bgs1InRace" substyle="BgGradRight" valign="center" halign="center"/>
+<quad posn="5 -4 0.6" sizen="7 6.5" bgcolor="FFFFFFFF" valign="center" halign="center"/>
+<quad posn="24 -4 0.55" sizen="48 8" bgcolor="FFFFFFAA" style="EnergyBar" substyle="BgText" opacity="0.95" halign="center" valign="center"/>
+<quad posn="24 -4 0.5" sizen="57 18" bgcolor="FFFFFFAA" style="Bgs1InRace" substyle="BgButtonShadow" opacity="0.95" halign="center" valign="center"/>
+</frame>

@@ -1,3 +1,6 @@
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\SMAdminTools\bin\Release\Plugins\IRCBot.dll
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\IRCBot\obj\Release\IRCBot.csprojResolveAssemblyReference.cache
 C:\Users\Guerro\Documents\Visual Studio 2015\Projects\SMAdminTools\IRCBot\obj\Release\IRCBot.dll
+C:\Users\Moi\Documents\SMAdminTools\SMAdminTools\bin\Release\Plugins\IRCBot.dll
+C:\Users\Moi\Documents\SMAdminTools\IRCBot\obj\Release\IRCBot.csprojResolveAssemblyReference.cache
+C:\Users\Moi\Documents\SMAdminTools\IRCBot\obj\Release\IRCBot.dll

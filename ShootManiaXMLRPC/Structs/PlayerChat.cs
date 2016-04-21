@@ -10,6 +10,11 @@ namespace ShootManiaXMLRPC.Structs
         public int PlayerUid;
         public string Login;
         public string Text;
+        /// <summary>
+        /// Access to the server of where the player is located
+        /// Useful for CrossServers or Multiples servers
+        /// </summary>
+        public ShootManiaServer Server;
         public bool IsRegisteredCmd;
     }
 }

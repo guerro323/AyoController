@@ -9,6 +9,6 @@ namespace ShootManiaXMLRPC.Structs
     {
         public string Login;
         public string ClientName;
-        public string IPAddress;
+        public string IpAddress;
     }
 }

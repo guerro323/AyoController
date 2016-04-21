@@ -5,8 +5,12 @@ using System.Text;
 
 namespace ShootManiaXMLRPC.Structs
 {
-    public class CurrentMapInfo
+    public struct CurrentMapInfo
     {
+        /// <summary>
+        /// If CurrentMapInfo is null or not
+        /// </summary>
+        public bool Null;
         public string UId;
         public string Name;
         public string FileName;
@@ -16,5 +20,6 @@ namespace ShootManiaXMLRPC.Structs
         public int CopperPrice;
         public string MapType;
         public string MapStyle;
+        public int NbCheckpoints;
     }
 }

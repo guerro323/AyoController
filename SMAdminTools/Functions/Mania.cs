@@ -7,7 +7,7 @@ namespace AyoController.Functions
 
 		public static string StripNadeoColours(string str)
 		{
-			string newString = String.Empty;
+			string newString = string.Empty;
 
 			for (int i = 0; i < str.Length; i++)
 			{

@@ -1,0 +1,165 @@
+﻿<frame id="limit_Chrono">
+<quad posn="30 -13.5 0" halign="left" valign="bottom" bgcolor="000" sizen="0 5" opacity="0.989" id="quadChrono"/>
+<label posn="40 -10 0" halign="left" valign="center" sizen="0 5" textsize="2.5" text="00:00.00" id="labelChrono"/>
+<quad posn="0 -65 0" halign="center" valign="center" bgcolor="fff" sizen="30 8" opacity="0.6"/>
+</frame>
+
+<frame posn="56 -35" id="personnal_best">
+  <quad bgcolor="000" posn="0 3 0" halign="left" valign="bottom" sizen="40 0.4"/>
+  <label posn="1 4.5 1" halign="left" valign="bottom" textcolor="000" textprefix="$o" sizen="9.5 6.75" textsize="4.25" text="00:00" id="labelPersonalBest" />
+  <quad posn="15 4.5 0" bgcolor="000" halign="left" valign="bottom" sizen="25 5" id="quadChrono"/>
+  <label posn="18 5 0" halign="left" valign="bottom" textcolor="fff" textprefix="$n$i" sizen="19.75 6.75" textsize="3" text="$nPERSONAL BEST"/>
+</frame>
+
+ <frame id="chatframe" posn="-160 -85">
+
+    <frame id="notifcationframe">
+      <quad sizen="10 10" posn="0 0 1" halign="left" valign="center" style="Icons64x64_1" substyle="Inbox" />
+      <label sizen="10 10" posn="10 0 1" halign="left" valign="center" id="ChatLeft" style="TextButtonBig" scriptevents="1" styleactivate="true" />
+    </frame>
+    
+    
+
+    <frame id="labelframe" posn="10 5">
+      <entry posn="10 -6 1" sizen="60 5" valign="center" halign="left" id="textdialog_entry" scriptevents="1" style="TextButtonBig" focusareacolor1="0002" focusareacolor2="0003"/>
+      <!--<label id="chatlabel_I" sizen="60 10" halign="left" valign="center" textsize="2" text=""/>-->
+      <!--CHATREPLACE-->
+    </frame>
+  </frame>
+
+<script>
+    <!-- 
+    
+  #Include "AnimLib" as AL
+  
+  #Const C_MI_FrameAnimTime 250
+  #Const C_MI_T_FrameAnimTime 900
+  
+  ***ShowGUI_AyOPack***
+  ***
+      if (GUIPlayer.DisplaySpeed > 10)
+      {
+        if (!Switch_GUIAnim)
+        {
+          Switch_GUIAnim = True;
+          Last_GUIAnim = Now + 50;
+          
+        }
+        LabelChatLeft.SetText(ChatCount-ChatLeft^"");
+        Transition_GUIAnim = AL::EaseInSine(Now - Last_GUIAnim, 0., 10., C_MI_T_FrameAnimTime);
+        Transition_NextQuadsAnim = AL::EaseInSine(Now - (Last_GUIAnim+1650), 0., 10., C_MI_T_FrameAnimTime);
+        Transition_LabelsAnim = AL::EaseInSine(Now - (Last_GUIAnim+1200), 0., 10., C_MI_T_FrameAnimTime);
+        ChronoQuad.Size[0] = Transition_GUIAnim*3 - 3;
+        ChronoQuad.Size[1] = Transition_NextQuadsAnim/7 + 5;
+        ChronoLabel.RelativePosition[1] = -20 + Transition_LabelsAnim;
+                    ChatFrame.RelativeScale = 1- Transition_GUIAnim / 10;
+            NotificationFrame.RelativeScale = Transition_GUIAnim / 10;
+        ChronoLabel.Show();
+      }
+      else
+      {
+        if (Switch_GUIAnim)
+        {
+          Switch_GUIAnim = False;
+          Last_GUIAnim = Now + 50;
+          
+          ChatLeft = ChatCount;
+          LabelChatLeft.SetText("");
+        }
+        Transition_GUIAnim = AL::EaseInSine(Now - Last_GUIAnim, 10., -10., C_MI_T_FrameAnimTime);
+        Transition_NextQuadsAnim = AL::EaseInSine(Now - (Last_GUIAnim+1650), 0., 10., C_MI_T_FrameAnimTime);
+        Transition_LabelsAnim = AL::EaseInSine(Now - (Last_GUIAnim+1200), 0., 10., C_MI_T_FrameAnimTime);
+        ChronoQuad.Size[0] = Transition_GUIAnim*3 - 3;
+        ChronoQuad.Size[1] = Transition_NextQuadsAnim/7 + 5;
+        ChronoLabel.RelativePosition[1] = -20 + Transition_LabelsAnim;
+                    ChatFrame.RelativeScale = 1- Transition_GUIAnim / 10;
+            NotificationFrame.RelativeScale = Transition_GUIAnim / 10;
+        ChronoLabel.Hide();
+      }
+  ***
+    
+  main()
+  {
+    declare ChronoLabelXMLIn = """<label posn="48 -10 0" sizen="20 6.75" scale="1" opacity="1" id="labelChrono" />""";
+    declare ChronoQuadXMLIn = """<quad sizen="30 6.75" id="quadChrono" />""";
+    declare ChronoLabelXMLOut = """<label posn="38 -10 0" sizen="0 5" scale="1" opacity="0" id="labelChrono" />""";
+    declare ChronoQuadXMLOut = """<quad sizen="0 5" id="quadChrono" />""";
+    
+    declare CMlQuad ChronoQuad <=> (Page.GetFirstChild("quadChrono") as CMlQuad);
+    declare CMlLabel ChronoLabel <=> (Page.GetFirstChild("labelChrono") as CMlLabel);
+    
+    declare Switch_GUIAnim for LocalUser = False;
+    declare Last_GUIAnim for LocalUser = Now;
+    declare Transition_GUIAnim for LocalUser = 0.;
+    declare Transition_LabelsAnim for LocalUser = 0.;
+    declare Transition_NextQuadsAnim for LocalUser = 0.;
+    
+    declare CMlFrame limit_Chrono <=> (Page.GetFirstChild("limit_Chrono") as CMlFrame);
+    limit_Chrono.ClipWindowActive = True;
+    limit_Chrono.ClipWindowRelativePosition = <50., -3.>;
+    limit_Chrono.ClipWindowSize = <40., 20.>;
+    
+    declare ChatCount for LocalUser = ->CHATS;
+    ChatCount = ->CHATS;
+    declare ChatLeft for LocalUser = 0;
+    
+            declare CMlFrame NotificationFrame = (Page.GetFirstChild("notifcationframe") as CMlFrame);
+        declare CMlFrame ChatFrame = (Page.GetFirstChild("labelframe") as CMlFrame);
+        
+        declare CMlEntry ChatEntry = (Page.GetFirstChild("textdialog_entry") as CMlEntry);
+        
+        declare CMlLabel LabelChatLeft = (Page.GetFirstChild("ChatLeft") as CMlLabel);
+        
+        declare CMlLabel[] ChatLabel;
+        
+        if (ShowChatFrame == True) { ChatFrame.Show(); NotificationFrame.Show(); }
+        else { ChatFrame.Hide(); NotificationFrame.Hide(); }
+    
+    for (I, 0, ->CHATS) 
+    {
+        declare TempLabel <=> (Page.GetFirstChild("chatlabel_"^I) as CMlLabel);
+        ChatLabel.add(TempLabel);
+    }
+    
+    ClientUI.OverlayHideChat = ShowChatFrame;
+    
+    declare IsEdition = False;
+    declare P_IsEdition for LocalUser = False;
+    declare ChatEntryValue for LocalUser = "";
+    
+    while(True)
+    {
+      +++ShowGUI_AyOPack+++
+      
+      log(ChatEntryValue^"  "^ChatEntry.Value);
+      
+      if (ChatEntryValue != "")
+      ChatEntry.Value = ChatEntryValue;
+      
+      if (!IsEdition && ChatEntry.Value != "" && !P_IsEdition) {
+        P_IsEdition = True;
+        ChatEntryValue = ChatEntry.Value;
+        ChatEntry.StartEdition();
+        IsEdition = True;  
+      }
+      
+      if (ChatEntry.Value != "")
+      {
+        ChatEntryValue = ChatEntry.Value;
+      }
+      
+      if (ChatEntryValue == "" || ChatEntry.Value == "") P_IsEdition = False;
+      
+      foreach (Event in PendingEvents) {
+        if (Event.Type == CMlEvent::Type::EntrySubmit) {
+           TriggerPageAction("PackMessage:"^ChatEntry.Value);
+           P_IsEdition = False;
+           ChatEntry.Value = "";
+           ChatEntryValue = "";
+        }
+      }
+      
+      yield;
+    }
+  }
+--></script>

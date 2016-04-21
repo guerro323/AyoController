@@ -1,0 +1,5 @@
+/home/pat/Documents/SMAdminTools/ShootManiaXMLRPC/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/pat/Documents/SMAdminTools/ShootManiaXMLRPC/bin/Release/ShootManiaXMLRPC.dll.mdb
+/home/pat/Documents/SMAdminTools/ShootManiaXMLRPC/bin/Release/ShootManiaXMLRPC.dll
+/home/pat/Documents/SMAdminTools/ShootManiaXMLRPC/obj/Release/ShootManiaXMLRPC.dll
+/home/pat/Documents/SMAdminTools/ShootManiaXMLRPC/obj/Release/ShootManiaXMLRPC.dll.mdb

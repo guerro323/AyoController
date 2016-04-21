@@ -1,0 +1,15 @@
+/home/guerro/Documents/ServerController/Dedimania/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/serverManager_xmlfiles/widget_settings.xml
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/DediMania_xmlfiles/Widget.xml
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/Dedimania.dll.mdb
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/Dedimania.dll
+/home/guerro/Documents/ServerController/Dedimania/obj/Debug/Dedimania.dll
+/home/guerro/Documents/ServerController/Dedimania/obj/Debug/Dedimania.dll.mdb
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/LitJson.dll
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/ManiaNet.DedicatedServer.dll
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/Newtonsoft.Json.dll
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/XmlRpc.dll
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/ShootManiaXMLRPC.dll
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/ShootManiaXMLRPC.dll.mdb
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/AyoController.exe
+/home/guerro/Documents/ServerController/Dedimania/bin/Debug/AyoController.exe.mdb

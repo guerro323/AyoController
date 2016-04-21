@@ -3,37 +3,37 @@ using AyoController.Plugins;
 
 namespace IGAdmin
 {
-    partial class IGAdmin
+    partial class IgAdmin
     {
-        string PRFX = "/admin ";
-        private void ParseChatCommand(ShootManiaXMLRPC.Structs.PlayerChat PC)
+        readonly string _prfx = "/admin ";
+        private void ParseChatCommand(ShootManiaXMLRPC.Structs.PlayerChat pc)
         {
-            if (PC.Text == "/admins")
+            if (pc.Text == "/admins")
             {
-                foreach (string admin in Admins)
+                foreach (string admin in _admins)
                 {
-                    ServerManager.Server.ChatSendToLogin(PC.Login, "Admin : " + admin);
+                    ServerManager.Server.ChatSendToLogin(pc.Login, "Admin : " + admin);
                 }
             }
-            else if (PC.Text == "/players")
+            else if (pc.Text == "/players")
             {
                 foreach (var player in ServerManager.GetPlayers())
                 {
                     if (player.PlayerId > 0)
                     {
-                        ServerManager.Server.ChatSendToLogin(PC.Login,"[" + player.PlayerId + "] " + player.Nickname);
+                        ServerManager.Server.ChatSendToLogin(pc.Login,"[" + player.PlayerId + "] " + player.Nickname);
                     }
                 }
             }
-            else if (PC.Text.StartsWith(PRFX + "addadmin") &&
-              Admins.Contains(PC.Login))
+            else if (pc.Text.StartsWith(_prfx + "addadmin") &&
+              _admins.Contains(pc.Login))
             {
 
-                string admin = PC.Text.Replace(PRFX + "addadmin", string.Empty);
+                string admin = pc.Text.Replace(_prfx + "addadmin", string.Empty);
 
-                if (!Admins.Contains(admin))
+                if (!_admins.Contains(admin))
                 {
-                    Admins.Add(admin);
+                    _admins.Add(admin);
                     SaveAdmins();
                     ChatSendServerMessage("Admin added : " + admin);
                 }
@@ -42,18 +42,18 @@ namespace IGAdmin
                 }
 
             }
-            else if (PC.Text.StartsWith(PRFX + "deladmin") &&
-              Admins.Contains(PC.Login))
+            else if (pc.Text.StartsWith(_prfx + "deladmin") &&
+              _admins.Contains(pc.Login))
             {
 
-                string admin = PC.Text.Replace(PRFX + "deladmin", string.Empty);
+                string admin = pc.Text.Replace(_prfx + "deladmin", string.Empty);
 
-                if (admin != PC.Login)
+                if (admin != pc.Login)
                 {
 
-                    if (Admins.Contains(admin))
+                    if (_admins.Contains(admin))
                     {
-                        Admins.Remove(admin);
+                        _admins.Remove(admin);
                         SaveAdmins();
                         ChatSendServerMessage("Admin removed : " + admin);
                     }
@@ -67,23 +67,23 @@ namespace IGAdmin
                 }
 
             }
-            else if (PC.Text == "!restartmap" &&
-              Admins.Contains(PC.Login))
+            else if (pc.Text == "!restartmap" &&
+              _admins.Contains(pc.Login))
             {
                 ChatSendServerMessage("Restart map ...");
                 ServerManager.Server.RestartMap(false);
             }
-            else if (PC.Text == PRFX + "skip" &&
-              Admins.Contains(PC.Login))
+            else if (pc.Text == _prfx + "skip" &&
+              _admins.Contains(pc.Login))
             {
                 ChatSendServerMessage("Next map ...");
                 //ServerManager.Server.NextMap(false);
             }
-            else if (PC.Text.StartsWith("!map ") &&
-              Admins.Contains(PC.Login))
+            else if (pc.Text.StartsWith("!map ") &&
+              _admins.Contains(pc.Login))
             {
 
-                string newMap = PC.Text.Replace("!map ", string.Empty);
+                string newMap = pc.Text.Replace("!map ", string.Empty);
 
                 foreach (var map in ServerManager.Server.GetMapList(1000, 0))
                 {
@@ -101,16 +101,16 @@ namespace IGAdmin
                 ChatSendServerMessage("No map found with the pattern : " + newMap);
 
             }
-            else if (PC.Text.StartsWith("!kick ") &&
-              Admins.Contains(PC.Login))
+            else if (pc.Text.StartsWith("!kick ") &&
+              _admins.Contains(pc.Login))
             {
 
                 try
                 {
 
-                    int PlayerId = Convert.ToInt32(PC.Text.Replace("!kick ", string.Empty));
+                    int playerId = Convert.ToInt32(pc.Text.Replace("!kick ", string.Empty));
 
-                    ServerManager.Server.KickId(PlayerId, "Kicked by admin");
+                    ServerManager.Server.KickId(playerId, "Kicked by admin");
                     ChatSendServerMessage("Played kicked");
 
                 }
@@ -120,16 +120,16 @@ namespace IGAdmin
                 }
 
             }
-            else if (PC.Text.StartsWith("!ban ") &&
-              Admins.Contains(PC.Login))
+            else if (pc.Text.StartsWith("!ban ") &&
+              _admins.Contains(pc.Login))
             {
 
                 try
                 {
 
-                    int PlayerId = Convert.ToInt32(PC.Text.Replace("!ban ", string.Empty));
+                    int playerId = Convert.ToInt32(pc.Text.Replace("!ban ", string.Empty));
 
-                    ServerManager.Server.BanId(PlayerId, "Banned by admin");
+                    ServerManager.Server.BanId(playerId, "Banned by admin");
                     ChatSendServerMessage("Played banned");
 
                 }
@@ -139,11 +139,11 @@ namespace IGAdmin
                 }
 
             }
-            else if (PC.Text.StartsWith("!password ") &&
-              Admins.Contains(PC.Login))
+            else if (pc.Text.StartsWith("!password ") &&
+              _admins.Contains(pc.Login))
             {
 
-                string newPassword = PC.Text.Replace("!password ", string.Empty);
+                string newPassword = pc.Text.Replace("!password ", string.Empty);
 
                 ServerManager.Server.SetServerPassword(newPassword);
                 ChatSendServerMessage("Password set to : " + newPassword);

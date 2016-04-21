@@ -3,93 +3,93 @@ using Meebey.SmartIrc4net;
 
 namespace IRCBot
 {
-	partial class IRCBot
+	partial class IrcBot
 	{
 
-		void HandleOnModeScriptCallback (ShootManiaXMLRPC.Structs.ModeScriptCallback MSC)
+		void HandleOnModeScriptCallback (ShootManiaXMLRPC.Structs.ModeScriptCallback msc)
 		{
 
-			if (MSC.Param1 == "startRound" &&
-				IRCBotSettings.ShootMania_SayBeginRound == 1) {
+			if (msc.Param1 == "startRound" &&
+				_ircBotSettings.ShootManiaSayBeginRound == 1) {
 
-				irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] Round " + MSC.Param2 + " started !");
+				_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] Round " + msc.Param2 + " started !");
 
 			}
-			else if (MSC.Param1 == "endRound" &&
-				IRCBotSettings.ShootMania_SayEndRound == 1) {
+			else if (msc.Param1 == "endRound" &&
+				_ircBotSettings.ShootManiaSayEndRound == 1) {
 
-				string[] Params = MSC.Param2.Split(';');
+				string[] Params = msc.Param2.Split(';');
 
 				if (Params.Length == 3)
 				{
 					
-					string Unk1 = Params[0];
-					string Winner = Params[1];
-					string Unk2 = Params[2];
+					string unk1 = Params[0];
+					string winner = Params[1];
+					string unk2 = Params[2];
 
-					irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] " + Winner + " win the round !");
+					_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] " + winner + " win the round !");
 
 				}
 
 			}
-			else if (MSC.Param1 == "hit" &&
-				IRCBotSettings.ShootMania_SayHit == 1) {
+			else if (msc.Param1 == "hit" &&
+				_ircBotSettings.ShootManiaSayHit == 1) {
 
-				string[] Params = MSC.Param2.Split(';');
+				string[] Params = msc.Param2.Split(';');
 
 				if (Params.Length == 3)
 				{
 
-					string Shooter = Params[0];
-					string Unk1 = Params[1];
-					string Victim = Params[2];
+					string shooter = Params[0];
+					string unk1 = Params[1];
+					string victim = Params[2];
 					
-					var playerShooter = Server.Server.GetPlayerListByPlayerLogin(Shooter);
-					var playerVictim = Server.Server.GetPlayerListByPlayerLogin(Victim);
+					var playerShooter = _server.Server.GetPlayerListByPlayerLogin(shooter);
+					var playerVictim = _server.Server.GetPlayerListByPlayerLogin(victim);
 
 					if (playerShooter.Nickname.Length > 0 &&
 					    playerVictim.Nickname.Length > 0)
 					{
-						irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] " + AyoController.Functions.Mania.StripNadeoColours(playerShooter.Nickname) + " hit " + AyoController.Functions.Mania.StripNadeoColours(playerVictim.Nickname) + " !");
+						_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] " + AyoController.Functions.Mania.StripNadeoColours(playerShooter.Nickname) + " hit " + AyoController.Functions.Mania.StripNadeoColours(playerVictim.Nickname) + " !");
 					}
 
 				}
 
 			}
-			else if (MSC.Param1 == "frag" &&
-				IRCBotSettings.ShootMania_SayFrag == 1) {
+			else if (msc.Param1 == "frag" &&
+				_ircBotSettings.ShootManiaSayFrag == 1) {
 
-				string[] Params = MSC.Param2.Split(';');
+				string[] Params = msc.Param2.Split(';');
 
 				if (Params.Length == 3)
 				{
 
-					string Shooter = Params[0];
-					string Unk1 = Params[1];
-					string Victim = Params[2];
+					string shooter = Params[0];
+					string unk1 = Params[1];
+					string victim = Params[2];
 					
-					var playerShooter = Server.Server.GetPlayerListByPlayerLogin(Shooter);
-					var playerVictim = Server.Server.GetPlayerListByPlayerLogin(Victim);
+					var playerShooter = _server.Server.GetPlayerListByPlayerLogin(shooter);
+					var playerVictim = _server.Server.GetPlayerListByPlayerLogin(victim);
 
 					if (playerShooter.Nickname.Length > 0 &&
 					    playerVictim.Nickname.Length > 0)
 					{
-						irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] " + AyoController.Functions.Mania.StripNadeoColours(playerShooter.Nickname) + " killed " + AyoController.Functions.Mania.StripNadeoColours(playerVictim.Nickname) + " !");
+						_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] " + AyoController.Functions.Mania.StripNadeoColours(playerShooter.Nickname) + " killed " + AyoController.Functions.Mania.StripNadeoColours(playerVictim.Nickname) + " !");
 					}
 
 				}
 
 			}
-			else if (MSC.Param1 == "endMap" &&
-				IRCBotSettings.ShootMania_SayEndMap == 1) {
+			else if (msc.Param1 == "endMap" &&
+				_ircBotSettings.ShootManiaSayEndMap == 1) {
 
-				irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] Map ended !");
+				_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] Map ended !");
 
 			}
-			else if (MSC.Param1 == "beginMap" &&
-				IRCBotSettings.ShootMania_SayBeginMap == 1) {
+			else if (msc.Param1 == "beginMap" &&
+				_ircBotSettings.ShootManiaSayBeginMap == 1) {
 
-				irc.SendMessage(SendType.Message, IRCBotSettings.IRC_Channel, "[ShootMania] Map started : " + AyoController.Functions.Mania.StripNadeoColours(MSC.Param2) + " !");
+				_irc.SendMessage(SendType.Message, _ircBotSettings.IrcChannel, "[ShootMania] Map started : " + AyoController.Functions.Mania.StripNadeoColours(msc.Param2) + " !");
 
 			}
 
